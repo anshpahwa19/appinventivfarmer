@@ -20,12 +20,12 @@
   width: 100%;
   max-width: 400px;
   min-height: 56px;
-  padding: 10px 10px 10px 16px;
+  padding: 12px 12px 12px 16px;
   border-radius: var(--r-lg);
   background: var(--surface-inverse);
   color: var(--fg-inverse);
   box-shadow: var(--shadow-3);
-  font: 600 0.9375rem/1.35 var(--font);
+  font: var(--t-label);
 }
 .icon {
   flex: none;
@@ -48,9 +48,9 @@
 .action {
   flex: none;
   min-height: 40px;
-  padding: 0 14px;
+  padding: 0 16px;
   border-radius: var(--r-pill);
-  font: 700 0.9375rem/1 var(--font);
+  font: var(--t-label);
   color: var(--sun-400);
 }
 .action:active {

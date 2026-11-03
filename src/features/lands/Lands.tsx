@@ -33,7 +33,7 @@ export default function Lands() {
         {q.status === 'loading' && <SkeletonCards count={2} h={260} />}
         {q.status === 'error' && <ErrorState error={q.error} onRetry={q.refetch} />}
         {q.status === 'success' && list.length === 0 && <EmptyState animation="emptyBox" title="No fields yet" body="Add your land to book services and keep season records." action={<Button to="/lands/new">Add a field</Button>} />}
-        <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+        <Stagger className="stack" style={{ ['--gap' as string]: 'var(--space-stack)' }}>
           {list.map((l) => (
             <StaggerItem key={l.id}>
               <LandCard land={l} wide />

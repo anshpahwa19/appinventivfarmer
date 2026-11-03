@@ -13,7 +13,7 @@ export default function Language() {
   return (
     <Screen title="Language" back backTo="/account">
       <div className={s.page}>
-        <div className="stack" role="radiogroup" aria-label="App language" style={{ ['--gap' as string]: '10px' }}>
+        <div className="stack" role="radiogroup" aria-label="App language" style={{ ['--gap' as string]: '12px' }}>
           {LANGS.map((l) => (
             <button key={l.code} type="button" role="radio" aria-checked={l.code === 'en'} className={s.option} disabled={!l.ready} lang={l.code}>
               <span className={s.optionText}>

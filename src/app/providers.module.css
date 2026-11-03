@@ -41,10 +41,10 @@
   align-items: center;
   gap: 8px;
   margin-top: 16px;
-  padding: 8px 8px 8px 18px;
+  padding: 8px 8px 8px 16px;
   border-radius: var(--r-pill);
   background: var(--surface-2);
-  font: 700 1.25rem/1 var(--font);
+  font: var(--t-heading);
   letter-spacing: 0.01em;
   user-select: all;
 }
@@ -65,7 +65,7 @@
 .contactActions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
   margin-top: 20px;
 }
@@ -73,7 +73,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   min-height: 56px;
   border-radius: var(--r-pill);
   background: #1f8f4e;
@@ -89,7 +89,7 @@
   transform: scale(0.97);
 }
 .note {
-  margin-top: 14px;
+  margin-top: 16px;
   font: var(--t-caption);
   color: var(--fg-3);
 }

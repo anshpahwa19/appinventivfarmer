@@ -208,7 +208,7 @@ export default function LandDetail() {
           <TextField label="Field name" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} error={errors.name} />
           <TextField label="Area" inputMode="decimal" suffix="acres" value={draft.area} onChange={(e) => setDraft({ ...draft, area: e.target.value.replace(/[^\d.]/g, '') })} error={errors.area} />
           <div className="stack" style={{ ['--gap' as string]: '8px' }}>
-            <span style={{ font: '650 0.9375rem/1.3 var(--font)' }}>Ownership</span>
+            <span style={{ font: 'var(--t-label)' }}>Ownership</span>
             <SegmentedControl label="Ownership" value={draft.ownership} onChange={(v) => setDraft({ ...draft, ownership: v })} segments={[{ value: 'Owned', label: 'Owned' }, { value: 'Leased', label: 'Leased' }]} />
           </div>
           <TextField label="Address" optional value={draft.line} onChange={(e) => setDraft({ ...draft, line: e.target.value })} placeholder="Survey or gat number, landmark" />

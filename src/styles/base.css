@@ -129,6 +129,16 @@ a {
   font: var(--t-heading);
   letter-spacing: -0.012em;
 }
+.t-headline {
+  font: var(--t-headline);
+  letter-spacing: -0.016em;
+}
+.t-strong {
+  font: var(--t-strong);
+}
+.t-label {
+  font: var(--t-label);
+}
 .t-subheading {
   font: var(--t-subheading);
   letter-spacing: -0.006em;

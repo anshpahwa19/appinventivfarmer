@@ -59,7 +59,7 @@ export default function StepDetail() {
             <p className="t-caption c-3">
               Step {idx + 1} of {c.steps.length} · Form cycle #{c.number} · {c.crop.name}
             </p>
-            <h1 className="t-title" style={{ marginTop: 6 }}>
+            <h1 className="t-title" style={{ marginTop: 8 }}>
               {step.title}
             </h1>
           </div>

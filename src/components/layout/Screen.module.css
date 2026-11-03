@@ -94,7 +94,7 @@
 .barTitle {
   min-width: 0;
   text-align: center;
-  font: 700 1.0625rem/1.2 var(--font);
+  font: var(--t-subheading);
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
@@ -104,7 +104,7 @@
 .right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 .right {
   justify-content: flex-end;
@@ -120,14 +120,14 @@
   gap: 12px;
 }
 .largeNoHeader {
-  padding-top: calc(18px + var(--safe-top));
+  padding-top: calc(16px + var(--safe-top));
 }
 .largeTitle {
   font: var(--t-display);
   letter-spacing: -0.028em;
 }
 .largeSub {
-  margin-top: 6px;
+  margin-top: 8px;
   font: var(--t-support);
   color: var(--fg-3);
 }
@@ -145,7 +145,7 @@
 .footer {
   position: relative;
   z-index: 10;
-  padding: 12px var(--gutter) calc(14px + var(--safe-bottom));
+  padding: 12px var(--gutter) calc(16px + var(--safe-bottom));
   background: var(--glass-bg-strong);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
@@ -165,7 +165,7 @@
 /* Tab roots with no back button or actions: the empty bar is skipped, the
    large title sits right under the status bar (the bar fades in on scroll). */
 .withHeader.compactTop {
-  padding-top: calc(var(--safe-top) + 10px);
+  padding-top: calc(var(--safe-top) + 12px);
 }
 .compactTop .band {
   top: calc(-1 * (var(--safe-top) + 10px));

@@ -23,7 +23,7 @@ export function WeatherCard({ weather, loading, onOpen }: { weather?: Weather; l
     return (
       <div className={`${s.weather} glass`} aria-busy="true" aria-label="Loading weather">
         <Skeleton w="45%" h={14} />
-        <Skeleton w={110} h={48} style={{ marginTop: 14 }} />
+        <Skeleton w={110} h={48} style={{ marginTop: 16 }} />
         <Skeleton h={40} r={14} style={{ marginTop: 16 }} />
       </div>
     );
@@ -74,7 +74,7 @@ export function WeatherSheet({ open, onClose, weather, onRetry }: { open: boolea
   const min = Math.min(...weather.daily.map((d) => d.minC));
   return (
     <Sheet open={open} onClose={onClose} title={`Weather · ${weather.locationName}`} description={`Updated ${formatRelativeInline(weather.updatedAt)}`}>
-      <div className="stack" style={{ ['--gap' as string]: '18px' }}>
+      <div className="stack" style={{ ['--gap' as string]: '16px' }}>
         <div className={s.wxNow}>
           <WeatherIcon code={weather.current.code} className={s.wxNowIcon} />
           <div>

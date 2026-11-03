@@ -100,7 +100,7 @@ export default function OrderDetail() {
                     { label: 'Total', value: formatCurrency(t.total), total: true, formula: `${formatCurrency(t.subtotal)} + ${formatCurrency(t.shipping)} shipping` },
                   ]}
                 />
-                <p style={{ marginTop: 10, font: 'var(--t-caption)', color: 'var(--fg-3)' }}>Order ID {o.id} · placed {formatDate(o.createdAt)}</p>
+                <p style={{ marginTop: 12, font: 'var(--t-caption)', color: 'var(--fg-3)' }}>Order ID {o.id} · placed {formatDate(o.createdAt)}</p>
               </section>
 
               {o.deliveryInstructions && (

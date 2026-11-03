@@ -4,9 +4,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   min-height: var(--h);
-  padding: 0 22px;
+  padding: 0 24px;
   border-radius: var(--r-pill);
   font: var(--t-button);
   letter-spacing: -0.005em;
@@ -30,7 +30,7 @@
 
 .lg {
   --h: 56px;
-  padding: 0 26px;
+  padding: 0 24px;
   font-size: 1.0625rem;
 }
 .md {

@@ -11,11 +11,11 @@ export default function Help() {
       <div className={s.page}>
         <div>
           <h1 className="t-title">How can we help?</h1>
-          <p className="t-support c-3" style={{ marginTop: 6 }}>
+          <p className="t-support c-3" style={{ marginTop: 8 }}>
             Answers to the questions farmers ask most.
           </p>
         </div>
-        <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+        <div className="stack" style={{ ['--gap' as string]: '12px' }}>
           {FAQS.map((f, i) => (
             <Accordion key={f.q} title={f.q} defaultOpen={i === 0}>
               <p className="t-body c-2">{f.a}</p>
@@ -25,7 +25,7 @@ export default function Help() {
         <div className={s.card}>
           <h2 className={s.cardTitle}>Still need help?</h2>
           <p className={s.cardSub}>Our support team and your Kisani Didi speak Marathi, Hindi and English.</p>
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 16 }}>
             <Button icon={<MessageCircle aria-hidden />} to="/account/contact">
               Contact us
             </Button>

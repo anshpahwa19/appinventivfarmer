@@ -105,14 +105,14 @@ export default function Events() {
                   action={day ? <Button onClick={() => setDay(null)}>Show all dates</Button> : undefined}
                 />
               )}
-              <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+              <Stagger className="stack" style={{ ['--gap' as string]: 'var(--space-stack)' }}>
                 {featured && (
                   <StaggerItem>
                     <EventCard event={featured} featured />
                   </StaggerItem>
                 )}
                 {groupByMonth(rest).map((g) => (
-                  <section key={g.label} className="stack" style={{ ['--gap' as string]: '10px' }}>
+                  <section key={g.label} className="stack" style={{ ['--gap' as string]: '12px' }}>
                     <StaggerItem>
                       <h2 className={s.month}>{g.label}</h2>
                     </StaggerItem>
@@ -129,7 +129,7 @@ export default function Events() {
           {q.status === 'success' && tab === 'past' && (
             <>
               {past.length === 0 && <EmptyState animation="calendar" title="No past events" body="Events you could attend will be listed here after they end." />}
-              <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+              <Stagger className="stack" style={{ ['--gap' as string]: 'var(--space-stack)' }}>
                 {past.map((e) => (
                   <StaggerItem key={e.id}>
                     <EventCard event={e} />

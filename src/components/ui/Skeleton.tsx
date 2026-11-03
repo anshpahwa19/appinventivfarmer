@@ -7,9 +7,9 @@ export function Skeleton({ w = '100%', h = 16, r = 10, style }: { w?: number | s
 /** List of media rows, used while lists load. */
 export function SkeletonRows({ count = 4, thumb = 96 }: { count?: number; thumb?: number }) {
   return (
-    <div className="stack" style={{ ['--gap' as string]: '18px' }} aria-busy="true" aria-label="Loading">
+    <div className="stack" style={{ ['--gap' as string]: '16px' }} aria-busy="true" aria-label="Loading">
       {Array.from({ length: count }, (_, i) => (
-        <div key={i} className="row" style={{ ['--gap' as string]: '14px', alignItems: 'flex-start' }}>
+        <div key={i} className="row" style={{ ['--gap' as string]: '16px', alignItems: 'flex-start' }}>
           <Skeleton w={thumb} h={thumb} r={16} />
           <div className="stack grow" style={{ ['--gap' as string]: '8px', paddingTop: 4 }}>
             <Skeleton h={14} w="40%" />

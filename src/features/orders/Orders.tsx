@@ -151,7 +151,7 @@ export default function Orders() {
         </div>
       )}
 
-      <div style={{ marginTop: 10 }}>
+      <div style={{ marginTop: 12 }}>
         <StaleBanner error={active.data ? active.error : undefined} />
       </div>
 
@@ -168,7 +168,7 @@ export default function Orders() {
             />
           )}
           {active.status === 'success' && count > 0 && (
-            <Stagger className="stack" style={{ ['--gap' as string]: '12px' }}>
+            <Stagger className="stack" style={{ ['--gap' as string]: 'var(--space-stack)' }}>
               {tab === 'fom'
                 ? visibleOrders.map((o) => (
                     <StaggerItem key={o.id}>

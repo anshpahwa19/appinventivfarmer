@@ -33,13 +33,13 @@
 }
 .skip {
   min-height: 44px;
-  padding: 0 18px;
+  padding: 0 16px;
   border-radius: var(--r-pill);
   background: rgba(255, 255, 255, 0.18);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   color: #fff;
-  font: 650 0.9375rem/1 var(--font);
+  font: var(--t-label);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 .panel {
@@ -51,11 +51,11 @@
   padding: 0 var(--gutter) calc(24px + var(--safe-bottom));
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 .progress {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 .progressBar {
   position: relative;
@@ -80,21 +80,21 @@
   color: var(--sun-400);
 }
 .headline {
-  margin-top: 10px;
-  font: 750 2.25rem/1.06 var(--font);
+  margin-top: 12px;
+  font: var(--t-display);
   letter-spacing: -0.032em;
   text-wrap: balance;
 }
 .lede {
   margin-top: 12px;
-  font: 500 1.0625rem/1.5 var(--font);
+  font: var(--t-body);
   color: rgba(255, 255, 255, 0.86);
   max-width: 34ch;
 }
 .ctaRow {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 .light {
   background: #f6f3ea;
@@ -140,7 +140,7 @@
   background: var(--bg);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 .authTitle {
   font: var(--t-title);
@@ -159,7 +159,7 @@
 .switch button {
   color: var(--link);
   font-weight: 700;
-  padding: 10px 6px;
+  padding: 12px 8px;
 }
 .legal {
   margin-top: auto;
@@ -196,7 +196,7 @@
   border-radius: var(--r-md);
   background: var(--surface);
   box-shadow: inset 0 0 0 1.5px var(--line-strong);
-  font: 700 1.5rem/1 var(--font);
+  font: var(--t-headline);
   font-variant-numeric: tabular-nums;
   transition: box-shadow var(--dur-2) var(--ease-standard);
 }
@@ -250,14 +250,14 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  margin-top: 18px;
+  margin-top: 16px;
   text-align: left;
 }
 .benefit {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-start;
-  padding: 14px 16px;
+  padding: 16px 16px;
   border-radius: var(--r-lg);
   background: var(--surface);
   box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
@@ -277,7 +277,7 @@
   height: 20px;
 }
 .benefitTitle {
-  font: 650 1rem/1.3 var(--font);
+  font: var(--t-strong);
 }
 .benefitText {
   margin-top: 2px;
@@ -287,7 +287,7 @@
 .bottomActions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   padding: 24px var(--gutter) calc(20px + var(--safe-bottom));
   margin-top: auto;
 }

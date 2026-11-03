@@ -14,12 +14,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   min-height: 44px;
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: var(--r-pill);
   color: var(--fg-2);
-  font: 650 0.9375rem/1.1 var(--font);
+  font: var(--t-label);
   white-space: nowrap;
   transition: color var(--dur-2) var(--ease-standard);
 }
@@ -37,7 +37,7 @@
 .count {
   min-width: 20px;
   height: 20px;
-  padding: 0 6px;
+  padding: 0 8px;
   border-radius: var(--r-pill);
   background: var(--surface-3);
   color: var(--fg-2);

@@ -46,7 +46,7 @@ export default function PrototypeControls() {
         <section className={s.card}>
           <h2 className={s.cardTitle}>Network</h2>
           <p className={s.cardSub}>Slow shows loading skeletons. Offline shows saved data, offline messages and failed requests.</p>
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 16 }}>
             <SegmentedControl
               label="Network"
               value={demo.network}
@@ -80,7 +80,7 @@ export default function PrototypeControls() {
           </div>
         </section>
 
-        <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+        <div className="stack" style={{ ['--gap' as string]: '12px' }}>
           <Button variant="secondary" icon={<LayoutTemplate aria-hidden />} to="/design-system">
             Open design system
           </Button>

@@ -11,7 +11,7 @@ export default function Otp() {
   if (!phone) return <Navigate to="/auth" replace />;
   return (
     <Screen title="Verify number" back backTo="/auth">
-      <div className="gutter stack" style={{ ['--gap' as string]: '10px', paddingTop: 8 }}>
+      <div className="gutter stack" style={{ ['--gap' as string]: '12px', paddingTop: 8 }}>
         <h1 className="t-title">Enter the code</h1>
         <OtpForm
           phone={phone}

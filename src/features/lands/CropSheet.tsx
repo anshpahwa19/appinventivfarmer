@@ -85,14 +85,14 @@ export function CropSheet({ open, onClose, maxAcres, crop, onSave, onDelete }: P
         {name === 'Other' && <TextField label="Crop name" value={other} onChange={(e) => setOther(e.target.value)} error={errors.name} placeholder="e.g. Groundnut" />}
         <TextField label="Variety" value={variety} onChange={(e) => setVariety(e.target.value)} error={errors.variety} placeholder="As written on the seed bag" />
         <div className="stack" style={{ ['--gap' as string]: '8px' }}>
-          <span style={{ font: '650 0.9375rem/1.3 var(--font)' }}>Season</span>
+          <span style={{ font: 'var(--t-label)' }}>Season</span>
           <SegmentedControl label="Season" value={season} onChange={setSeason} segments={[{ value: 'Kharif', label: 'Kharif' }, { value: 'Rabi', label: 'Rabi' }, { value: 'Zaid', label: 'Zaid' }]} />
         </div>
         <div className={s.grid2}>
           <TextField label="Area" inputMode="decimal" suffix="acres" value={acres} onChange={(e) => setAcres(e.target.value.replace(/[^\d.]/g, ''))} error={errors.acres} hint={`Max ${maxAcres}`} />
           <TextField label="Sowing date" optional type="date" value={sowing} onChange={(e) => setSowing(e.target.value)} />
         </div>
-        {confirmDelete && <p style={{ color: 'var(--danger-fg)', font: '600 0.9375rem/1.4 var(--font)' }}>Remove this crop from the field? Season records already made are not affected.</p>}
+        {confirmDelete && <p style={{ color: 'var(--danger-fg)', font: 'var(--t-label)' }}>Remove this crop from the field? Season records already made are not affected.</p>}
       </div>
     </Sheet>
   );

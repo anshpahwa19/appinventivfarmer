@@ -123,11 +123,11 @@ export default function NewBooking() {
             exit={{ opacity: 0, x: dir * -20 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="stack"
-            style={{ ['--gap' as string]: '18px' }}
+            style={{ ['--gap' as string]: '16px' }}
           >
             {step === 1 && (
               <>
-                <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+                <div className="stack" style={{ ['--gap' as string]: '12px' }}>
                   <span className={s.label} id="land-label">
                     Which field?
                   </span>
@@ -163,7 +163,7 @@ export default function NewBooking() {
                 </div>
                 {land && (
                   <>
-                    <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+                    <div className="stack" style={{ ['--gap' as string]: '12px' }}>
                       <span className={s.label}>Crop</span>
                       <div className="row" style={{ flexWrap: 'wrap', ['--gap' as string]: '8px' }}>
                         {[...land.crops.map((c) => c.name), 'Other'].map((c) => (
@@ -182,7 +182,7 @@ export default function NewBooking() {
 
             {step === 2 && (
               <>
-                <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+                <div className="stack" style={{ ['--gap' as string]: '12px' }}>
                   <span className={s.label} id="date-label">
                     Preferred date
                   </span>
@@ -200,7 +200,7 @@ export default function NewBooking() {
                   </div>
                   {errors.date && <p className={s.fieldError}>{errors.date}</p>}
                 </div>
-                <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+                <div className="stack" style={{ ['--gap' as string]: '12px' }}>
                   <span className={s.label} id="slot-label">
                     Preferred time
                   </span>

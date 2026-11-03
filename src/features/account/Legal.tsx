@@ -15,7 +15,7 @@ export default function Legal() {
         ) : (
           <div className={s.prose}>
             <h1 className="t-title">{content.title}</h1>
-            <p className="t-caption c-3" style={{ marginTop: 6 }}>
+            <p className="t-caption c-3" style={{ marginTop: 8 }}>
               Summary · updated {content.updated}
             </p>
             {content.sections.map((sec) => (

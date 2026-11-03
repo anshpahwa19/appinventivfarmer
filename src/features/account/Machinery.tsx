@@ -86,7 +86,7 @@ export default function Machinery() {
     >
       <div className={s.page}>
         <p className="t-support c-3">Tell us which machines you own. It helps plan field services in your area.</p>
-        <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+        <div className="stack" style={{ ['--gap' as string]: '12px' }}>
           <Machine title="Tractor" count={t.count} onCount={(n) => setM({ ...m, tractor: { ...t, count: n } })} open>
             <SelectField label="Brand" value={t.brand} onChange={(v) => setM({ ...m, tractor: { ...t, brand: v } })} options={BRANDS.map((b) => ({ value: b, label: b }))} placeholder="Choose brand" />
             <div className={s.grid2}>

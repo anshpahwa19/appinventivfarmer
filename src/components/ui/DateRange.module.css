@@ -9,7 +9,7 @@
   flex-direction: column;
   gap: 4px;
   min-height: 60px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: var(--r-md);
   background: var(--surface);
   box-shadow: inset 0 0 0 1.5px var(--line-strong);
@@ -23,7 +23,7 @@
   color: var(--fg-3);
 }
 .endValue {
-  font: 650 0.9375rem/1.2 var(--font);
+  font: var(--t-label);
 }
 .endArrow {
   color: var(--fg-3);
@@ -39,10 +39,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .month {
-  font: 700 1rem/1 var(--font);
+  font: var(--t-strong);
 }
 .nav {
   display: grid;
@@ -65,9 +65,9 @@
   row-gap: 2px;
 }
 .wd {
-  padding: 6px 0;
+  padding: 8px 0;
   text-align: center;
-  font: 700 0.6875rem/1 var(--font);
+  font: var(--t-overline);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--fg-3);
@@ -75,7 +75,7 @@
 .day {
   position: relative;
   height: 44px;
-  font: 600 0.9375rem/1 var(--font);
+  font: var(--t-label);
   font-variant-numeric: tabular-nums;
   color: var(--fg);
   border-radius: 12px;

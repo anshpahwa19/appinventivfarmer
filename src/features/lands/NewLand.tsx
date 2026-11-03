@@ -70,7 +70,7 @@ export default function NewLand() {
       back
       backTo="/lands"
       footer={
-        <div className="row" style={{ ['--gap' as string]: '10px' }}>
+        <div className="row" style={{ ['--gap' as string]: '12px' }}>
           {step > 1 && (
             <Button
               variant="secondary"
@@ -101,7 +101,7 @@ export default function NewLand() {
                 <TextField label="Field name" placeholder="e.g. Canal field" value={f.name} onChange={(e) => set('name', e.target.value)} error={errors.name} hint="A name you’ll recognise in bookings" autoFocus />
                 <TextField label="Area" inputMode="decimal" suffix="acres" placeholder="e.g. 5" value={f.area} onChange={(e) => set('area', e.target.value.replace(/[^\d.]/g, ''))} error={errors.area} hint="1 hectare = 2.47 acres" />
                 <div className="stack" style={{ ['--gap' as string]: '8px' }}>
-                  <span style={{ font: '650 0.9375rem/1.3 var(--font)' }}>Do you own or lease it?</span>
+                  <span style={{ font: 'var(--t-label)' }}>Do you own or lease it?</span>
                   <SegmentedControl label="Ownership" value={f.ownership} onChange={(v) => set('ownership', v)} segments={[{ value: 'Owned', label: 'Owned' }, { value: 'Leased', label: 'Leased' }]} />
                 </div>
               </>

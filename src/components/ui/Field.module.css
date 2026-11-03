@@ -5,7 +5,7 @@
   min-width: 0;
 }
 .label {
-  font: 650 0.9375rem/1.3 var(--font);
+  font: var(--t-label);
   color: var(--fg);
 }
 .optional {
@@ -16,7 +16,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-height: 56px;
   padding: 0 16px;
   border-radius: var(--r-md);
@@ -37,9 +37,9 @@
   border: 0;
   outline: 0;
   background: transparent;
-  font: 500 1.0625rem/1.4 var(--font);
+  font: var(--t-body);
   color: var(--fg);
-  padding: 14px 0;
+  padding: 16px 0;
 }
 .control textarea {
   resize: none;
@@ -59,7 +59,7 @@
 .affix {
   flex: none;
   color: var(--fg-2);
-  font: 600 1rem/1 var(--font);
+  font: var(--t-strong);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -84,9 +84,9 @@
 .error {
   display: flex;
   align-items: flex-start;
-  gap: 6px;
+  gap: 8px;
   color: var(--danger-fg);
-  font: 600 0.875rem/1.4 var(--font);
+  font: var(--t-label);
 }
 .error svg {
   flex: none;
@@ -106,9 +106,9 @@
   border: 0;
   outline: 0;
   background: transparent;
-  font: 500 1.0625rem/1.4 var(--font);
+  font: var(--t-body);
   color: var(--fg);
-  padding: 14px 28px 14px 0;
+  padding: 16px 28px 16px 0;
 }
 .chevron {
   position: absolute;

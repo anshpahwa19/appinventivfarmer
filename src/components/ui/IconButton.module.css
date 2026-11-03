@@ -71,7 +71,7 @@
   border-radius: var(--r-pill);
   background: var(--unread);
   color: #fff;
-  font: 700 0.6875rem/18px var(--font);
+  font: 700 0.75rem/18px var(--font);
   text-align: center;
   box-shadow: 0 0 0 2px var(--surface);
 }

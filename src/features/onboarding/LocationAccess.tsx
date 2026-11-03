@@ -70,7 +70,7 @@ export default function LocationAccess() {
           ))}
         </div>
         {denied && (
-          <div style={{ width: '100%', marginTop: 14, textAlign: 'left' }}>
+          <div style={{ width: '100%', marginTop: 16, textAlign: 'left' }}>
             <Callout tone="warning" title="Location is off">
               We’ll show weather for {profile.village}, {profile.district}. You can allow location later in your phone settings.
             </Callout>

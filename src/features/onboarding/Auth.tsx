@@ -101,7 +101,7 @@ export default function Auth() {
           hint="10-digit number, without 0 or +91"
         />
 
-        <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+        <div className="stack" style={{ ['--gap' as string]: '12px' }}>
           <Button type="submit" size="lg" block loading={sending}>
             {sending ? 'Sending code…' : 'Get OTP'}
           </Button>

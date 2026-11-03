@@ -241,7 +241,7 @@ export default function Home() {
 
         <Section label="Latest news">
           <SectionHeader title="Latest news" to="/learn?tab=news" />
-          <div className="gutter stack" style={{ marginTop: 12, ['--gap' as string]: '14px' }}>
+          <div className="gutter stack" style={{ marginTop: 12, ['--gap' as string]: '16px' }}>
             {content.status === 'loading' ? (
               <Skeleton h={380} r={28} />
             ) : (

@@ -61,7 +61,7 @@ export function OtpForm({ phone, onVerified, onChangeNumber }: { phone: string; 
   };
 
   return (
-    <div className="stack" style={{ ['--gap' as string]: '18px' }}>
+    <div className="stack" style={{ ['--gap' as string]: '16px' }}>
       <p style={{ font: 'var(--t-body)', color: 'var(--fg-2)' }}>
         We sent a 6-digit code to <strong style={{ color: 'var(--fg)' }}>{formatPhone(phone)}</strong>.{' '}
         {onChangeNumber && (
@@ -97,7 +97,7 @@ export function OtpForm({ phone, onVerified, onChangeNumber }: { phone: string; 
         />
       </motion.div>
       {error && (
-        <p id="otp-error" role="alert" style={{ color: 'var(--danger-fg)', font: '600 0.9375rem/1.4 var(--font)' }}>
+        <p id="otp-error" role="alert" style={{ color: 'var(--danger-fg)', font: 'var(--t-label)' }}>
           {error}
         </p>
       )}

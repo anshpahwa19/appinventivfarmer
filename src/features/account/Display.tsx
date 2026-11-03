@@ -12,7 +12,7 @@ export default function Display() {
         <section className={s.card}>
           <h2 className={s.cardTitle}>Text size</h2>
           <p className={s.cardSub}>Make all text in the app bigger and easier to read outdoors.</p>
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 16 }}>
             <SegmentedControl label="Text size" value={prefs.text} onChange={(v) => actions.setPrefs({ text: v })} segments={[{ value: 'default', label: 'Default' }, { value: 'large', label: 'Large' }]} />
           </div>
           <div className={s.preview} aria-hidden>
@@ -26,7 +26,7 @@ export default function Display() {
         <section className={s.card}>
           <h2 className={s.cardTitle}>Theme</h2>
           <p className={s.cardSub}>Dark saves battery at night. “Automatic” follows your phone.</p>
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 16 }}>
             <SegmentedControl
               label="Theme"
               value={prefs.theme}

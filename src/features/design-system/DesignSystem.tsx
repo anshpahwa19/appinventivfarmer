@@ -28,14 +28,17 @@ const RAW: [string, string][][] = [
 ];
 
 const TYPE = [
-  ['t-display', 'Display', '34 / 37 · 700'],
-  ['t-title', 'Page title', '28 / 32 · 700'],
+  ['t-display', 'Display', '34 / 37 · 700 · screen titles'],
+  ['t-title', 'Title', '28 / 32 · 700 · detail titles'],
+  ['t-headline', 'Headline', '22 / 26 · 700 · key figures'],
   ['t-heading', 'Section heading', '20 / 25 · 700'],
   ['t-subheading', 'Card title', '17 / 22 · 650'],
   ['t-body-lg', 'Reading text for articles', '17 / 29 · 450'],
   ['t-body', 'Body text for the interface', '16 / 24 · 500'],
+  ['t-strong', 'Row title and form label', '16 / 21 · 650'],
+  ['t-label', 'Chip, link, small button', '15 / 20 · 650'],
   ['t-support', 'Supporting text', '14 / 20 · 500'],
-  ['t-caption', 'Caption · minimum size', '13 / 18 · 600'],
+  ['t-caption', 'Caption · meta', '13 / 18 · 600'],
   ['t-overline', 'Overline label', '12 / 14 · 700 caps'],
 ];
 
@@ -77,7 +80,7 @@ export default function DesignSystem() {
         <section>
           <h2 className={s.h2}>Colour</h2>
           <p className={s.lede}>Raw palette. Components use semantic tokens that switch for dark mode.</p>
-          <div className="stack" style={{ ['--gap' as string]: '10px' }}>
+          <div className="stack" style={{ ['--gap' as string]: '12px' }}>
             {RAW.map((row, i) => (
               <div key={i} className={s.swatches}>
                 {row.map(([n, hex]) => (
@@ -122,13 +125,13 @@ export default function DesignSystem() {
 
         <section>
           <h2 className={s.h2}>Space & shape</h2>
-          <p className={s.lede}>4 px grid. 20 px page gutter. Radius grows with the size of the surface.</p>
+          <p className={s.lede}>4 px grid. 20 px page gutter, 24 px between sections, 16 px between cards and inside them. Radius grows with the size of the surface.</p>
           <div className={s.space} aria-hidden>
             {[4, 8, 12, 16, 20, 24, 32, 40, 48].map((v) => (
               <div key={v} className={s.spaceBar} style={{ height: v }} title={`${v}px`} />
             ))}
           </div>
-          <div className={s.radii} style={{ marginTop: 14 }}>
+          <div className={s.radii} style={{ marginTop: 16 }}>
             {[
               ['12', 'var(--r-sm)'],
               ['16', 'var(--r-md)'],

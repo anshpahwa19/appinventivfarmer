@@ -11,7 +11,7 @@
   padding: 8px 0;
   border-radius: var(--r-md);
   color: var(--fg);
-  font: 600 0.8125rem/1.2 var(--font);
+  font: var(--t-caption);
   text-decoration: none;
 }
 .target:active {
@@ -35,11 +35,11 @@
 .link input {
   width: 100%;
   min-height: 48px;
-  padding: 0 14px;
+  padding: 0 16px;
   border: 0;
   border-radius: var(--r-md);
   background: var(--surface);
   box-shadow: inset 0 0 0 1px var(--line-strong);
-  font: 500 0.875rem/1 var(--font);
+  font: var(--t-support);
   color: var(--fg-2);
 }

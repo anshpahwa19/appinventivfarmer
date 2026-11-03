@@ -148,7 +148,7 @@ export default function Learn() {
         >
           {results.status === 'loading' && (
             <div className={s.state}>
-              <Skeleton h={380} r={28} style={{ marginTop: 14, marginBottom: 20 }} />
+              <Skeleton h={380} r={28} style={{ marginTop: 16, marginBottom: 20 }} />
               <SkeletonRows count={3} />
             </div>
           )}

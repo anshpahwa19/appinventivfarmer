@@ -137,7 +137,7 @@ export function CompactCard({ item, tall }: { item: ContentItem; tall?: boolean 
             </>
           )}
         </div>
-        <div className="stack" style={{ ['--gap' as string]: '6px' }}>
+        <div className="stack" style={{ ['--gap' as string]: '8px' }}>
           <span className={s.overline}>{CATEGORY_LABEL[item.category]}</span>
           <h3 className={`${s.compactTitle} clamp-2`}>{item.title}</h3>
           <Meta>{contentMeta(item)}</Meta>
@@ -306,7 +306,7 @@ export function OrderCard({ order }: { order: FomOrder }) {
               {formatQuantity(order.quantity, order.unit)}
               <small>FOM</small>
             </div>
-            <div className={s.meta} style={{ marginTop: 6 }}>
+            <div className={s.meta} style={{ marginTop: 8 }}>
               Ordered {formatDate(order.createdAt)}
             </div>
           </div>
@@ -350,7 +350,7 @@ export function BookingCard({ booking }: { booking: Booking }) {
           <div className={s.orderQty} style={{ fontSize: '1.25rem' }}>
             {booking.crop} · {booking.acres} acres
           </div>
-          <div className={s.meta} style={{ marginTop: 6 }}>
+          <div className={s.meta} style={{ marginTop: 8 }}>
             {booking.landName}
           </div>
         </div>
