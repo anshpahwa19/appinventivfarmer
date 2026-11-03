@@ -280,9 +280,11 @@ export default function Home() {
           </Section>
         )}
 
-        <Link to="/learn" className={s.moreLink}>
-          Browse everything in Learn <ChevronRight aria-hidden />
-        </Link>
+        <div className="gutter">
+          <Button variant="secondary" block iconRight={<ChevronRight aria-hidden />} to="/learn">
+            Browse everything in Learn
+          </Button>
+        </div>
       </motion.div>
 
       <WeatherSheet open={weatherOpen} onClose={() => setWeatherOpen(false)} weather={weather.data} onRetry={weather.refetch} />

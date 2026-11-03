@@ -131,7 +131,7 @@
 /* ---------- Section header ---------- */
 .section {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
   gap: 12px;
   padding: 0 var(--gutter);
@@ -143,16 +143,17 @@
 .sectionSub {
   font: var(--t-support);
   color: var(--fg-3);
-  margin-top: 2px;
+  margin-top: 4px;
 }
+/* The link's text shares the title's baseline; the chevron's built-in
+   whitespace hangs into the gutter so its stroke lines up with card edges. */
 .seeAll {
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  min-height: 40px;
-  padding: 0 4px 0 12px;
-  margin-right: -6px;
-  border-radius: var(--r-pill);
+  min-height: 44px;
+  margin-block: -12px;
   color: var(--link);
   font: var(--t-label);
   text-decoration: none;
@@ -161,6 +162,7 @@
 .seeAll svg {
   width: 18px;
   height: 18px;
+  margin-right: -5px;
 }
 
 /* ---------- Progress ring ---------- */
