@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: stretch;
 }
+/* Phone-width viewports: the app fills the real screen. */
 .frame {
   position: relative;
   width: 100%;
@@ -21,6 +22,8 @@
   position: absolute;
   inset: 0;
   will-change: transform, opacity;
+  box-shadow: -18px 0 40px rgba(0, 0, 0, 0.12);
+  background: var(--bg);
 }
 .overlay {
   position: absolute;
@@ -28,20 +31,85 @@
   z-index: 70;
   pointer-events: none;
 }
+
+/* ---------- Device mock-up (tablet / desktop) ---------- */
+.deviceDesk {
+  align-items: center;
+  gap: 64px;
+  padding: 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 70% 20%, color-mix(in srgb, var(--sun-400) 18%, transparent), transparent 70%),
+    radial-gradient(50% 60% at 20% 90%, color-mix(in srgb, var(--botanical-400) 20%, transparent), transparent 70%),
+    var(--bg-desk);
+}
+.stage {
+  flex: none;
+  position: relative;
+}
+.device {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 433px;
+  height: 892px;
+  padding: 4px;
+  border-radius: 72px;
+  transform-origin: top left;
+  background: linear-gradient(140deg, #8d8e92 0%, #3c3d41 18%, #5c5d61 50%, #2f3034 78%, #85868a 100%);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 50px 100px -20px rgba(16, 30, 20, 0.45),
+    0 30px 60px -30px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+.bezel {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 68px;
+  background: #050506;
+  box-shadow: inset 0 0 0 1.5px #1c1c1e;
+}
+.screen {
+  position: relative;
+  width: 393px;
+  height: 852px;
+  overflow: hidden;
+  border-radius: 54px;
+  background: var(--bg);
+  isolation: isolate;
+  /* Real iPhone 15 Pro insets */
+  --safe-top: 54px;
+  --safe-bottom: 26px;
+  --nav-clearance: calc(var(--nav-h) + 28px + var(--safe-bottom));
+}
+.glare {
+  position: absolute;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  border-radius: 54px;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 32%);
+}
+.btn {
+  position: absolute;
+  width: 5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2c2d31, #6e6f73 60%, #3a3b3f);
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.4);
+}
+.btnLeft {
+  left: -4px;
+}
+.btnRight {
+  right: -4px;
+}
+
 .aside {
   display: none;
 }
-@media (min-width: 900px) and (min-height: 700px) {
-  .desk {
-    align-items: center;
-    gap: 56px;
-    padding: 24px;
-  }
-  .frame {
-    height: min(880px, 100%);
-    border-radius: 40px;
-    box-shadow: var(--shadow-3), 0 0 0 1px var(--line), 0 0 0 10px color-mix(in srgb, var(--surface) 55%, transparent);
-  }
+@media (min-width: 1040px) {
   .aside {
     display: flex;
     flex-direction: column;

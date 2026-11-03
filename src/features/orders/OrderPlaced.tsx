@@ -1,3 +1,4 @@
+import { useStatusTone } from '@/lib/statusTone';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { FomOrder } from '@/types';
 import { motion } from 'framer-motion';
@@ -14,6 +15,7 @@ import s from './Orders.module.css';
 export default function OrderPlaced() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
+  useStatusTone('dark');
   const passed = (useLocation().state as { order?: FomOrder } | null)?.order;
   const q = useQuery(`order:${id}`, () => api.getOrder(id), { enabled: !passed });
   const o = passed ?? q.data;

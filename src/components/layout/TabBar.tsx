@@ -26,7 +26,9 @@ export function TabBar() {
     return (
       <Link key={t.to} to={t.to} replace className={`${s.tab} ${active ? s.active : ''}`} aria-current={active ? 'page' : undefined}>
         {active && <motion.span layoutId="tab-pill" className={s.pill} transition={{ type: 'spring', stiffness: 520, damping: 40 }} />}
-        <t.Icon aria-hidden strokeWidth={active ? 2.4 : 2} />
+        <motion.span style={{ display: 'grid', position: 'relative', zIndex: 1 }} animate={active ? { scale: [1, 1.22, 1], y: [0, -3, 0] } : { scale: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+          <t.Icon aria-hidden strokeWidth={active ? 2.4 : 2} />
+        </motion.span>
         <span>{t.label}</span>
       </Link>
     );
@@ -45,9 +47,9 @@ export function TabBar() {
           <div className={s.bar}>
             {TABS.slice(0, 2).map(renderTab)}
             <div className={s.createWrap}>
-              <button type="button" className={`${s.create} ${createOpen ? s.createOpen : ''}`} onClick={openCreate} aria-label="Create: new order, booking or field" aria-haspopup="dialog" aria-expanded={createOpen}>
+              <motion.button type="button" whileTap={{ scale: 0.88 }} whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 500, damping: 22 }} className={`${s.create} ${createOpen ? s.createOpen : ''}`} onClick={openCreate} aria-label="Create: new order, booking or field" aria-haspopup="dialog" aria-expanded={createOpen}>
                 <Plus aria-hidden strokeWidth={2.6} />
-              </button>
+              </motion.button>
             </div>
             {TABS.slice(2).map(renderTab)}
           </div>

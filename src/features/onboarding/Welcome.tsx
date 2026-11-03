@@ -1,3 +1,4 @@
+import { useStatusTone } from '@/lib/statusTone';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
@@ -33,6 +34,7 @@ const SLIDES: { kicker: string; title: string; text: string; scene: SceneSpec }[
 export default function Welcome() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
+  useStatusTone('light');
   const last = index === SLIDES.length - 1;
 
   const finish = useCallback(() => {

@@ -7,6 +7,7 @@ import { LandCard } from '@/components/content/Cards';
 import { api } from '@/services/api';
 import { useQuery } from '@/services/query';
 import { useStore } from '@/services/store';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import s from './Lands.module.css';
 
 export default function Lands() {
@@ -19,6 +20,7 @@ export default function Lands() {
       title="My fields"
       subtitle={q.data ? `${list.length} fields · ${acres} acres` : 'Your registered land'}
       largeTitle
+      band
       back
       backTo="/home"
       largeActions={
@@ -31,9 +33,13 @@ export default function Lands() {
         {q.status === 'loading' && <SkeletonCards count={2} h={260} />}
         {q.status === 'error' && <ErrorState error={q.error} onRetry={q.refetch} />}
         {q.status === 'success' && list.length === 0 && <EmptyState animation="emptyBox" title="No fields yet" body="Add your land to book services and keep season records." action={<Button to="/lands/new">Add a field</Button>} />}
-        {list.map((l) => (
-          <LandCard key={l.id} land={l} wide />
-        ))}
+        <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+          {list.map((l) => (
+            <StaggerItem key={l.id}>
+              <LandCard land={l} wide />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </Screen>
   );

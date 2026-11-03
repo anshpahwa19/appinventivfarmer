@@ -37,15 +37,17 @@ function usePreferenceAttributes() {
 
 type Direction = 'forward' | 'back' | 'fade';
 
+// iOS-style push: the new screen slides over, the old one drifts back.
+const IOS = [0.32, 0.72, 0, 1] as const;
 const variants: Variants = {
-  enter: (d: Direction) => (d === 'forward' ? { x: 56, opacity: 0, zIndex: 2 } : d === 'back' ? { x: -32, opacity: 0, zIndex: 1 } : { opacity: 0, scale: 0.995, zIndex: 2 }),
-  center: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.36, ease: [0.22, 1, 0.36, 1] } },
+  enter: (d: Direction) => (d === 'forward' ? { x: '100%', zIndex: 2, opacity: 1 } : d === 'back' ? { x: '-28%', zIndex: 1, opacity: 1 } : { opacity: 0, y: 14, zIndex: 2 }),
+  center: (d: Direction) => ({ x: 0, y: 0, opacity: 1, transition: { duration: d === 'fade' ? 0.32 : 0.48, ease: IOS } }),
   exit: (d: Direction) =>
     d === 'forward'
-      ? { x: -32, opacity: 0, zIndex: 1, transition: { duration: 0.24, ease: [0.4, 0, 1, 1] } }
+      ? { x: '-28%', zIndex: 1, transition: { duration: 0.48, ease: IOS } }
       : d === 'back'
-        ? { x: 56, opacity: 0, zIndex: 2, transition: { duration: 0.26, ease: [0.4, 0, 1, 1] } }
-        : { opacity: 0, zIndex: 1, transition: { duration: 0.16 } },
+        ? { x: '100%', zIndex: 2, transition: { duration: 0.42, ease: IOS } }
+        : { opacity: 0, zIndex: 1, transition: { duration: 0.18 } },
 };
 
 function AnimatedRoutes() {

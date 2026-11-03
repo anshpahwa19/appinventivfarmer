@@ -25,6 +25,20 @@ export function clearQueryCache(): void {
   for (const subs of subscribers.values()) subs.forEach((fn) => fn());
 }
 
+/** Seed detail entries from list data so detail screens open without a loading state. */
+export function prime<T extends { id: string }>(prefix: string, items: T[] | undefined): void {
+  if (!items) return;
+  const now = Date.now();
+  for (const item of items) {
+    const key = `${prefix}${item.id}`;
+    if (!cache.has(key)) cache.set(key, { data: item, updatedAt: now });
+  }
+}
+
+export function usePrime<T extends { id: string }>(prefix: string, items: T[] | undefined): void {
+  useEffect(() => prime(prefix, items), [prefix, items]);
+}
+
 export function peek<T>(key: string): T | undefined {
   return cache.get(key)?.data as T | undefined;
 }

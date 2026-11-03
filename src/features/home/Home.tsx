@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
 import { Bell, BookOpen, CalendarDays, ClipboardList, Lock, MessageCircle, Package, Phone, ShieldAlert, ChevronRight } from 'lucide-react';
 import type { SceneSpec, SceneTime } from '@/types';
 import { Scene } from '@/components/media/Scene';
@@ -9,10 +9,10 @@ import { Avatar, SectionHeader } from '@/components/ui/Misc';
 import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { AddLandCard, CompactCard, EventCard, FeatureCard, LandCard, MediaRow, OrderCard } from '@/components/content/Cards';
-import { Screen } from '@/components/layout/Screen';
+import { Screen, useScreenScroll } from '@/components/layout/Screen';
 import { useUI, KD_CONTACT } from '@/app/providers';
 import { api } from '@/services/api';
-import { useQuery } from '@/services/query';
+import { usePrime, useQuery } from '@/services/query';
 import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { cycleProgress } from '@/data/forms';
@@ -45,6 +45,40 @@ function Section({ children, label }: { children: ReactNode; label?: string }) {
   );
 }
 
+function HomeHero({ scene, name, firstName, verified, unread }: { scene: SceneSpec; name: string; firstName: string; verified: boolean; unread: number }) {
+  const scrollY = useScreenScroll();
+  const y = useTransform(scrollY, [0, 300], [0, 120]);
+  const scale = useTransform(scrollY, [0, 300], [1, 1.12]);
+  const textY = useTransform(scrollY, [0, 160], [0, -24]);
+  const textOpacity = useTransform(scrollY, [0, 140], [1, 0]);
+  return (
+    <div className={s.hero}>
+      <motion.div className={s.heroScene} style={{ y, scale }}>
+        <Scene scene={scene} aspect="wide" detail="high" drift style={{ position: 'absolute', inset: 0 }} />
+      </motion.div>
+      <div className={s.heroScrim} aria-hidden />
+      <motion.div className={s.heroTop} style={{ y: textY, opacity: textOpacity }}>
+        <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.1 }}>
+          <Link to="/account" className={s.me} aria-label="Account">
+            <Avatar name={name} size={44} verified={verified} />
+          </Link>
+        </motion.div>
+        <motion.div className={s.hello} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}>
+          <span className={s.helloDate}>{formatDate(new Date(), 'long').replace(/ \d{4}$/, '')}</span>
+          <h1 className={s.helloName}>
+            {greeting()}, {firstName}
+          </h1>
+        </motion.div>
+        <motion.div initial={{ rotate: -20, opacity: 0 }} animate={{ rotate: [0, -14, 12, -8, 4, 0], opacity: 1 }} transition={{ duration: 1.1, delay: 0.5 }}>
+          <IconButton label="Notifications" variant="onImage" badge={unread} to="/notifications">
+            <Bell />
+          </IconButton>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const { openContact, requireVerified } = useUI();
@@ -59,6 +93,10 @@ export default function Home() {
   const content = useQuery('content:all', () => api.listContent());
   const orders = useQuery('orders:all', () => api.listOrders(), { enabled: verified });
   const forms = useQuery('forms', () => api.listForms());
+  usePrime('content-item:', content.data);
+  usePrime('event:', events.data);
+  usePrime('order:', orders.data);
+  usePrime('form:', forms.data);
 
   const firstName = profile.name.split(' ')[0];
   const rainy = !!weather.data && weather.data.current.code >= 51;
@@ -98,25 +136,8 @@ export default function Home() {
   ];
 
   return (
-    <Screen noHeader tabRoot>
-      <div className={s.hero}>
-        <Scene scene={scene} aspect="wide" detail="high" drift className={s.heroScene} />
-        <div className={s.heroScrim} aria-hidden />
-        <div className={s.heroTop}>
-          <Link to="/account" className={s.me} aria-label="Account">
-            <Avatar name={profile.name} size={44} verified={verified} />
-          </Link>
-          <div className={s.hello}>
-            <span className={s.helloDate}>{formatDate(new Date(), 'long').replace(/ \d{4}$/, '')}</span>
-            <h1 className={s.helloName}>
-              {greeting()}, {firstName}
-            </h1>
-          </div>
-          <IconButton label="Notifications" variant="onImage" badge={unread} to="/notifications">
-            <Bell />
-          </IconButton>
-        </div>
-      </div>
+    <Screen noHeader tabRoot heroTone="light" heroHeight={250}>
+      <HomeHero scene={scene} name={profile.name} firstName={firstName} verified={verified} unread={unread} />
 
       <motion.div className={s.body} variants={stagger} initial="hidden" animate="show">
         <motion.div variants={rise} className={s.weatherWrap}>
@@ -157,9 +178,9 @@ export default function Home() {
                     }
                   }}
                 >
-                  <span className={s.qIcon} aria-hidden>
+                  <motion.span className={s.qIcon} aria-hidden initial={{ scale: 0.4, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 18, delay: 0.25 }}>
                     {q.icon}
-                  </span>
+                  </motion.span>
                   <span className={s.qLabel}>{q.label}</span>
                   <span className={`${s.qStat} ${q.live ? s.qLive : ''}`}>{q.stat}</span>
                 </Link>

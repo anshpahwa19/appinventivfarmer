@@ -22,6 +22,7 @@ import { api } from '@/services/api';
 import { useQuery } from '@/services/query';
 import { actions, useStore } from '@/services/store';
 import { formatDate, formatDayDistance, formatTime, formatTimeRange } from '@/lib/format';
+import { ParallaxHero } from '@/components/motion/ParallaxHero';
 import s from './Events.module.css';
 
 function MediaViewer({ items, index, onClose, onIndex }: { items: SceneSpec[]; index: number; onClose: () => void; onIndex: (i: number) => void }) {
@@ -121,9 +122,9 @@ export default function EventDetail() {
       {ev && (
         <>
           <div className={s.hero}>
-            <motion.div initial={{ scale: 1.05 }} animate={{ scale: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} style={{ position: 'absolute', inset: 0 }}>
+            <ParallaxHero>
               <Scene scene={ev.scene} aspect="wide" detail="high" style={{ position: 'absolute', inset: 0 }} />
-            </motion.div>
+            </ParallaxHero>
             <div className={s.heroScrim} />
           </div>
           <motion.div className={s.sheet} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.06 }}>

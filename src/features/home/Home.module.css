@@ -3,17 +3,20 @@
   position: relative;
   height: calc(300px + var(--safe-top));
   color: #fff;
+  overflow: hidden;
 }
 .heroScene {
   position: absolute;
-  inset: 0;
+  inset: 0 0 8px 0;
+  z-index: 0;
 }
 .heroScrim {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     linear-gradient(180deg, rgba(8, 20, 12, 0.5) 0%, rgba(8, 20, 12, 0.12) 34%, rgba(8, 20, 12, 0) 52%),
-    linear-gradient(180deg, transparent 72%, var(--bg) 100%);
+    linear-gradient(180deg, transparent 60%, var(--bg) 93%, var(--bg) 100%);
 }
 .heroTop {
   position: relative;

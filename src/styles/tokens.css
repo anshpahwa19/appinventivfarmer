@@ -109,6 +109,10 @@
   --live: #b83a12; /* 5.2:1 on cream for small text */
   --unread: var(--harvest-600); /* white 11px badge text: 4.5:1 */
 
+  /* ---------- Decorative washes ---------- */
+  --band-a: rgba(244, 194, 77, 0.32);
+  --band-b: rgba(95, 175, 122, 0.26);
+
   /* ---------- Glass ---------- */
   --glass-bg: rgba(255, 253, 247, 0.66);
   --glass-bg-strong: rgba(255, 253, 247, 0.86);
@@ -232,6 +236,8 @@
     --info-solid: #5aa7d2;
     --live: #ff7a4d;
     --unread: #f08a45;
+    --band-a: rgba(244, 194, 77, 0.1);
+    --band-b: rgba(95, 175, 122, 0.12);
     --glass-bg: rgba(20, 29, 23, 0.62);
     --glass-bg-strong: rgba(20, 29, 23, 0.86);
     --glass-border: rgba(255, 255, 255, 0.08);
@@ -291,6 +297,8 @@
   --info-solid: #5aa7d2;
   --live: #ff7a4d;
   --unread: #f08a45;
+  --band-a: rgba(244, 194, 77, 0.1);
+  --band-b: rgba(95, 175, 122, 0.12);
   --glass-bg: rgba(20, 29, 23, 0.62);
   --glass-bg-strong: rgba(20, 29, 23, 0.86);
   --glass-border: rgba(255, 255, 255, 0.08);

@@ -1,3 +1,4 @@
+import { useStatusTone } from '@/lib/statusTone';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { Booking } from '@/types';
 import { motion } from 'framer-motion';
@@ -13,6 +14,7 @@ import s from '../orders/Orders.module.css';
 export default function BookingRequested() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
+  useStatusTone('dark');
   const passed = (useLocation().state as { booking?: Booking } | null)?.booking;
   const q = useQuery(`booking:${id}`, () => api.getBooking(id), { enabled: !passed });
   const b = passed ?? q.data;

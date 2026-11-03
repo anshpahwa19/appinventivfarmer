@@ -1,44 +1,105 @@
-.controls {
+/* Only the content tabs stick; search and filters scroll away to keep reading room. */
+.sticky {
   position: sticky;
-  top: calc(var(--header-h) + var(--safe-top));
-  z-index: 5;
+  top: 0;
+  z-index: 6;
+  padding: 6px var(--gutter) 10px;
+}
+.stickyBg {
+  position: absolute;
+  inset: 0;
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 1px 0 var(--line);
+}
+.stickyInner {
+  position: relative;
+}
+.tools {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 4px var(--gutter) 12px;
-  background: var(--bg);
+  padding: 6px 0 4px;
 }
-.chips {
-  margin: 0 calc(var(--gutter) * -1);
+.search {
+  padding: 0 var(--gutter);
 }
 .summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 0 var(--gutter);
+  padding: 4px var(--gutter) 0;
   font: var(--t-support);
   color: var(--fg-2);
 }
 .summary button {
   color: var(--link);
-  font-weight: 700;
+  font: 700 0.9375rem/1 var(--font);
   min-height: 40px;
-  padding: 0 4px;
+}
+.carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  padding: 14px var(--gutter) 6px;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  flex: 0 0 calc(100% - 28px);
+  scroll-snap-align: start;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0 4px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+  transition: width var(--dur-3) var(--ease-out), background-color var(--dur-2);
+}
+.dotOn {
+  width: 22px;
+  background: var(--primary);
+}
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 18px var(--gutter) 4px;
+}
+.sectionTitle {
+  font: var(--t-heading);
+  letter-spacing: -0.012em;
+}
+.sectionMeta {
+  font: var(--t-caption);
+  color: var(--fg-3);
 }
 .list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 4px;
+  padding: 8px var(--gutter) 0;
+}
+.rowWrap + .rowWrap {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.rowWrap {
+  padding-bottom: 12px;
+}
+.state {
   padding: 12px var(--gutter) 0;
-}
-.subhead {
-  font: var(--t-overline);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-3);
-  margin-top: 6px;
-}
-.bookmarkLink {
-  margin: 4px var(--gutter) 0;
 }

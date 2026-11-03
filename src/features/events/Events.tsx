@@ -9,10 +9,11 @@ import { Button } from '@/components/ui/Button';
 import { EventCard, EventRow } from '@/components/content/Cards';
 import { eventStatus } from '@/data/events';
 import { api } from '@/services/api';
-import { useQuery } from '@/services/query';
+import { usePrime, useQuery } from '@/services/query';
 import { addDays, isSameDay, startOfDay } from '@/lib/dates';
 import { formatDate, monthYear, weekdayShort } from '@/lib/format';
 import type { FarmEvent } from '@/types';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import s from './Events.module.css';
 
 type Tab = 'upcoming' | 'past';
@@ -33,6 +34,7 @@ export default function Events() {
   const tab: Tab = params.get('tab') === 'past' ? 'past' : 'upcoming';
   const [day, setDay] = useState<Date | null>(null);
   const q = useQuery('events', () => api.listEvents());
+  usePrime('event:', q.data);
   const all = q.data ?? [];
   const upcoming = all.filter((e) => eventStatus(e) !== 'completed');
   const past = all.filter((e) => eventStatus(e) === 'completed').reverse();
@@ -45,7 +47,7 @@ export default function Events() {
   const rest = featured ? visibleUpcoming.slice(1) : visibleUpcoming;
 
   return (
-    <Screen title="Events" subtitle="Workshops, camps and demos near you" largeTitle back backTo="/home">
+    <Screen title="Events" subtitle="Workshops, camps and demos near you" largeTitle band back backTo="/home">
       <div className={s.tabs}>
         <SegmentedControl
           label="Event time"
@@ -103,23 +105,37 @@ export default function Events() {
                   action={day ? <Button onClick={() => setDay(null)}>Show all dates</Button> : undefined}
                 />
               )}
-              {featured && <EventCard event={featured} featured />}
-              {groupByMonth(rest).map((g) => (
-                <section key={g.label} className="stack" style={{ ['--gap' as string]: '10px' }}>
-                  <h2 className={s.month}>{g.label}</h2>
-                  {g.items.map((e) => (
-                    <EventRow key={e.id} event={e} />
-                  ))}
-                </section>
-              ))}
+              <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+                {featured && (
+                  <StaggerItem>
+                    <EventCard event={featured} featured />
+                  </StaggerItem>
+                )}
+                {groupByMonth(rest).map((g) => (
+                  <section key={g.label} className="stack" style={{ ['--gap' as string]: '10px' }}>
+                    <StaggerItem>
+                      <h2 className={s.month}>{g.label}</h2>
+                    </StaggerItem>
+                    {g.items.map((e) => (
+                      <StaggerItem key={e.id}>
+                        <EventRow event={e} />
+                      </StaggerItem>
+                    ))}
+                  </section>
+                ))}
+              </Stagger>
             </>
           )}
           {q.status === 'success' && tab === 'past' && (
             <>
               {past.length === 0 && <EmptyState animation="calendar" title="No past events" body="Events you could attend will be listed here after they end." />}
-              {past.map((e) => (
-                <EventCard key={e.id} event={e} />
-              ))}
+              <Stagger className="stack" style={{ ['--gap' as string]: '14px' }}>
+                {past.map((e) => (
+                  <StaggerItem key={e.id}>
+                    <EventCard event={e} />
+                  </StaggerItem>
+                ))}
+              </Stagger>
             </>
           )}
         </motion.div>

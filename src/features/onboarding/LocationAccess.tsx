@@ -1,3 +1,4 @@
+import { useStatusTone } from '@/lib/statusTone';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CalendarDays, CloudSun, Truck } from 'lucide-react';
@@ -13,6 +14,7 @@ export default function LocationAccess() {
   const toast = useToast();
   const profile = useStore((st) => st.profile);
   const [asking, setAsking] = useState(false);
+  useStatusTone('dark');
   const [denied, setDenied] = useState(false);
 
   const done = () => navigate('/home', { replace: true });

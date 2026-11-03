@@ -20,6 +20,7 @@ import { actions, useStore } from '@/services/store';
 import { formatDate } from '@/lib/format';
 import { validateAcres, validatePincode, validateRequired } from '@/lib/validation';
 import { CropSheet } from './CropSheet';
+import { ParallaxHero } from '@/components/motion/ParallaxHero';
 import s from './Lands.module.css';
 
 export default function LandDetail() {
@@ -79,7 +80,9 @@ export default function LandDetail() {
       )}
     >
       <div className={s.hero}>
-        <Scene scene={land.scene} aspect="wide" detail="high" style={{ position: 'absolute', inset: 0, filter: land.active ? undefined : 'grayscale(0.6)' }} />
+        <ParallaxHero>
+          <Scene scene={land.scene} aspect="wide" detail="high" style={{ position: 'absolute', inset: 0, filter: land.active ? undefined : 'grayscale(0.6)' }} />
+        </ParallaxHero>
         <div className={s.heroScrim} />
       </div>
       <motion.div className={s.sheet} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>

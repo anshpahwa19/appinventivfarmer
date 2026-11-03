@@ -1,0 +1,60 @@
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 95;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 30px 0 46px;
+  pointer-events: none;
+  transition: color var(--dur-3) var(--ease-standard);
+  font: 650 17px/1 -apple-system, 'SF Pro Text', var(--font);
+  letter-spacing: -0.01em;
+}
+.time {
+  min-width: 54px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  z-index: 96;
+  width: 124px;
+  height: 36px;
+  margin-left: -62px;
+  border-radius: 20px;
+  background: #000;
+  pointer-events: none;
+}
+.lens {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2b3a55 0%, #0b0f18 55%, #000 70%);
+  box-shadow: 0 0 0 1.5px #121212;
+}
+.home {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 95;
+  width: 134px;
+  height: 5px;
+  margin-left: -67px;
+  border-radius: 3px;
+  pointer-events: none;
+  transition: background-color var(--dur-3);
+}

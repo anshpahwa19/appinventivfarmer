@@ -13,8 +13,9 @@ import { EmptyState, ErrorState, StaleBanner } from '@/components/ui/States';
 import { BookingCard, OrderCard } from '@/components/content/Cards';
 import { useUI, KD_CONTACT } from '@/app/providers';
 import { api } from '@/services/api';
-import { useQuery } from '@/services/query';
+import { usePrime, useQuery } from '@/services/query';
 import { useStore } from '@/services/store';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import s from './Orders.module.css';
 
 type Tab = 'fom' | 'bookings';
@@ -48,6 +49,8 @@ export default function Orders() {
 
   const orders = useQuery('orders:all', () => api.listOrders(), { enabled: verified });
   const bookings = useQuery('bookings:all', () => api.listBookings(), { enabled: verified });
+  usePrime('order:', orders.data);
+  usePrime('booking:', bookings.data);
   const active = tab === 'fom' ? orders : bookings;
 
   const counts = useMemo(() => {
@@ -96,6 +99,7 @@ export default function Orders() {
       title="Orders"
       subtitle="FOM and field services"
       largeTitle
+      band
       tabRoot
       scrollKey={`/orders?${tab}`}
       largeActions={
@@ -163,8 +167,21 @@ export default function Orders() {
               action={filtered ? <Button onClick={clear}>Clear filters</Button> : <Button icon={<Plus aria-hidden />} to={newPath}>{newLabel}</Button>}
             />
           )}
-          {active.status === 'success' && tab === 'fom' && visibleOrders.map((o) => <OrderCard key={o.id} order={o} />)}
-          {active.status === 'success' && tab === 'bookings' && visibleBookings.map((b) => <BookingCard key={b.id} booking={b} />)}
+          {active.status === 'success' && count > 0 && (
+            <Stagger className="stack" style={{ ['--gap' as string]: '12px' }}>
+              {tab === 'fom'
+                ? visibleOrders.map((o) => (
+                    <StaggerItem key={o.id}>
+                      <OrderCard order={o} />
+                    </StaggerItem>
+                  ))
+                : visibleBookings.map((b) => (
+                    <StaggerItem key={b.id}>
+                      <BookingCard booking={b} />
+                    </StaggerItem>
+                  ))}
+            </Stagger>
+          )}
         </motion.div>
       </AnimatePresence>
 

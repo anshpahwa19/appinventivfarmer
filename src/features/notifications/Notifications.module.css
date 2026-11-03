@@ -1,62 +1,90 @@
-.group {
+.filters {
+  padding: 2px 0 6px;
+}
+.groups {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 0 var(--gutter);
+  gap: 22px;
+  padding: 10px var(--gutter) 0;
 }
 .groupTitle {
-  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 4px 10px;
   font: var(--t-overline);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fg-3);
 }
+.list {
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
 .item {
   position: relative;
-  display: flex;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: 10px 44px 1fr;
+  align-items: start;
+  column-gap: 10px;
   width: 100%;
-  padding: 14px 16px;
-  border-radius: var(--r-lg);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--line);
+  padding: 16px 16px 16px 10px;
   text-align: left;
   color: var(--fg);
-  transition: background-color var(--dur-2), transform var(--dur-1);
+  transition: background-color var(--dur-2) var(--ease-standard);
 }
 .item:active {
-  transform: scale(0.985);
+  background: var(--surface-2);
 }
-.unread {
-  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent), var(--shadow-1);
+@media (hover: hover) {
+  .item:hover {
+    background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+  }
+}
+.sep {
+  height: 1px;
+  margin-left: 74px;
+  background: var(--line);
+}
+.dotCol {
+  display: flex;
+  justify-content: center;
+  padding-top: 17px;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--unread);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--unread) 20%, transparent);
 }
 .icon {
   display: grid;
   place-items: center;
-  flex: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 14px;
 }
 .icon svg {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 .c_booking {
-  background: var(--info-bg);
+  background: linear-gradient(150deg, var(--info-bg), color-mix(in srgb, var(--info-bg) 40%, var(--surface)));
   color: var(--info-fg);
 }
 .c_order {
-  background: var(--success-bg);
+  background: linear-gradient(150deg, var(--success-bg), color-mix(in srgb, var(--success-bg) 40%, var(--surface)));
   color: var(--success-fg);
 }
 .c_event {
-  background: var(--warning-bg);
+  background: linear-gradient(150deg, var(--warning-bg), color-mix(in srgb, var(--warning-bg) 40%, var(--surface)));
   color: var(--warning-fg);
 }
 .c_form {
-  background: var(--tonal);
+  background: linear-gradient(150deg, var(--tonal), color-mix(in srgb, var(--tonal) 40%, var(--surface)));
   color: var(--on-tonal);
 }
 .c_account {
@@ -64,45 +92,72 @@
   color: var(--fg-2);
 }
 .text {
-  flex: 1;
   min-width: 0;
+  padding-top: 1px;
+}
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
 }
 .title {
+  min-width: 0;
   font: 600 1rem/1.3 var(--font);
+  color: var(--fg-2);
 }
 .unread .title {
   font-weight: 750;
+  color: var(--fg);
+}
+.time {
+  flex: none;
+  font: 600 0.75rem/1.3 var(--font);
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+.unread .time {
+  color: var(--accent-text);
 }
 .body {
   margin-top: 4px;
   font: var(--t-support);
-  color: var(--fg-2);
-}
-.time {
-  margin-top: 6px;
-  font: var(--t-caption);
   color: var(--fg-3);
 }
-.dot {
-  position: absolute;
-  top: 18px;
-  right: 16px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--unread);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--unread) 22%, transparent);
+.unread .body {
+  color: var(--fg-2);
 }
+.cta {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: 700 0.8125rem/1 var(--font);
+  color: var(--link);
+}
+.cta svg {
+  width: 14px;
+  height: 14px;
+}
+.state {
+  padding: 12px var(--gutter) 0;
+}
+
 .markAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   min-height: 44px;
   padding: 0 12px;
   border-radius: var(--r-pill);
   color: var(--link);
   font: 700 0.9375rem/1 var(--font);
+  white-space: nowrap;
+}
+.markAll svg {
+  width: 18px;
+  height: 18px;
 }
 .markAll:disabled {
   color: var(--disabled-fg);
-}
-.chips {
-  margin-top: 2px;
 }

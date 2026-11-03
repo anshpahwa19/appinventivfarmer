@@ -19,6 +19,7 @@ import { api } from '@/services/api';
 import { useQuery } from '@/services/query';
 import { actions, useStore } from '@/services/store';
 import { formatDate, formatDuration } from '@/lib/format';
+import { ParallaxHero } from '@/components/motion/ParallaxHero';
 import s from './ContentDetail.module.css';
 
 const KIND_FROM_PATH: Record<string, ContentItem['kind']> = { news: 'news', articles: 'article', videos: 'video' };
@@ -38,9 +39,9 @@ function Gallery({ item }: { item: ContentItem }) {
       >
         {slides.map((sc, i) => (
           <div className={s.slide} key={i}>
-            <motion.div initial={{ scale: 1.06 }} animate={{ scale: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} style={{ position: 'absolute', inset: 0 }}>
+            <ParallaxHero>
               <Scene scene={sc} aspect="portrait" detail="high" style={{ position: 'absolute', inset: 0 }} />
-            </motion.div>
+            </ParallaxHero>
           </div>
         ))}
       </div>

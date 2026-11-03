@@ -2,7 +2,11 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { WifiOff } from 'lucide-react';
 import { useStore } from '@/services/store';
+import { StatusBar } from '@/components/layout/StatusBar';
 import s from './AppFrame.module.css';
+
+const DEVICE_W = 433;
+const DEVICE_H = 892;
 
 function useOnline() {
   const [online, setOnline] = useState(() => (typeof navigator === 'undefined' ? true : navigator.onLine));
@@ -19,40 +23,102 @@ function useOnline() {
   return online;
 }
 
-/** Phone-width app column. On large screens it sits in a device-like frame beside a short brief for demos. */
+/** On anything wider than a phone, show the app inside an iPhone 15 Pro, scaled to fit. */
+function useDevice() {
+  const calc = () => {
+    if (typeof window === 'undefined') return { on: false, scale: 1 };
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const on = w >= 500 && h >= 520;
+    const asideRoom = w >= 1040 ? 384 : 0;
+    const scale = Math.min(1, (h - 40) / DEVICE_H, (w - 40 - asideRoom) / DEVICE_W);
+    return { on, scale };
+  };
+  const [state, setState] = useState(calc);
+  useEffect(() => {
+    const on = () => setState(calc());
+    window.addEventListener('resize', on);
+    return () => window.removeEventListener('resize', on);
+  }, []);
+  return state;
+}
+
+function Aside() {
+  return (
+    <aside className={s.aside} aria-hidden>
+      <div className={s.asideBrand}>
+        <svg className={s.asideMark} viewBox="0 0 64 64">
+          <rect width="64" height="64" rx="16" fill="#173a29" />
+          <circle cx="40" cy="22" r="8" fill="#f4c24d" />
+          <path d="M14 46c8-2 14-8 18-18 1 10 6 16 18 18" fill="none" stroke="#f6f3ea" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 50h40" stroke="#5faf7a" strokeWidth="4" strokeLinecap="round" />
+        </svg>
+        Kisani Urjaa
+      </div>
+      <p className={s.asideTitle}>Farmer app, redesigned</p>
+      <p className={s.asideText}>A working prototype with sample data. Everything you change is saved on this device only.</p>
+      <ul className={s.asideList}>
+        <li>Account → Prototype controls switches verified status, offline mode, slow network and empty states.</li>
+        <li>Account → Design system shows the tokens and components.</li>
+        <li>The OTP code is 123456.</li>
+      </ul>
+    </aside>
+  );
+}
+
 export function AppFrame({ children }: { children: ReactNode }) {
   const online = useOnline();
   const demoOffline = useStore((st) => st.demo.network === 'offline');
   const offline = !online || demoOffline;
-  return (
-    <div className={s.desk}>
-      <aside className={s.aside} aria-hidden>
-        <div className={s.asideBrand}>
-          <svg className={s.asideMark} viewBox="0 0 64 64">
-            <rect width="64" height="64" rx="16" fill="#173a29" />
-            <circle cx="40" cy="22" r="8" fill="#f4c24d" />
-            <path d="M14 46c8-2 14-8 18-18 1 10 6 16 18 18" fill="none" stroke="#f6f3ea" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M12 50h40" stroke="#5faf7a" strokeWidth="4" strokeLinecap="round" />
-          </svg>
-          Kisani Urjaa
+  const device = useDevice();
+
+  const inner = (
+    <>
+      {children}
+      <AnimatePresence>
+        {offline && (
+          <motion.div className={s.offline} role="status" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+            <WifiOff aria-hidden /> Offline
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div id="overlay-root" className={s.overlay} />
+    </>
+  );
+
+  if (!device.on) {
+    return (
+      <div className={s.desk}>
+        <div className={s.frame} id="app-frame">
+          {inner}
         </div>
-        <p className={s.asideTitle}>Farmer app, redesigned</p>
-        <p className={s.asideText}>A working prototype with sample data. Everything you change is saved on this device only.</p>
-        <ul className={s.asideList}>
-          <li>Account → Prototype controls switches verified status, offline mode, slow network and empty states.</li>
-          <li>Account → Design system shows the tokens and components.</li>
-        </ul>
-      </aside>
-      <div className={s.frame} id="app-frame">
-        {children}
-        <AnimatePresence>
-          {offline && (
-            <motion.div className={s.offline} role="status" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-              <WifiOff aria-hidden /> Offline
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <div id="overlay-root" className={s.overlay} />
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${s.desk} ${s.deviceDesk}`}>
+      <Aside />
+      <div className={s.stage} style={{ width: DEVICE_W * device.scale, height: DEVICE_H * device.scale }}>
+        <motion.div
+          className={s.device}
+          style={{ scale: device.scale, originX: 0, originY: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className={`${s.btn} ${s.btnLeft}`} style={{ top: 168, height: 34 }} aria-hidden />
+          <span className={`${s.btn} ${s.btnLeft}`} style={{ top: 236, height: 64 }} aria-hidden />
+          <span className={`${s.btn} ${s.btnLeft}`} style={{ top: 314, height: 64 }} aria-hidden />
+          <span className={`${s.btn} ${s.btnRight}`} style={{ top: 262, height: 104 }} aria-hidden />
+          <div className={s.bezel}>
+            <div className={s.screen} id="app-frame">
+              {inner}
+              <StatusBar />
+              <div className={s.glare} aria-hidden />
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

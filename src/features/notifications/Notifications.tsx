@@ -1,19 +1,20 @@
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CalendarDays, ClipboardList, Package, Tractor, UserRound } from 'lucide-react';
+import { CalendarDays, CheckCheck, ChevronRight, ClipboardList, Package, Tractor, UserRound } from 'lucide-react';
 import type { AppNotification, NotificationCategory } from '@/types';
 import { Screen } from '@/components/layout/Screen';
 import { Chip, ChipRow } from '@/components/ui/Chip';
+import { Button } from '@/components/ui/Button';
 import { SkeletonRows } from '@/components/ui/Skeleton';
 import { EmptyState, ErrorState, StaleBanner } from '@/components/ui/States';
-import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { api } from '@/services/api';
 import { useQuery } from '@/services/query';
 import { actions, useStore } from '@/services/store';
 import { diffDays } from '@/lib/dates';
-import { formatRelative } from '@/lib/format';
+import { formatDate, formatTime } from '@/lib/format';
 import s from './Notifications.module.css';
 
 const CATS: { value: NotificationCategory; label: string; Icon: typeof Package }[] = [
@@ -23,13 +24,26 @@ const CATS: { value: NotificationCategory; label: string; Icon: typeof Package }
   { value: 'form', label: 'Forms', Icon: ClipboardList },
 ];
 const ICON: Record<NotificationCategory, typeof Package> = { booking: Tractor, order: Package, event: CalendarDays, form: ClipboardList, account: UserRound };
+const CTA: Record<NotificationCategory, string> = { booking: 'View booking', order: 'View order', event: 'View event', form: 'View record', account: 'Open' };
 
 function groupLabel(iso: string) {
   const d = diffDays(new Date(iso), new Date());
   if (d === 0) return 'Today';
   if (d === 1) return 'Yesterday';
-  if (d < 7) return 'Earlier this week';
-  return 'Older';
+  if (d < 7) return 'This week';
+  return 'Earlier';
+}
+
+/** Short time stamp for the title line: "4:20 PM", "Yesterday", "Mon", "12 Oct". */
+function stamp(iso: string) {
+  const d = diffDays(new Date(iso), new Date());
+  if (d === 0) {
+    const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60_000);
+    return mins < 60 ? `${Math.max(1, mins)}m ago` : formatTime(iso);
+  }
+  if (d === 1) return 'Yesterday';
+  if (d < 7) return formatDate(iso, 'weekday').split(',')[0];
+  return formatDate(iso, 'short');
 }
 
 export default function Notifications() {
@@ -55,7 +69,7 @@ export default function Notifications() {
 
   const markAll = () => {
     const prev = actions.markAllRead();
-    toast({ message: 'All notifications marked as read', tone: 'success', action: { label: 'Undo', onClick: () => actions.restoreUnread(prev) } });
+    toast({ message: 'All caught up', tone: 'success', action: { label: 'Undo', onClick: () => actions.restoreUnread(prev) } });
   };
 
   const open = (n: AppNotification) => {
@@ -66,18 +80,21 @@ export default function Notifications() {
   return (
     <Screen
       title="Notifications"
+      subtitle={q.data ? (unreadCount ? `${unreadCount} unread` : 'You’re all caught up') : ' '}
+      largeTitle
+      band
       back
       backTo="/home"
       actions={
         <button type="button" className={s.markAll} onClick={markAll} disabled={unreadCount === 0}>
-          Mark all read
+          <CheckCheck aria-hidden /> Mark all read
         </button>
       }
     >
       {q.status === 'success' && (q.data?.length ?? 0) > 0 && (
-        <div className={s.chips}>
+        <div className={s.filters}>
           <ChipRow label="Filter by type">
-            <Chip selected={cat === 'all'} onClick={() => setCat('all')} count={unreadCount || undefined}>
+            <Chip selected={cat === 'all'} onClick={() => setCat('all')}>
               All
             </Chip>
             {CATS.filter((c) => q.data?.some((n) => n.category === c.value)).map((c) => (
@@ -90,17 +107,17 @@ export default function Notifications() {
       )}
       <StaleBanner error={q.data ? q.error : undefined} />
       {q.status === 'loading' && (
-        <div className="gutter" style={{ paddingTop: 12 }}>
-          <SkeletonRows count={5} thumb={42} />
+        <div className={s.state}>
+          <SkeletonRows count={5} thumb={44} />
         </div>
       )}
       {q.status === 'error' && (
-        <div className="gutter">
+        <div className={s.state}>
           <ErrorState error={q.error} onRetry={q.refetch} />
         </div>
       )}
       {q.status === 'success' && list.length === 0 && (
-        <div className="gutter" style={{ paddingTop: 12 }}>
+        <div className={s.state}>
           <EmptyState
             animation="bell"
             title={cat === 'all' ? 'No notifications yet' : 'Nothing in this category'}
@@ -109,43 +126,59 @@ export default function Notifications() {
           />
         </div>
       )}
-      {groups.map((g) => (
-        <section key={g.label} className={s.group} aria-label={g.label}>
-          <h2 className={s.groupTitle}>{g.label}</h2>
-          <AnimatePresence initial={false}>
-            {g.items.map((n, i) => {
-              const isUnread = unread.includes(n.id);
-              const Icon = ICON[n.category];
-              return (
-                <motion.button
-                  key={n.id}
-                  type="button"
-                  layout
-                  className={`${s.item} ${isUnread ? s.unread : ''}`}
-                  onClick={() => open(n)}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0, transition: { delay: Math.min(i, 6) * 0.03 } }}
-                >
-                  <span className={`${s.icon} ${s[`c_${n.category}`]}`} aria-hidden>
-                    <Icon />
-                  </span>
-                  <span className={s.text}>
-                    <span className={s.title} style={{ display: 'block', paddingRight: isUnread ? 18 : 0 }}>
-                      {isUnread && <span className="sr-only">Unread: </span>}
-                      {n.title}
-                    </span>
-                    <span className={`${s.body} clamp-2`}>{n.body}</span>
-                    <span className={s.time} style={{ display: 'block' }}>
-                      {formatRelative(n.createdAt)}
-                    </span>
-                  </span>
-                  {isUnread && <span className={s.dot} aria-hidden />}
-                </motion.button>
-              );
-            })}
-          </AnimatePresence>
-        </section>
-      ))}
+      {groups.length > 0 && (
+        <Stagger key={cat} className={s.groups}>
+          {groups.map((g) => {
+            const groupUnread = g.items.filter((n) => unread.includes(n.id)).length;
+            return (
+              <StaggerItem key={g.label}>
+                <section aria-label={g.label}>
+                  <h2 className={s.groupTitle}>
+                    <span>{g.label}</span>
+                    {groupUnread > 0 && <span>{groupUnread} new</span>}
+                  </h2>
+                  <div className={s.list}>
+                    {g.items.map((n, i) => {
+                      const isUnread = unread.includes(n.id);
+                      const Icon = ICON[n.category];
+                      return (
+                        <Fragment key={n.id}>
+                          {i > 0 && <div className={s.sep} aria-hidden />}
+                          <button type="button" className={`${s.item} ${isUnread ? s.unread : ''}`} onClick={() => open(n)}>
+                            <span className={s.dotCol} aria-hidden>
+                              <AnimatePresence initial={false}>
+                                {isUnread && <motion.span className={s.dot} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0, opacity: 0 }} transition={{ type: 'spring', stiffness: 500, damping: 28 }} />}
+                              </AnimatePresence>
+                            </span>
+                            <span className={`${s.icon} ${s[`c_${n.category}`]}`} aria-hidden>
+                              <Icon />
+                            </span>
+                            <span className={s.text}>
+                              <span className={s.top}>
+                                <span className={s.title}>
+                                  {isUnread && <span className="sr-only">Unread: </span>}
+                                  {n.title}
+                                </span>
+                                <span className={s.time}>{stamp(n.createdAt)}</span>
+                              </span>
+                              <span className={`${s.body} clamp-2`}>{n.body}</span>
+                              {n.link && (
+                                <span className={s.cta}>
+                                  {CTA[n.category]} <ChevronRight aria-hidden />
+                                </span>
+                              )}
+                            </span>
+                          </button>
+                        </Fragment>
+                      );
+                    })}
+                  </div>
+                </section>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+      )}
     </Screen>
   );
 }

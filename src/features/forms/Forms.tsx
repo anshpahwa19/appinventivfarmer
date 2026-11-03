@@ -11,7 +11,7 @@ import { Press } from '@/components/content/Cards';
 import { CheckCircle2, Clock3 } from 'lucide-react';
 import { cycleProgress } from '@/data/forms';
 import { api } from '@/services/api';
-import { useQuery } from '@/services/query';
+import { usePrime, useQuery } from '@/services/query';
 import { useStore } from '@/services/store';
 import { formatRelativeInline } from '@/lib/format';
 import type { FormCycle } from '@/types';
@@ -26,13 +26,14 @@ function lastUpdate(c: FormCycle) {
 
 export default function Forms() {
   const q = useQuery('forms', () => api.listForms());
+  usePrime('form:', q.data);
   const lands = useStore((st) => st.lands);
   const [filter, setFilter] = useState<Filter>('all');
   const list = (q.data ?? []).filter((c) => (filter === 'all' ? true : filter === 'done' ? cycleProgress(c).complete : !cycleProgress(c).complete));
   const counts = { progress: (q.data ?? []).filter((c) => !cycleProgress(c).complete).length, done: (q.data ?? []).filter((c) => cycleProgress(c).complete).length };
 
   return (
-    <Screen title="My forms" subtitle="Season records kept by your Kisani Didi" largeTitle back backTo="/account">
+    <Screen title="My forms" subtitle="Season records kept by your Kisani Didi" largeTitle band back backTo="/account">
       {q.status === 'success' && (q.data?.length ?? 0) > 0 && (
         <ChipRow label="Filter by status">
           <Chip selected={filter === 'all'} onClick={() => setFilter('all')}>

@@ -86,6 +86,7 @@
 /* ---------- Detail ---------- */
 .hero {
   position: relative;
+  overflow: hidden;
   height: 320px;
 }
 .heroScrim {

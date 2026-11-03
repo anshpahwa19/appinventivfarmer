@@ -1,3 +1,4 @@
+import { useStatusTone } from '@/lib/statusTone';
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -22,6 +23,7 @@ export default function Auth() {
   const navigate = useNavigate();
   const toast = useToast();
   const [mode, setMode] = useState<'signup' | 'login'>('signup');
+  useStatusTone('light');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [touched, setTouched] = useState(false);

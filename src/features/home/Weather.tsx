@@ -6,6 +6,7 @@ import { Sheet } from '@/components/ui/Sheet';
 import { Callout } from '@/components/ui/Blocks';
 import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { AnimatedNumber } from '@/components/motion/AnimatedNumber';
 import s from './Home.module.css';
 
 const ICONS: Record<ConditionIcon, typeof Sun> = { sun: Sun, 'cloud-sun': CloudSun, cloud: Cloud, fog: CloudFog, drizzle: CloudDrizzle, rain: CloudRain, storm: CloudLightning };
@@ -40,7 +41,7 @@ export function WeatherCard({ weather, loading, onOpen }: { weather?: Weather; l
       <div className={s.weatherMain}>
         <div>
           <div className={s.temp}>
-            {weather.current.tempC}
+            <AnimatedNumber value={weather.current.tempC} from={Math.max(0, weather.current.tempC - 12)} />
             <span className={s.deg}>°</span>
           </div>
           <div className={s.cond}>
