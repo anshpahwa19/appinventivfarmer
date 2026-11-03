@@ -1,0 +1,50 @@
+.root {
+  position: relative;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  color: var(--fg-2);
+  font: 650 0.9375rem/1.1 var(--font);
+  white-space: nowrap;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+.option[aria-selected='true'] {
+  color: var(--fg);
+}
+.thumb {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+}
+.count {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  color: var(--fg-2);
+  font: 700 0.75rem/20px var(--font);
+  font-variant-numeric: tabular-nums;
+}
+.option[aria-selected='true'] .count {
+  background: var(--tonal);
+  color: var(--on-tonal);
+}

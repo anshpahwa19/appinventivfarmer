@@ -1,0 +1,113 @@
+.desk {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--frame-max);
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
+}
+.pages {
+  position: absolute;
+  inset: 0;
+}
+.page {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+.aside {
+  display: none;
+}
+@media (min-width: 900px) and (min-height: 700px) {
+  .desk {
+    align-items: center;
+    gap: 56px;
+    padding: 24px;
+  }
+  .frame {
+    height: min(880px, 100%);
+    border-radius: 40px;
+    box-shadow: var(--shadow-3), 0 0 0 1px var(--line), 0 0 0 10px color-mix(in srgb, var(--surface) 55%, transparent);
+  }
+  .aside {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 320px;
+    color: var(--fg-2);
+  }
+}
+.asideBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 700 1.375rem/1.1 var(--font);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.asideMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+}
+.asideTitle {
+  font: var(--t-title);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.asideText {
+  font: var(--t-support);
+}
+.asideList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: var(--t-support);
+}
+.asideList li {
+  display: flex;
+  gap: 8px;
+}
+.asideList li::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.offline {
+  position: absolute;
+  top: calc(8px + var(--safe-top));
+  left: 50%;
+  z-index: 75;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+  font: 700 0.8125rem/1 var(--font);
+  box-shadow: var(--shadow-2);
+  pointer-events: none;
+}
+.offline svg {
+  width: 14px;
+  height: 14px;
+}

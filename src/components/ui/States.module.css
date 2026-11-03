@@ -1,0 +1,46 @@
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 28px 24px 32px;
+}
+.card {
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+}
+.title {
+  margin-top: 4px;
+  font: var(--t-heading);
+  letter-spacing: -0.012em;
+}
+.body {
+  max-width: 32ch;
+  font: var(--t-support);
+  color: var(--fg-2);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 var(--gutter);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+  font: 600 0.875rem/1.35 var(--font);
+}
+.banner svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}

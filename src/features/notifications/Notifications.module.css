@@ -1,0 +1,108 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 var(--gutter);
+}
+.groupTitle {
+  margin-top: 18px;
+  font: var(--t-overline);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.item {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  text-align: left;
+  color: var(--fg);
+  transition: background-color var(--dur-2), transform var(--dur-1);
+}
+.item:active {
+  transform: scale(0.985);
+}
+.unread {
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent), var(--shadow-1);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+}
+.icon svg {
+  width: 20px;
+  height: 20px;
+}
+.c_booking {
+  background: var(--info-bg);
+  color: var(--info-fg);
+}
+.c_order {
+  background: var(--success-bg);
+  color: var(--success-fg);
+}
+.c_event {
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+}
+.c_form {
+  background: var(--tonal);
+  color: var(--on-tonal);
+}
+.c_account {
+  background: var(--surface-2);
+  color: var(--fg-2);
+}
+.text {
+  flex: 1;
+  min-width: 0;
+}
+.title {
+  font: 600 1rem/1.3 var(--font);
+}
+.unread .title {
+  font-weight: 750;
+}
+.body {
+  margin-top: 4px;
+  font: var(--t-support);
+  color: var(--fg-2);
+}
+.time {
+  margin-top: 6px;
+  font: var(--t-caption);
+  color: var(--fg-3);
+}
+.dot {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--unread);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--unread) 22%, transparent);
+}
+.markAll {
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--r-pill);
+  color: var(--link);
+  font: 700 0.9375rem/1 var(--font);
+}
+.markAll:disabled {
+  color: var(--disabled-fg);
+}
+.chips {
+  margin-top: 2px;
+}

@@ -1,0 +1,336 @@
+/* ---------- List group (settings-style rows) ---------- */
+.group {
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.groupTitle {
+  padding: 0 4px 10px;
+  font: var(--t-overline);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 16px;
+  color: var(--fg);
+  text-decoration: none;
+  text-align: left;
+  transition: background-color var(--dur-2) var(--ease-standard);
+}
+.row + .row {
+  box-shadow: inset 0 1px 0 var(--line);
+}
+a.row:active,
+button.row:active {
+  background: var(--surface-2);
+}
+@media (hover: hover) {
+  a.row:hover,
+  button.row:hover {
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  }
+}
+.rowIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--tonal);
+  color: var(--on-tonal);
+}
+.rowIcon svg {
+  width: 20px;
+  height: 20px;
+}
+.rowText {
+  flex: 1;
+  min-width: 0;
+}
+.rowTitle {
+  font: 600 1rem/1.3 var(--font);
+}
+.rowSub {
+  margin-top: 2px;
+  font: var(--t-support);
+  color: var(--fg-3);
+}
+.rowValue {
+  flex: none;
+  font: 600 0.9375rem/1.2 var(--font);
+  color: var(--fg-2);
+}
+.chev {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--fg-3);
+}
+.danger {
+  color: var(--danger-fg);
+}
+.danger .rowIcon {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+
+/* ---------- Accordion ---------- */
+.acc {
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.accHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 16px;
+  text-align: left;
+}
+.accTitle {
+  flex: 1;
+  min-width: 0;
+  font: var(--t-subheading);
+}
+.accMeta {
+  font: var(--t-support);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+.accChev {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--fg-2);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.accOpen .accChev {
+  transform: rotate(180deg);
+}
+.accBody {
+  overflow: hidden;
+}
+.accInner {
+  padding: 0 16px 16px;
+}
+
+/* ---------- Stepper ---------- */
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stepperTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.stepperLabel {
+  font: var(--t-caption);
+  color: var(--fg-3);
+}
+.stepperTitle {
+  font: 700 1rem/1.3 var(--font);
+}
+.segments {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 6px;
+}
+.segment {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+.segmentFill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transform-origin: left;
+}
+
+/* ---------- Detail grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.cell {
+  padding: 14px 16px;
+  min-width: 0;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+.cell:nth-child(odd):not(.full) {
+  box-shadow: inset 0 -1px 0 var(--line), inset -1px 0 0 var(--line);
+}
+.full {
+  grid-column: 1 / -1;
+}
+.cellLabel {
+  font: var(--t-caption);
+  color: var(--fg-3);
+}
+.cellValue {
+  margin-top: 4px;
+  font: 600 1rem/1.35 var(--font);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.total {
+  background: var(--surface-tint);
+}
+.total .cellValue {
+  font: 700 1.1875rem/1.3 var(--font);
+  color: var(--fg);
+}
+.formula {
+  margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  font: 500 0.8125rem/1.4 var(--font);
+  color: var(--fg-2);
+}
+.formula svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  color: var(--fg-3);
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.tItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  padding-bottom: 18px;
+}
+.tItem:last-child {
+  padding-bottom: 0;
+}
+.tItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: 2px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--line-strong);
+}
+.tItem.tDone:not(:last-child)::before {
+  background: var(--success-solid);
+}
+.tDot {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--fg-3);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  font: 700 0.8125rem/1 var(--font);
+}
+.tDot svg {
+  width: 16px;
+  height: 16px;
+}
+.tDone .tDot {
+  background: var(--success-solid);
+  color: #fff;
+  box-shadow: none;
+}
+.tCurrent .tDot {
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+  box-shadow: inset 0 0 0 1.5px var(--warning-solid);
+}
+.tFail .tDot {
+  background: var(--danger-solid);
+  color: #fff;
+  box-shadow: none;
+}
+.tBody {
+  padding-top: 5px;
+  min-width: 0;
+}
+.tTitle {
+  font: 650 1rem/1.3 var(--font);
+}
+.tMeta {
+  margin-top: 2px;
+  font: var(--t-support);
+  color: var(--fg-3);
+}
+
+/* ---------- Callout ---------- */
+.callout {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  font: var(--t-support);
+}
+.callout svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+.calloutTitle {
+  font: 700 0.9375rem/1.35 var(--font);
+  margin-bottom: 2px;
+}
+.cSuccess {
+  background: var(--success-bg);
+  color: var(--success-fg);
+}
+.cWarning {
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+}
+.cDanger {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+.cInfo {
+  background: var(--info-bg);
+  color: var(--info-fg);
+}
+.cNeutral {
+  background: var(--surface-2);
+  color: var(--fg-2);
+}
+.calloutText {
+  color: var(--fg-2);
+}
+.cSuccess .calloutText,
+.cWarning .calloutText,
+.cDanger .calloutText,
+.cInfo .calloutText {
+  color: inherit;
+  opacity: 0.92;
+}

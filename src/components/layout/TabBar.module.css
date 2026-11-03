@@ -1,0 +1,108 @@
+.wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  padding: 0 14px calc(12px + var(--safe-bottom));
+  pointer-events: none;
+}
+.bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 72px 1fr 1fr;
+  align-items: center;
+  height: var(--nav-h);
+  padding: 0 6px;
+  border-radius: 26px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: var(--shadow-nav), inset 0 0 0 1px var(--glass-border), 0 0 0 0.5px var(--glass-edge);
+  pointer-events: auto;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .bar {
+    background: var(--glass-bg-strong);
+  }
+}
+.tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 56px;
+  border-radius: 20px;
+  color: var(--fg-2);
+  text-decoration: none;
+  font: 650 0.75rem/1 var(--font);
+  letter-spacing: 0.01em;
+  transition: color var(--dur-2) var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+.tab svg {
+  position: relative;
+  z-index: 1;
+  width: 23px;
+  height: 23px;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.tab span {
+  position: relative;
+  z-index: 1;
+}
+.tab:active svg {
+  transform: scale(0.88);
+}
+.active {
+  color: var(--primary);
+}
+.pill {
+  position: absolute;
+  inset: 4px 6px;
+  border-radius: 18px;
+  background: var(--tonal);
+}
+.createWrap {
+  display: grid;
+  place-items: center;
+}
+.create {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-top: -26px;
+  border-radius: 22px;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 80%, transparent), 0 0 0 5px var(--bg);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.create svg {
+  width: 28px;
+  height: 28px;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.create:active {
+  transform: scale(0.92);
+}
+.createOpen svg {
+  transform: rotate(45deg);
+}
+.badge {
+  position: absolute;
+  top: 6px;
+  left: calc(50% + 6px);
+  z-index: 2;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 700 0.625rem/16px var(--font);
+  text-align: center;
+}

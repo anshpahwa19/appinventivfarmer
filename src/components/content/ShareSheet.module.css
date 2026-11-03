@@ -1,0 +1,45 @@
+.targets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-radius: var(--r-md);
+  color: var(--fg);
+  font: 600 0.8125rem/1.2 var(--font);
+  text-decoration: none;
+}
+.target:active {
+  background: var(--surface-2);
+}
+.targetIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  color: #fff;
+}
+.targetIcon svg {
+  width: 24px;
+  height: 24px;
+}
+.link {
+  margin-top: 16px;
+}
+.link input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  font: 500 0.875rem/1 var(--font);
+  color: var(--fg-2);
+}

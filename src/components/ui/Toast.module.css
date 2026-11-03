@@ -1,0 +1,68 @@
+.region {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--toast-offset, calc(20px + var(--safe-bottom)));
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  pointer-events: none;
+  transition: bottom var(--dur-3) var(--ease-out);
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 56px;
+  padding: 10px 10px 10px 16px;
+  border-radius: var(--r-lg);
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+  box-shadow: var(--shadow-3);
+  font: 600 0.9375rem/1.35 var(--font);
+}
+.icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}
+.success .icon {
+  color: var(--botanical-400);
+}
+.error .icon {
+  color: #ff9b8c;
+}
+.info .icon {
+  color: var(--sun-400);
+}
+.msg {
+  flex: 1;
+  min-width: 0;
+}
+.action {
+  flex: none;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  font: 700 0.9375rem/1 var(--font);
+  color: var(--sun-400);
+}
+.action:active {
+  transform: scale(0.96);
+}
+:root[data-theme='dark'] .success .icon,
+:root[data-theme='dark'] .action {
+  color: var(--forest-700);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .success .icon,
+  :root:not([data-theme='light']) .action {
+    color: var(--forest-700);
+  }
+}

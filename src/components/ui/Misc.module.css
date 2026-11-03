@@ -1,0 +1,198 @@
+/* ---------- Switch ---------- */
+.switch {
+  position: relative;
+  flex: none;
+  width: 52px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  transition: background-color var(--dur-2) var(--ease-standard);
+}
+.switch[aria-checked='true'] {
+  background: var(--success-solid);
+  box-shadow: none;
+}
+.knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  display: grid;
+  place-items: center;
+  color: var(--success-solid);
+}
+.knob svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Status badge ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px 0 8px;
+  border-radius: var(--r-pill);
+  font: 700 0.8125rem/1 var(--font);
+  white-space: nowrap;
+}
+.badge svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+.badgeLg {
+  height: 34px;
+  padding: 0 14px 0 10px;
+  font-size: 0.9375rem;
+}
+.badgeLg svg {
+  width: 18px;
+  height: 18px;
+}
+.success {
+  background: var(--success-bg);
+  color: var(--success-fg);
+}
+.warning {
+  background: var(--warning-bg);
+  color: var(--warning-fg);
+}
+.danger {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+.info {
+  background: var(--info-bg);
+  color: var(--info-fg);
+}
+.neutral {
+  background: var(--surface-2);
+  color: var(--fg-2);
+}
+.live {
+  background: color-mix(in srgb, var(--live) 14%, transparent);
+  color: var(--live);
+}
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+.onImage {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* ---------- Avatar ---------- */
+.avatar {
+  --size: 44px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  font: 700 calc(var(--size) * 0.36) / 1 var(--font);
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+.avatarRing {
+  box-shadow: 0 0 0 2.5px var(--bg), 0 0 0 4.5px var(--success-solid);
+}
+.verifiedTick {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 40%;
+  height: 40%;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
+  background: var(--success-solid);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+.verifiedTick svg {
+  width: 65%;
+  height: 65%;
+}
+
+/* ---------- Section header ---------- */
+.section {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 var(--gutter);
+}
+.sectionTitle {
+  font: var(--t-heading);
+  letter-spacing: -0.012em;
+}
+.sectionSub {
+  font: var(--t-support);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+.seeAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 40px;
+  padding: 0 4px 0 12px;
+  margin-right: -6px;
+  border-radius: var(--r-pill);
+  color: var(--link);
+  font: 650 0.9375rem/1 var(--font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.seeAll svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- Progress ring ---------- */
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.ring svg {
+  transform: rotate(-90deg);
+}
+.ringLabel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font: 700 0.9375rem/1 var(--font);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Progress bar ---------- */
+.bar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+.barFill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--success-solid);
+  transform-origin: left center;
+}

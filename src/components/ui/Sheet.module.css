@@ -1,0 +1,127 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+}
+.sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 48px - var(--safe-top));
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+  box-shadow: var(--shadow-3), inset 0 1px 0 var(--glass-border);
+  outline: none;
+  touch-action: pan-y;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .sheet {
+    background: var(--surface);
+  }
+}
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  outline: none;
+  overflow: hidden;
+}
+.handleZone {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 2px;
+  cursor: grab;
+  touch-action: none;
+}
+.handle {
+  width: 40px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px var(--gutter) 12px;
+}
+.dialog .header {
+  padding-top: 24px;
+}
+.titles {
+  flex: 1;
+  min-width: 0;
+}
+.title {
+  font: var(--t-heading);
+  letter-spacing: -0.012em;
+}
+.desc {
+  margin-top: 6px;
+  font: var(--t-support);
+  color: var(--fg-2);
+}
+.close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin: -4px -6px 0 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--fg-2);
+}
+.close svg {
+  width: 20px;
+  height: 20px;
+}
+.body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px var(--gutter) 16px;
+}
+.footer {
+  display: flex;
+  gap: 10px;
+  padding: 12px var(--gutter) calc(16px + var(--safe-bottom));
+  border-top: 1px solid var(--line);
+}
+.dialog .footer {
+  padding-bottom: 20px;
+  border-top: 0;
+}
+.footer > * {
+  flex: 1;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 24px var(--gutter) -8px;
+  border-radius: 18px;
+}
+.icon svg {
+  width: 28px;
+  height: 28px;
+}

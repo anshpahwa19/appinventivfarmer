@@ -1,0 +1,293 @@
+/* ---------- Welcome carousel ---------- */
+.welcome {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0f2418;
+  color: #fff;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 20, 12, 0.35) 0%, rgba(8, 20, 12, 0) 22%, rgba(8, 20, 12, 0) 42%, rgba(8, 22, 13, 0.72) 66%, rgba(8, 22, 13, 0.94) 100%);
+}
+.drag {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  touch-action: pan-y;
+}
+.top {
+  position: absolute;
+  top: calc(14px + var(--safe-top));
+  left: var(--gutter);
+  right: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skip {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: #fff;
+  font: 650 0.9375rem/1 var(--font);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+.panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 0 var(--gutter) calc(24px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.progress {
+  display: flex;
+  gap: 6px;
+}
+.progressBar {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+  cursor: pointer;
+}
+.progressFill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #fff;
+  transform-origin: left;
+}
+.kicker {
+  font: var(--t-overline);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sun-400);
+}
+.headline {
+  margin-top: 10px;
+  font: 750 2.25rem/1.06 var(--font);
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+.lede {
+  margin-top: 12px;
+  font: 500 1.0625rem/1.5 var(--font);
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 34ch;
+}
+.ctaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.light {
+  background: #f6f3ea;
+  color: #10291d;
+}
+
+/* ---------- Auth ---------- */
+.auth {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  overflow-y: auto;
+}
+.authHero {
+  position: relative;
+  flex: none;
+  height: clamp(220px, 34vh, 300px);
+}
+.authHeroScene {
+  position: absolute;
+  inset: 0;
+}
+.authHeroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 20, 12, 0.3), rgba(8, 20, 12, 0) 45%);
+}
+.authBrand {
+  position: absolute;
+  top: calc(18px + var(--safe-top));
+  left: var(--gutter);
+  z-index: 2;
+}
+.authCard {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  margin-top: -32px;
+  padding: 28px var(--gutter) calc(24px + var(--safe-bottom));
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.authTitle {
+  font: var(--t-title);
+  letter-spacing: -0.022em;
+}
+.authBody {
+  margin-top: 8px;
+  font: var(--t-body);
+  color: var(--fg-2);
+}
+.switch {
+  text-align: center;
+  font: var(--t-support);
+  color: var(--fg-2);
+}
+.switch button {
+  color: var(--link);
+  font-weight: 700;
+  padding: 10px 6px;
+}
+.legal {
+  margin-top: auto;
+  text-align: center;
+  font: var(--t-caption);
+  color: var(--fg-3);
+}
+.legal a {
+  color: var(--link);
+  font-weight: 700;
+}
+
+/* ---------- OTP ---------- */
+.otpWrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.otpInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  font-size: 16px;
+  border: 0;
+  caret-color: transparent;
+}
+.otpBox {
+  display: grid;
+  place-items: center;
+  height: 60px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  font: 700 1.5rem/1 var(--font);
+  font-variant-numeric: tabular-nums;
+  transition: box-shadow var(--dur-2) var(--ease-standard);
+}
+.otpActive {
+  box-shadow: inset 0 0 0 2px var(--focus), 0 0 0 4px color-mix(in srgb, var(--focus) 16%, transparent);
+}
+.otpError .otpBox {
+  box-shadow: inset 0 0 0 2px var(--danger-solid);
+}
+.caret {
+  width: 2px;
+  height: 26px;
+  border-radius: 2px;
+  background: var(--focus);
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+.resend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font: var(--t-support);
+  color: var(--fg-2);
+}
+.resend button {
+  color: var(--link);
+  font-weight: 700;
+  min-height: 44px;
+  padding: 0 4px;
+}
+.resend button:disabled {
+  color: var(--fg-3);
+}
+
+/* ---------- Location ---------- */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: calc(40px + var(--safe-top)) var(--gutter) 0;
+}
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 18px;
+  text-align: left;
+}
+.benefit {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+}
+.benefitIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--tonal);
+  color: var(--on-tonal);
+}
+.benefitIcon svg {
+  width: 20px;
+  height: 20px;
+}
+.benefitTitle {
+  font: 650 1rem/1.3 var(--font);
+}
+.benefitText {
+  margin-top: 2px;
+  font: var(--t-support);
+  color: var(--fg-3);
+}
+.bottomActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px var(--gutter) calc(20px + var(--safe-bottom));
+  margin-top: auto;
+}

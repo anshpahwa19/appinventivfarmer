@@ -1,0 +1,95 @@
+.createList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 -8px;
+  padding-bottom: 8px;
+}
+.createList > * {
+  border-radius: var(--r-md);
+}
+.lock {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--fg-3);
+}
+.gateActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4px 0 8px;
+}
+.contactName {
+  margin-top: 12px;
+  font: var(--t-heading);
+}
+.contactRole {
+  margin-top: 2px;
+  font: var(--t-support);
+  color: var(--fg-3);
+}
+.number {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 8px 8px 18px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  font: 700 1.25rem/1 var(--font);
+  letter-spacing: 0.01em;
+  user-select: all;
+}
+.copy {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--fg-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.copy svg {
+  width: 18px;
+  height: 18px;
+}
+.contactActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+.whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  border-radius: var(--r-pill);
+  background: #1f8f4e;
+  color: #fff;
+  font: var(--t-button);
+  text-decoration: none;
+}
+.whatsapp svg {
+  width: 20px;
+  height: 20px;
+}
+.whatsapp:active {
+  transform: scale(0.97);
+}
+.note {
+  margin-top: 14px;
+  font: var(--t-caption);
+  color: var(--fg-3);
+}

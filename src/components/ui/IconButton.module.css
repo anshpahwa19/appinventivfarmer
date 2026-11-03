@@ -1,0 +1,77 @@
+.icon {
+  --size: 44px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--r-pill);
+  color: var(--fg);
+  transition:
+    transform var(--dur-1) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+.icon:active:not(:disabled) {
+  transform: scale(0.92);
+}
+.icon svg {
+  width: 22px;
+  height: 22px;
+}
+.sm {
+  --size: 36px;
+}
+.sm svg {
+  width: 18px;
+  height: 18px;
+}
+.lg {
+  --size: 52px;
+}
+.surface {
+  background: var(--surface);
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+}
+.plain {
+  background: transparent;
+}
+@media (hover: hover) {
+  .plain:hover {
+    background: var(--surface-2);
+  }
+}
+.tonal {
+  background: var(--tonal);
+  color: var(--on-tonal);
+}
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 0 0 1px var(--glass-border), var(--shadow-1);
+}
+.onImage {
+  background: var(--glass-on-image);
+  color: #fff;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 0 0 1px var(--glass-on-image-border);
+}
+.active {
+  color: var(--accent-text);
+}
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  background: var(--unread);
+  color: #fff;
+  font: 700 0.6875rem/18px var(--font);
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--surface);
+}
