@@ -113,7 +113,7 @@
 /* ---------- Large title ---------- */
 .large {
   position: relative;
-  padding: 18px var(--gutter) 18px;
+  padding: 4px var(--gutter) 16px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -160,4 +160,13 @@
   height: 3px;
   background: var(--accent);
   transform-origin: left center;
+}
+
+/* Tab roots with no back button or actions: the empty bar is skipped, the
+   large title sits right under the status bar (the bar fades in on scroll). */
+.withHeader.compactTop {
+  padding-top: calc(var(--safe-top) + 10px);
+}
+.compactTop .band {
+  top: calc(-1 * (var(--safe-top) + 10px));
 }

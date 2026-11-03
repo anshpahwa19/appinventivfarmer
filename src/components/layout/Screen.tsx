@@ -108,7 +108,7 @@ export function Screen({ title, subtitle, largeTitle, back, backTo = '/home', ac
       )}
       {noHeader && <motion.div className={s.statusScrim} style={{ opacity: bgOpacity }} aria-hidden />}
       <ScrollContext.Provider value={scrollY}>
-      <div ref={ref} className={`${s.scroll} ${showHeader && !overlay ? s.withHeader : ''}`} data-scroll-root>
+      <div ref={ref} className={`${s.scroll} ${showHeader && !overlay ? s.withHeader : ''} ${largeTitle && !back && !actions ? s.compactTop : ''}`} data-scroll-root>
         <div className={s.content}>
           {band && <div className={s.band} aria-hidden />}
           {largeTitle && (
