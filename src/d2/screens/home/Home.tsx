@@ -229,7 +229,9 @@ export default function Home() {
       {(events.status === 'loading' || next) && (
         <section className={s.section}>
           <SectionHead index="02" kicker={live ? 'Happening now' : 'Coming up'} title={live ? 'Join the demonstration' : 'Next event'} to="/events" action="All events" />
-          <div className={s.gutter}>{next ? <EventPoster event={next} ratio="4/5" /> : <Skel h={420} r="var(--r-xl)" />}</div>
+          <div className={s.gutter} style={{ marginTop: 16 }}>
+            {next ? <EventPoster event={next} ratio="4/5" /> : <Skel h={420} r="var(--r-xl)" />}
+          </div>
         </section>
       )}
 

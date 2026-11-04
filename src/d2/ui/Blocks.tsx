@@ -320,23 +320,25 @@ export function RowGroup({ title, children }: { title?: string; children: ReactN
 /* ---------- Section head: index numeral, title, optional link ---------- */
 
 export function SectionHead({ index, title, kicker, to, action = 'See all', night }: { index?: string; title: string; kicker?: string; to?: string; action?: string; night?: boolean }) {
+  const link = to && (
+    <Link to={d2(to)} className={s.shLink}>
+      {action}
+      <ArrowUpRight aria-hidden />
+    </Link>
+  );
   return (
     <div className={`${s.sh} ${night ? s.shNight : ''}`}>
-      <div className={s.shLeft}>
+      {/* The link sits on the kicker line, so it stays aligned however the title wraps. */}
+      <div className={s.shTop}>
         {(index || kicker) && (
           <p className={s.shKicker}>
             {index && <span className={s.shIndex}>{index}</span>}
             {kicker}
           </p>
         )}
-        <h2 className={s.shTitle}>{title}</h2>
+        {link}
       </div>
-      {to && (
-        <Link to={d2(to)} className={s.shLink}>
-          {action}
-          <ArrowUpRight aria-hidden />
-        </Link>
-      )}
+      <h2 className={s.shTitle}>{title}</h2>
     </div>
   );
 }

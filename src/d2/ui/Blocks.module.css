@@ -652,20 +652,21 @@ button.row:hover {
 
 /* ---------- Section head ---------- */
 .sh {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
   padding: 0 var(--fj-gutter);
 }
-.shLeft {
-  min-width: 0;
+.shTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  margin-bottom: 2px;
 }
 .shKicker {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  min-width: 0;
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
@@ -695,6 +696,7 @@ button.row:hover {
   align-items: center;
   gap: 4px;
   min-height: 44px;
+  margin-left: auto;
   font: var(--fj-label);
   color: var(--fj-link);
   text-decoration: none;
