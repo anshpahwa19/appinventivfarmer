@@ -4,6 +4,7 @@ import { WifiOff } from 'lucide-react';
 import { useStore } from '@/services/store';
 import { useStatusToneValue } from '@/lib/statusTone';
 import { useResolvedTheme } from '@/lib/theme';
+import { DeskBrand } from '@/app/DeskBrand';
 import s from './D2Frame.module.css';
 
 const DEVICE_W = 425;
@@ -81,20 +82,6 @@ function StatusBar() {
   );
 }
 
-function Aside() {
-  return (
-    <aside className={s.aside} aria-hidden>
-      <p className={s.asideKicker}>Design direction 02</p>
-      <p className={s.asideTitle}>Field Journal</p>
-      <p className={s.asideText}>An editorial, photography-led take on the same farmer app: same features, data and flows as Direction 01, with a new colour system, layouts, navigation and motion.</p>
-      <ul className={s.asideList}>
-        <li>Photos are AI-generated concept images for this review, to be replaced with licensed or commissioned photography before launch.</li>
-        <li>Me → Prototype controls: verified status, offline, slow network, empty states.</li>
-        <li>OTP code: 123456.</li>
-      </ul>
-    </aside>
-  );
-}
 
 export function D2Frame({ children }: { children: ReactNode }) {
   const online = useOnline();
@@ -128,7 +115,7 @@ export function D2Frame({ children }: { children: ReactNode }) {
 
   return (
     <div className={`fj ${s.desk} ${s.deviceDesk}`}>
-      <Aside />
+      <DeskBrand />
       <div className={s.stage} style={{ width: DEVICE_W * device.scale, height: DEVICE_H * device.scale }}>
         <motion.div className={s.device} style={{ scale: device.scale, originX: 0, originY: 0 }} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div className={s.screen} id="fj-frame">

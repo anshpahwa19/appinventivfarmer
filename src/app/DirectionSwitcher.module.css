@@ -42,3 +42,11 @@
   background: #fff;
   color: #111;
 }
+:root[data-theme='dark'] .caption {
+  color: rgba(255, 255, 255, 0.62);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .caption {
+    color: rgba(255, 255, 255, 0.62);
+  }
+}

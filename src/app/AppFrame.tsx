@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { WifiOff } from 'lucide-react';
 import { useStore } from '@/services/store';
 import { StatusBar } from '@/components/layout/StatusBar';
-import { Logo } from '@/components/brand/Logo';
+import { DeskBrand } from './DeskBrand';
 import s from './AppFrame.module.css';
 
 const DEVICE_W = 433;
@@ -44,22 +44,6 @@ function useDevice() {
   return state;
 }
 
-function Aside() {
-  return (
-    <aside className={s.aside} aria-hidden>
-      <div className={s.asideBrand}>
-        <Logo height={132} />
-      </div>
-      <p className={s.asideTitle}>Farmer app, redesigned</p>
-      <p className={s.asideText}>A working prototype with sample data. Everything you change is saved on this device only.</p>
-      <ul className={s.asideList}>
-        <li>Account → Prototype controls switches verified status, offline mode, slow network and empty states.</li>
-        <li>Account → Design system shows the tokens and components.</li>
-        <li>The OTP code is 123456.</li>
-      </ul>
-    </aside>
-  );
-}
 
 export function AppFrame({ children }: { children: ReactNode }) {
   const online = useOnline();
@@ -93,7 +77,7 @@ export function AppFrame({ children }: { children: ReactNode }) {
 
   return (
     <div className={`${s.desk} ${s.deviceDesk}`}>
-      <Aside />
+      <DeskBrand />
       <div className={s.stage} style={{ width: DEVICE_W * device.scale, height: DEVICE_H * device.scale }}>
         <motion.div
           className={s.device}
