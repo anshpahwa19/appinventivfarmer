@@ -1,0 +1,133 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 var(--fj-gutter);
+}
+.h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--fj-fg);
+  font: var(--fj-heading);
+  letter-spacing: -0.02em;
+}
+.h2 span {
+  font: 300 1rem/1 var(--font);
+  color: var(--fj-primary);
+}
+.colours {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.group {
+  margin-bottom: 8px;
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-fg-3);
+}
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px;
+}
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: var(--fj-caption);
+}
+.swatch span {
+  height: 56px;
+  border-radius: var(--r-md);
+  box-shadow: inset 0 0 0 1px var(--fj-line);
+}
+.swatch small {
+  font-weight: 500;
+  color: var(--fj-fg-3);
+}
+.note {
+  margin-top: 12px;
+  font: var(--fj-small);
+  color: var(--fj-fg-3);
+}
+.type {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.type small {
+  font: var(--fj-caption);
+  color: var(--fj-fg-3);
+}
+.numeral {
+  font: var(--fj-numeral);
+}
+.radii {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 14px;
+}
+.radius {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: var(--fj-caption);
+}
+.radius span {
+  height: 64px;
+  background: var(--fj-night);
+}
+.radius small {
+  font-weight: 500;
+  color: var(--fj-fg-3);
+}
+.photos {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 8px;
+}
+.photos > div {
+  border-radius: var(--r-lg);
+}
+.p1 {
+  grid-row: span 2;
+}
+.p2,
+.p3 {
+  align-self: start;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.nightRow {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--r-lg);
+  background: var(--fj-night);
+}
+.lotties {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.lottie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 0;
+  border-radius: var(--r-lg);
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1px var(--fj-line);
+  font: var(--fj-caption);
+  color: var(--fj-fg-3);
+}

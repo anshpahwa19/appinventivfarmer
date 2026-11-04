@@ -1,0 +1,110 @@
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 8px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px 8px 8px;
+  border-radius: var(--r-lg);
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1px var(--fj-line);
+  text-align: left;
+  transition: background var(--fj-dur-1);
+}
+.option:hover {
+  background: var(--fj-surface-2);
+}
+.optionPhoto {
+  flex: none;
+  width: 76px !important;
+  border-radius: var(--r-md);
+}
+.optionText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.optionIndex {
+  font: 300 0.8125rem/1 var(--font);
+  color: var(--fj-fg-3);
+}
+.optionTitle {
+  font: var(--fj-sub);
+  font-size: 1.125rem;
+}
+.optionSub {
+  font: var(--fj-small);
+  color: var(--fj-fg-3);
+}
+.optionIcon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--fj-fg-2);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0 calc(-1 * var(--fj-gutter)) -20px;
+  padding: 28px var(--fj-gutter) 24px;
+  background: var(--fj-night);
+  color: var(--fj-on-night);
+}
+.contactHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.contactRole {
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-lime-400);
+}
+.contactName {
+  margin-top: 6px;
+  font: var(--fj-headline);
+  letter-spacing: -0.02em;
+}
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 8px 14px 0;
+  border-top: 1px solid var(--fj-night-line);
+  border-bottom: 1px solid var(--fj-night-line);
+  font: 240 2rem/1 var(--font);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.number button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--fj-night-2);
+  color: var(--fj-on-night);
+}
+.number svg {
+  width: 20px;
+  height: 20px;
+}
+.contactActions {
+  display: flex;
+  gap: 10px;
+}
+.contactNote {
+  font: var(--fj-caption);
+  font-weight: 500;
+  color: var(--fj-on-night-2);
+}

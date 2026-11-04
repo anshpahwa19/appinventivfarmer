@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px var(--fj-gutter) 0;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid var(--fj-line);
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}

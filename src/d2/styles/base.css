@@ -1,0 +1,178 @@
+/* Direction 02 base layer. Everything is scoped under .fj. */
+
+.fj {
+  font: var(--fj-body);
+  color: var(--fj-fg);
+  background: var(--fj-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(.fj) a {
+  color: var(--fj-link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+:where(.fj) ::selection {
+  background: var(--fj-lime-300);
+  color: var(--fj-midnight);
+}
+
+:where(.fj) :focus-visible {
+  outline: 3px solid var(--fj-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Type helpers ---------- */
+.fj .fj-display {
+  font: var(--fj-display);
+  letter-spacing: var(--fj-track-display);
+}
+.fj .fj-title {
+  font: var(--fj-title);
+  letter-spacing: var(--fj-track-title);
+}
+.fj .fj-headline {
+  font: var(--fj-headline);
+  letter-spacing: -0.022em;
+}
+.fj .fj-heading {
+  font: var(--fj-heading);
+  letter-spacing: -0.016em;
+}
+.fj .fj-sub {
+  font: var(--fj-sub);
+  letter-spacing: -0.008em;
+}
+.fj .fj-lede {
+  font: var(--fj-lede);
+}
+.fj .fj-body {
+  font: var(--fj-body);
+}
+.fj .fj-small {
+  font: var(--fj-small);
+}
+.fj .fj-caption {
+  font: var(--fj-caption);
+}
+.fj .fj-kicker {
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+}
+.fj .fj-c2 {
+  color: var(--fj-fg-2);
+}
+.fj .fj-c3 {
+  color: var(--fj-fg-3);
+}
+.fj .fj-tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Layout helpers ---------- */
+.fj .fj-gutter {
+  padding-inline: var(--fj-gutter);
+}
+.fj .fj-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 16px);
+  min-width: 0;
+}
+.fj .fj-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap, 12px);
+  min-width: 0;
+}
+.fj .fj-rail {
+  display: flex;
+  gap: var(--gap, 14px);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--fj-gutter);
+  padding-inline: var(--fj-gutter);
+  padding-block: 2px 10px;
+  scrollbar-width: none;
+}
+.fj .fj-rail::-webkit-scrollbar {
+  display: none;
+}
+.fj .fj-rail > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+.fj .fj-clamp-2,
+.fj .fj-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.fj .fj-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+.fj .fj-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+
+/* A hairline rule, used as the journal's section divider. */
+.fj .fj-rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--fj-line);
+}
+
+/* ---------- Skeleton: a cool sweep, not a shimmer ---------- */
+.fj .fj-skel {
+  position: relative;
+  overflow: hidden;
+  background: var(--fj-surface-2);
+  border-radius: var(--r-sm);
+}
+.fj .fj-skel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--fj-surface) 75%, transparent) 50%, transparent 80%);
+  transform: translateX(-100%);
+  animation: fj-sweep 1.6s var(--fj-ease) infinite;
+}
+.fj .fj-skel-night {
+  background: var(--fj-night-2);
+}
+.fj .fj-skel-night::after {
+  background: linear-gradient(100deg, transparent 20%, rgba(169, 180, 208, 0.12) 50%, transparent 80%);
+}
+
+@keyframes fj-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fj-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes fj-drift {
+  from {
+    transform: scale(1.06) translate3d(-1.2%, 0.6%, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(1.2%, -0.8%, 0);
+  }
+}

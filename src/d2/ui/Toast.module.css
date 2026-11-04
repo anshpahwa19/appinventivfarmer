@@ -1,0 +1,74 @@
+.region {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: var(--fj-toast-offset, calc(16px + var(--safe-bottom)));
+  z-index: 75;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  transition: bottom 0.3s var(--fj-ease-out);
+}
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 10px 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--fj-midnight);
+  color: #fff;
+  box-shadow: var(--fj-shadow-3);
+  pointer-events: auto;
+  overflow: hidden;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+}
+.icon svg {
+  width: 17px;
+  height: 17px;
+}
+.success .icon {
+  background: var(--fj-lime-400);
+  color: var(--fj-midnight);
+}
+.error .icon {
+  background: #ff6b81;
+  color: var(--fj-midnight);
+}
+.info .icon {
+  background: var(--fj-sky-300);
+  color: var(--fj-midnight);
+}
+.msg {
+  flex: 1;
+  font: 600 0.9375rem/1.35 var(--font);
+}
+.action {
+  flex: none;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  color: var(--fj-lime-400);
+  font: 760 0.9375rem/1 var(--font);
+}
+.action:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.timer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(200, 241, 53, 0.6);
+  transform-origin: left center;
+}

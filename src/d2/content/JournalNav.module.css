@@ -1,0 +1,6 @@
+.sticky {
+  position: sticky;
+  top: calc(var(--safe-top) + var(--fj-header-h));
+  z-index: 10;
+  background: var(--fj-bg);
+}

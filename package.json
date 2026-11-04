@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "build:demo": "tsc --noEmit && vite build --mode demo",
+    "build:demo2": "tsc --noEmit && vite build --mode demo2",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"

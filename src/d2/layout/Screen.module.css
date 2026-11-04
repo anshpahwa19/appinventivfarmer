@@ -1,0 +1,212 @@
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--fj-bg);
+  color: var(--fj-fg);
+}
+.night {
+  background: var(--fj-night);
+  color: var(--fj-on-night);
+}
+
+/* ---------- Contextual header ---------- */
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding-top: var(--safe-top);
+}
+.barBg {
+  position: absolute;
+  inset: 0;
+  background: var(--fj-bg);
+  border-bottom: 1px solid var(--fj-line);
+}
+.night .barBg {
+  background: var(--fj-night);
+  border-bottom-color: var(--fj-night-line);
+}
+.barRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: var(--fj-header-h);
+  padding: 0 12px 0 12px;
+}
+.back {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px 0 10px;
+  border-radius: var(--r-pill);
+  background: var(--fj-surface-2);
+  color: var(--fj-fg);
+  font: 680 0.9375rem/1 var(--font);
+}
+.back svg {
+  width: 19px;
+  height: 19px;
+}
+.night .back {
+  background: var(--fj-night-2);
+  color: var(--fj-on-night);
+}
+.onImage .back {
+  background: var(--fj-glass);
+  color: #fff;
+  -webkit-backdrop-filter: var(--fj-glass-blur);
+  backdrop-filter: var(--fj-glass-blur);
+  box-shadow: inset 0 0 0 1px var(--fj-glass-line);
+}
+.barTitle {
+  flex: 1;
+  min-width: 0;
+  font: 720 1rem/1.2 var(--font);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.barTitleLeft {
+  padding-left: 8px;
+  font-size: 1.125rem;
+}
+.onImage .barTitle {
+  color: #fff;
+}
+.actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--fj-primary);
+  transform-origin: left center;
+}
+.night .progress {
+  background: var(--fj-lime-400);
+}
+
+/* ---------- Scroll area ---------- */
+.scroll {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 48px;
+}
+.underBar {
+  padding-top: calc(var(--safe-top) + var(--fj-header-h));
+}
+.underMasthead {
+  padding-top: calc(var(--safe-top) + 8px);
+}
+.tabRoot .scroll {
+  padding-bottom: calc(var(--fj-dock-clearance) + 24px);
+}
+.hasFooter .scroll {
+  padding-bottom: 24px;
+}
+
+/* ---------- Masthead ---------- */
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 56px var(--fj-gutter) 18px;
+}
+.mastText {
+  flex: 1;
+  min-width: 0;
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-primary);
+}
+.kicker::before {
+  content: '';
+  flex: none;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+}
+.night .kicker {
+  color: var(--fj-lime-400);
+}
+.mastTitle {
+  font: var(--fj-display);
+  letter-spacing: var(--fj-track-display);
+}
+.deck {
+  margin-top: 10px;
+  font: var(--fj-lede);
+  color: var(--fj-fg-2);
+  max-width: 34ch;
+}
+.night .deck {
+  color: var(--fj-on-night-2);
+}
+.mastAside {
+  flex: none;
+  padding-bottom: 4px;
+}
+
+.pageTitle {
+  padding: 12px var(--fj-gutter) 20px;
+}
+.pageTitleText {
+  font: var(--fj-title);
+  letter-spacing: var(--fj-track-title);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 5;
+  flex: none;
+  padding: 12px var(--fj-gutter) calc(12px + var(--safe-bottom));
+  background: var(--fj-bg);
+  border-top: 1px solid var(--fj-line);
+}
+.night .footer {
+  background: var(--fj-night);
+  border-top-color: var(--fj-night-line);
+}
+
+.statusScrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  height: var(--safe-top);
+  min-height: 0;
+  background: var(--fj-bg);
+  border-bottom: 1px solid var(--fj-line);
+  pointer-events: none;
+}
+.night .statusScrim {
+  background: var(--fj-night);
+}

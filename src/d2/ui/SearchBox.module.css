@@ -1,0 +1,80 @@
+.row {
+  display: flex;
+  gap: 8px;
+}
+.box {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  border-radius: var(--r-pill);
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1.5px var(--fj-line);
+}
+.box:focus-within {
+  box-shadow: inset 0 0 0 2.5px var(--fj-primary);
+}
+.icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+  color: var(--fj-fg-2);
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  font: var(--fj-body);
+  color: var(--fj-fg);
+  outline: none;
+}
+.input::-webkit-search-cancel-button {
+  display: none;
+}
+.input::placeholder {
+  color: var(--fj-fg-3);
+}
+.clear {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: 4px;
+  border-radius: 50%;
+  color: var(--fj-fg-2);
+}
+.clear svg {
+  width: 18px;
+  height: 18px;
+}
+.filter {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 52px;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1.5px var(--fj-line);
+  color: var(--fj-fg);
+  font: var(--fj-label);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+.filter svg {
+  width: 20px;
+  height: 20px;
+}
+.filterOn {
+  background: var(--fj-fg);
+  color: var(--fj-bg);
+  box-shadow: none;
+}

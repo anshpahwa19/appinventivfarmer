@@ -2,6 +2,7 @@
 
 A working, mobile-first rebuild of the Kisani Urjaa farmer app: React 18, TypeScript and Vite. Every feature from the 80 original design frames is kept. Missing screens and states (OTP, bookings list, add land, profile, help, loading, empty, offline and error) were added.
 
+- **Two design directions:** Direction 01 (illustrated, at `#/`) and **Direction 02 “Field Journal”** (editorial, photography-led, at `#/d2`). They share data and logic; only the typeface and corner radii are common to both visual layers. See [`docs/direction-02.md`](docs/direction-02.md).
 - **Audit of the original designs:** [`docs/audit.md`](docs/audit.md)
 - **Living design system:** in the app at Account → Design system (`#/design-system`)
 
@@ -16,6 +17,7 @@ npm run dev        # http://localhost:5173 (phone-sized frame on desktop)
 |---|---|
 | `npm run build` | Type-check, then production build to `dist/` (hash routing, static hosting) |
 | `npm run build:demo` | Self-contained build to `dist-demo/` with in-memory routing, for embedding in hosts that don't allow URL routing |
+| `npm run build:demo2` | The same, to `dist-demo2/`, opening on Direction 02 |
 | `npm run typecheck` | TypeScript only |
 | `npm test` | Unit tests for pricing, validation, formatting, weather advice, filtering, season-record totals |
 

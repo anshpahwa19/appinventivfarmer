@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LogOut, MessageCircle, Palette, Pencil, ScrollText, Shield, ShieldCheck, Sprout, Tractor, LayoutTemplate } from 'lucide-react';
+import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LogOut, MessageCircle, Palette, Pencil, Repeat, ScrollText, Shield, ShieldCheck, Sprout, Tractor, LayoutTemplate } from 'lucide-react';
 import { Screen } from '@/components/layout/Screen';
 import { Avatar, StatusBadge } from '@/components/ui/Misc';
 import { Button } from '@/components/ui/Button';
@@ -96,6 +96,7 @@ export default function Account() {
         <ListGroup title="Prototype">
           <ListRow icon={<FlaskConical />} title="Prototype controls" subtitle="Verification, offline, slow network, empty states" to="/account/prototype" />
           <ListRow icon={<LayoutTemplate />} title="Design system" subtitle="Colours, type, components, animations" to="/design-system" />
+          <ListRow icon={<Repeat />} title="Switch to Direction 02" subtitle="Same app in the Field Journal design" to="/d2/account" />
         </ListGroup>
         </StaggerItem>
 

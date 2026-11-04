@@ -1,0 +1,66 @@
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background:
+    radial-gradient(70% 40% at 50% 46%, rgba(61, 99, 255, 0.35), transparent 70%),
+    var(--fj-midnight);
+  cursor: pointer;
+}
+.horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--fj-lime-400) 20%, var(--fj-lime-400) 80%, transparent);
+  transform-origin: left center;
+  opacity: 0.7;
+}
+.plate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 62%;
+  max-width: 250px;
+  aspect-ratio: 1;
+  padding: 26px;
+  border-radius: var(--r-2xl);
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.logo {
+  width: 100%;
+  height: auto;
+}
+.line {
+  font: var(--fj-caption);
+  color: var(--fj-on-night-2);
+  text-align: center;
+}
+.line span {
+  color: var(--fj-lime-400);
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.meter {
+  position: absolute;
+  bottom: calc(48px + var(--safe-bottom));
+  width: 96px;
+  height: 2px;
+  background: rgba(169, 180, 208, 0.25);
+  overflow: hidden;
+}
+.meter span {
+  display: block;
+  height: 100%;
+  background: var(--fj-lime-400);
+  transform-origin: left center;
+}

@@ -1,0 +1,222 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px var(--fj-gutter) 0;
+}
+.cycle {
+  display: block;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1px var(--fj-line), var(--fj-shadow-1);
+  color: inherit;
+  text-decoration: none;
+}
+.cycleBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px 18px;
+}
+.cycleTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cycleNo {
+  font: 300 1.125rem/1 var(--font);
+  color: var(--fj-fg-3);
+  font-variant-numeric: tabular-nums;
+}
+.cycleTitle {
+  font: var(--fj-headline);
+  letter-spacing: -0.024em;
+}
+.cycleTitle span {
+  font-weight: 400;
+  color: var(--fj-fg-3);
+}
+.cycleSub {
+  font: var(--fj-small);
+  color: var(--fj-fg-3);
+}
+.cycleFoot {
+  display: flex;
+  justify-content: space-between;
+  font: var(--fj-caption);
+  color: var(--fj-fg-3);
+}
+.cycleFoot strong {
+  color: var(--fj-fg);
+}
+
+/* ---------- Detail ---------- */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 6px var(--fj-gutter) 0;
+}
+.head {
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--fj-night);
+  color: var(--fj-on-night);
+}
+.headPhoto {
+  position: relative;
+  height: 150px;
+}
+.headPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: -40px;
+  position: relative;
+  padding: 0 18px 20px;
+}
+.kicker {
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-lime-400);
+}
+.headTitle {
+  font: var(--fj-title);
+  letter-spacing: var(--fj-track-title);
+}
+.headSub {
+  font: var(--fj-small);
+  color: var(--fj-on-night-2);
+}
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 8px;
+}
+.scoreNum {
+  font: 200 4rem/0.9 var(--font);
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+.scoreNum span {
+  font-size: 0.45em;
+  color: var(--fj-on-night-2);
+}
+.scoreLabel {
+  font: var(--fj-label);
+  color: var(--fj-on-night-2);
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 8px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--fj-night-line);
+}
+.facts div + div {
+  padding-left: 12px;
+  border-left: 1px solid var(--fj-night-line);
+}
+.facts dt {
+  font: var(--fj-kicker);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fj-on-night-2);
+}
+.facts dd {
+  margin: 6px 0 0;
+  font: 720 1.0625rem/1 var(--font);
+}
+.h2 {
+  margin-bottom: 14px;
+  font: var(--fj-headline);
+  letter-spacing: -0.024em;
+}
+
+/* ---------- Step ---------- */
+.stepNum {
+  font: 200 3.5rem/0.9 var(--font);
+  letter-spacing: -0.04em;
+  color: var(--fj-primary);
+  font-variant-numeric: tabular-nums;
+}
+.stepNum span {
+  font-size: 0.4em;
+  color: var(--fj-fg-3);
+}
+.stepTitle {
+  margin-top: 10px;
+  font: var(--fj-title);
+  letter-spacing: var(--fj-track-title);
+}
+.stepSub {
+  margin-top: 6px;
+  font: var(--fj-small);
+  color: var(--fj-fg-3);
+}
+.by {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  background: var(--fj-surface-2);
+  font: var(--fj-small);
+  color: var(--fj-fg-3);
+}
+.by strong {
+  display: block;
+  font: var(--fj-label);
+  color: var(--fj-fg);
+}
+.sheetCard {
+  padding: 16px 18px 8px;
+  border-radius: var(--r-xl);
+  background: var(--fj-surface);
+  box-shadow: inset 0 0 0 1px var(--fj-line);
+}
+.flatSection + .flatSection {
+  padding-top: 8px;
+}
+.sectionTitle {
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-primary);
+}
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pagerLink {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: var(--r-lg);
+  background: var(--fj-night);
+  color: var(--fj-on-night);
+  font: var(--fj-label);
+  text-decoration: none;
+}
+.pagerLink small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--fj-kicker);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fj-lime-400);
+}
+.pagerLink small svg {
+  width: 14px;
+  height: 14px;
+}
+.pagerNext {
+  align-items: flex-end;
+  text-align: right;
+}

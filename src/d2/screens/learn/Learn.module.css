@@ -1,0 +1,126 @@
+.mastActions {
+  display: flex;
+  gap: 8px;
+}
+.navNight > div {
+  background: var(--fj-night);
+}
+.navNight [role='tablist'] {
+  border-bottom-color: var(--fj-night-line);
+}
+.navNight [role='tab'] {
+  color: var(--fj-on-night-2);
+}
+.navNight [role='tab'][aria-selected='true'] {
+  color: var(--fj-on-night);
+}
+.tools {
+  padding: 16px var(--fj-gutter) 12px;
+}
+.toolsNight > div > div,
+.toolsNight button {
+  background: var(--fj-night-2);
+  color: var(--fj-on-night);
+  box-shadow: none;
+}
+.toolsNight input {
+  color: var(--fj-on-night);
+}
+.chips {
+  margin-bottom: 8px;
+}
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px var(--fj-gutter) 4px;
+  font: var(--fj-label);
+}
+.summary button {
+  min-height: 44px;
+  color: var(--fj-link);
+  font: var(--fj-label);
+}
+.body {
+  padding-top: 14px;
+}
+.mag {
+  display: flex;
+  flex-direction: column;
+  padding: 4px var(--fj-gutter) 0;
+}
+.mag > * + * {
+  border-top: 1px solid var(--fj-line);
+}
+.indexBlock {
+  margin: 28px var(--fj-gutter) 0;
+  padding-top: 16px;
+  border-top: 2px solid var(--fj-fg);
+}
+.indexBlock > * + * {
+  border-top: 1px solid var(--fj-line);
+}
+.blockKicker {
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-primary);
+}
+
+/* ---------- Cinema (videos) ---------- */
+.cinema {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: var(--fj-on-night);
+}
+.cinemaLead {
+  padding: 0 var(--fj-gutter);
+}
+.cinemaKicker {
+  margin-bottom: 10px;
+  font: var(--fj-kicker);
+  letter-spacing: var(--fj-track-kicker);
+  text-transform: uppercase;
+  color: var(--fj-lime-400);
+}
+.collection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.collectionTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0 var(--fj-gutter);
+  font: var(--fj-heading);
+  letter-spacing: -0.02em;
+}
+.collectionTitle span {
+  font: 300 1rem/1 var(--font);
+  color: var(--fj-on-night-2);
+}
+
+/* ---------- Guides ---------- */
+.guideLead {
+  padding: 0 var(--fj-gutter);
+}
+.guidePair {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  padding: 24px var(--fj-gutter) 8px;
+}
+.guideNote {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 60px;
+}
+.guideQuote {
+  font: 300 1.25rem/1.35 var(--font);
+  letter-spacing: -0.01em;
+  color: var(--fj-fg-2);
+}

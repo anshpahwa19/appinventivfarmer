@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { HashRouter, MemoryRouter, useLocation, useNavigationType } from 'react-router-dom';
 import { AnimatePresence, MotionConfig, motion, type Variants } from 'framer-motion';
 import { AppFrame, frameStyles } from './AppFrame';
@@ -10,8 +10,15 @@ import { Splash } from '@/components/brand/Splash';
 import { useStore } from '@/services/store';
 import { useReducedMotion } from '@/lib/theme';
 import { readSession, writeSession } from '@/lib/storage';
+import { isD2Path } from '@/d2/paths';
+import { DirectionSwitcher } from './DirectionSwitcher';
 
-const IS_DEMO = import.meta.env.MODE === 'demo';
+/** Direction 02 (/d2/*) is a separate, lazily loaded app with its own visual layer. */
+const D2App = lazy(() => import('@/d2/D2App'));
+
+const IS_DEMO = import.meta.env.MODE.startsWith('demo');
+/** The Direction 02 demo build opens on Direction 02. */
+const START = import.meta.env.MODE === 'demo2' ? '/d2' : '/';
 const ROUTE_KEY = 'kisani-urjaa:route';
 
 /** Applies display preferences to <html> so CSS tokens respond. */
@@ -60,7 +67,6 @@ function AnimatedRoutes() {
   const direction: Direction = from === to ? 'fade' : isTabRoot(from) && isTabRoot(to) ? 'fade' : navType === 'POP' ? 'back' : navType === 'REPLACE' ? 'fade' : 'forward';
   useLayoutEffect(() => {
     prev.current = location.pathname;
-    if (IS_DEMO) writeSession(ROUTE_KEY, location.pathname + location.search);
   }, [location]);
 
   // Toasts sit above the tab bar on tab screens.
@@ -85,32 +91,61 @@ function Router({ children }: { children: ReactNode }) {
   const future = { v7_startTransition: true, v7_relativeSplatPath: true };
   if (IS_DEMO)
     return (
-      <MemoryRouter initialEntries={[readSession(ROUTE_KEY) ?? '/']} future={future}>
+      <MemoryRouter initialEntries={[readSession(ROUTE_KEY) ?? START]} future={future}>
         {children}
       </MemoryRouter>
     );
   return <HashRouter future={future}>{children}</HashRouter>;
 }
 
-export function App() {
-  usePreferenceAttributes();
-  const reduced = useReducedMotion();
+/** Direction 01: the original illustrated redesign, unchanged. */
+function D1App() {
   useEffect(() => {
     const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
     idle(() => prefetchScreens());
   }, []);
   return (
+    <AppFrame>
+      <ToastProvider>
+        <UIProvider>
+          <AnimatedRoutes />
+          <Splash />
+          <TabBar />
+        </UIProvider>
+      </ToastProvider>
+    </AppFrame>
+  );
+}
+
+function DirectionRoot() {
+  const { pathname } = useLocation();
+  if (isD2Path(pathname))
+    return (
+      <Suspense fallback={<div style={{ position: 'fixed', inset: 0, background: '#0a1128' }} />}>
+        <D2App />
+      </Suspense>
+    );
+  return <D1App />;
+}
+
+/** Remembers the current route in demo builds (in-memory routing), for both directions. */
+function RouteMemory() {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    if (IS_DEMO) writeSession(ROUTE_KEY, location.pathname + location.search);
+  }, [location]);
+  return null;
+}
+
+export function App() {
+  usePreferenceAttributes();
+  const reduced = useReducedMotion();
+  return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'user'}>
       <Router>
-        <AppFrame>
-          <ToastProvider>
-            <UIProvider>
-              <AnimatedRoutes />
-              <Splash />
-              <TabBar />
-            </UIProvider>
-          </ToastProvider>
-        </AppFrame>
+        <RouteMemory />
+        <DirectionRoot />
+        <DirectionSwitcher />
       </Router>
     </MotionConfig>
   );

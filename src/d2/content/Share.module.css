@@ -1,0 +1,42 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  color: var(--fj-fg);
+  font: var(--fj-caption);
+  text-decoration: none;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-md);
+  background: var(--fj-night);
+  color: #fff;
+}
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+.copy {
+  background: var(--fj-lime-400);
+  color: var(--fj-midnight);
+}
+.url {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--fj-surface-2);
+  color: var(--fj-fg-2);
+  font: var(--fj-small);
+}
