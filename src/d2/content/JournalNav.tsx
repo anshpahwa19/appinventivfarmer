@@ -11,10 +11,10 @@ const PARAM: Record<ContentKind, string> = { news: 'news', video: 'videos', arti
  * The Journal's section navigation, shared by Learn and Events so the
  * publication reads as one place: News · Videos · Guides · Events.
  */
-export function JournalNav({ value, counts, onKind }: { value: JournalSection; counts?: Partial<Record<JournalSection, number>>; onKind?: (k: ContentKind) => void }) {
+export function JournalNav({ value, counts, onKind, className }: { value: JournalSection; counts?: Partial<Record<JournalSection, number>>; onKind?: (k: ContentKind) => void; className?: string }) {
   const nav = useNav();
   return (
-    <div className={s.sticky}>
+    <div className={`${s.sticky} ${className ?? ''}`}>
       <SectionTabs
         label="Journal sections"
         value={value}

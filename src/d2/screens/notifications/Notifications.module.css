@@ -40,7 +40,7 @@
 }
 .groupHead {
   position: sticky;
-  top: calc(var(--safe-top) + var(--fj-header-h));
+  top: var(--fj-sticky-top, 0px);
   z-index: 5;
   display: flex;
   justify-content: space-between;

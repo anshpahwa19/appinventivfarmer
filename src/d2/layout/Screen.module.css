@@ -110,12 +110,16 @@
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 48px;
+  /* Where sticky bars rest: just under the floating header. */
+  --fj-sticky-top: calc(var(--safe-top) + var(--fj-header-h));
 }
 .underBar {
   padding-top: calc(var(--safe-top) + var(--fj-header-h));
+  --fj-sticky-top: 0px;
 }
 .underMasthead {
   padding-top: calc(var(--safe-top) + 8px);
+  --fj-sticky-top: calc(var(--fj-header-h) - 8px);
 }
 .tabRoot .scroll {
   padding-bottom: calc(var(--fj-dock-clearance) + 24px);

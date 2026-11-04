@@ -2,7 +2,7 @@
   display: flex;
   gap: 8px;
 }
-.navNight > div {
+.navNight {
   background: var(--fj-night);
 }
 .navNight [role='tablist'] {

@@ -1,6 +1,7 @@
 .sticky {
   position: sticky;
-  top: calc(var(--safe-top) + var(--fj-header-h));
+  /* Set by Screen per variant: sticky offsets are measured inside the scroll area's padding. */
+  top: var(--fj-sticky-top, 0px);
   z-index: 10;
   background: var(--fj-bg);
 }

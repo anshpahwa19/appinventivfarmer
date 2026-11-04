@@ -155,8 +155,8 @@ export default function Learn() {
         </div>
       }
     >
-      <div className={kind === 'video' ? s.navNight : undefined}>
         <JournalNav
+          className={kind === 'video' ? s.navNight : undefined}
           value={kind}
           counts={all.data ? { ...counts, events: events.data?.length } : undefined}
           onKind={(k) => {
@@ -164,7 +164,6 @@ export default function Learn() {
             setCategory('all');
           }}
         />
-      </div>
 
       <div className={`${s.tools} ${kind === 'video' ? s.toolsNight : ''}`}>
         <SearchBox value={q} onChange={setQ} placeholder={`Search ${NOUN[kind]}`} onFilter={() => setFilterOpen(true)} filterLabel={label} />
