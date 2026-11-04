@@ -13,6 +13,7 @@ import { Button } from '../../ui/Button';
 import { EmptyState, ErrorState, SkelList, StaleNote } from '../../ui/Blocks';
 import { useToast } from '../../ui/Toast';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import s from './Notifications.module.css';
 
 const CATS: { value: NotificationCategory; label: string; Icon: typeof Package }[] = [
@@ -22,6 +23,8 @@ const CATS: { value: NotificationCategory; label: string; Icon: typeof Package }
   { value: 'form', label: 'Records', Icon: ClipboardList },
 ];
 const ICON: Record<NotificationCategory, typeof Package> = { booking: Tractor, order: Package, event: CalendarDays, form: ClipboardList, account: UserRound };
+const PHOTO: Record<NotificationCategory, string> = { booking: 'machinery-tractor', order: 'village-delivery', event: 'workshop-demo', form: 'village-meeting', account: 'farmer-portrait' };
+const EVENT_PHOTO: Record<string, string> = { '/events/e-baling-demo': 'harvest-baler', '/events/e-training': 'workshop-demo', '/events/e-soil-camp': 'soil-sample' };
 const CTA: Record<NotificationCategory, string> = { booking: 'Open booking', order: 'Open order', event: 'Open event', form: 'Open record', account: 'Open' };
 
 function group(iso: string) {
@@ -142,8 +145,11 @@ export default function Notifications() {
                       <motion.li key={n.id} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
                         <button type="button" className={`${s.item} ${isUnread ? s.unread : ''}`} onClick={() => open(n)}>
                           <AnimatePresence initial={false}>{isUnread && <motion.span className={s.bar} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} exit={{ scaleY: 0 }} aria-hidden />}</AnimatePresence>
-                          <span className={`${s.icon} ${s[`c_${n.category}`]}`} aria-hidden>
-                            <Icon />
+                          <span className={s.thumb} aria-hidden>
+                            <Photo id={(n.link && EVENT_PHOTO[n.link]) || PHOTO[n.category]} ratio="1/1" decorative />
+                            <span className={s.icon}>
+                              <Icon />
+                            </span>
                           </span>
                           <span className={s.text}>
                             <span className={s.top}>

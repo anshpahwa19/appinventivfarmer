@@ -8,8 +8,19 @@ import { SearchBox } from '../../ui/SearchBox';
 import { Chip, ChipRow } from '../../ui/Controls';
 import { EmptyState, ErrorState, SkelList } from '../../ui/Blocks';
 import { EventLine, StoryRow } from '../../content/Cards';
+import { Photo } from '../../photo/Photo';
 import s from './Search.module.css';
 
+const TOPICS = [
+  { label: CATEGORY_LABEL['residue'], q: 'straw', photo: 'harvest-bales' },
+  { label: CATEGORY_LABEL['soil'], q: 'soil', photo: 'soil-texture' },
+  { label: CATEGORY_LABEL['crop-care'], q: 'crop', photo: 'paddy-closeup' },
+  { label: CATEGORY_LABEL['water'], q: 'drip', photo: 'canal-irrigation' },
+  { label: CATEGORY_LABEL['weather'], q: 'rain', photo: 'monsoon-sky' },
+  { label: CATEGORY_LABEL['machinery'], q: 'seeder', photo: 'machinery-tractor' },
+  { label: CATEGORY_LABEL['market'], q: 'storage', photo: 'wheat-grain' },
+  { label: CATEGORY_LABEL['announcements'], q: 'FOM', photo: 'village-delivery' },
+];
 const SUGGESTIONS = ['straw', 'soil', 'spray', 'FOM', 'drip', 'wheat'];
 type Scope = 'all' | 'news' | 'video' | 'article' | 'events';
 
@@ -53,9 +64,10 @@ export default function Search() {
             Topics
           </p>
           <div className={s.topics}>
-            {Object.values(CATEGORY_LABEL).map((c) => (
-              <button key={c} type="button" className={s.topic} onClick={() => setQ(c.split(' ')[0])}>
-                {c}
+            {TOPICS.map((t) => (
+              <button key={t.label} type="button" className={s.topic} onClick={() => setQ(t.q)}>
+                <Photo id={t.photo} ratio="4/3" shade="bottom" decorative />
+                <span>{t.label}</span>
               </button>
             ))}
           </div>

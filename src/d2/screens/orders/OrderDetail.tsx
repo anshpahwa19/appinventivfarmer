@@ -47,7 +47,7 @@ export default function OrderDetail() {
             <motion.div className={s.page} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
               <section className={s.statusHero} aria-label="Status">
                 <div className={s.statusTop}>
-                  <StatusTag tone={meta.tone} icon={meta.icon} size="lg" night>
+                  <StatusTag tone={meta.tone} icon={meta.icon} size="lg">
                     {meta.label}
                   </StatusTag>
                   <span className={s.statusId}>#{o.id}</span>
@@ -57,7 +57,7 @@ export default function OrderDetail() {
                   <small>FOM</small>
                 </p>
                 <p className={s.explain}>{meta.explain}</p>
-                <Tracker steps={steps} night />
+                <Tracker steps={steps} />
               </section>
 
               {o.status === 'approved' && o.dispatchDate && (

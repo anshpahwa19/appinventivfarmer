@@ -1,6 +1,6 @@
 # Design Direction 02 · “Field Journal”
 
-A second, independent design direction for the Kisani Urjaa farmer app. It has the same product, features, data, business rules and flows as Direction 01, with a different creative execution: editorial, photography-led and technologically crisp, where Direction 01 is warm, illustrated and nature-inspired.
+A second, independent design direction for the Kisani Urjaa farmer app. It has the same product, features, data, business rules and flows as Direction 01, with a different creative execution: editorial and photography-led, on light, warm, sunlit paper, where Direction 01 is illustrated and nature-inspired.
 
 - **Open it:** `npm run dev`, then `http://localhost:5173/#/d2`. On a desktop-sized window, a switch at the top left opens the same screen in the other direction. On a phone, use **Me → Switch to Direction 01** or **Account → Switch to Direction 02**.
 - **Demo build:** `npm run build:demo2` (opens on Direction 02; both directions are included).
@@ -12,8 +12,8 @@ A second, independent design direction for the Kisani Urjaa farmer app. It has t
 | Typeface | Plus Jakarta Sans Variable | **Same files, same loading** (`var(--font)`) |
 | Corner radii | `--r-xs 8 · sm 12 · md 16 · lg 22 · xl 28 · 2xl 34 · pill` | **Same tokens, referenced directly** |
 | Data, API, store, rules | `src/services`, `src/lib`, `src/data` | **Shared**, not forked |
-| Colour | Cream, forest green, harvest orange | Midnight ink, electric cobalt, citrus lime on cool mist paper |
-| Imagery | Procedural illustrated landscapes | Photo slots with art direction (see below) |
+| Colour | Cream, forest green, harvest orange | Warm ivory and sand, espresso ink, clay actions, pale apricot highlights |
+| Imagery | Procedural illustrated landscapes | Full-bleed and documentary-style photography (AI concept images for now, see below) |
 | Layout | Card grids, rounded tiles | Editorial: full-bleed covers, index lists, split panels, night bands, posters, receipts |
 | Navigation | Floating glass pill with a centre “+” | Fixed edge dock: 4 labelled tabs + a lime “New” key anchored right |
 | Page motion | iOS horizontal push | Pages rise like sheets and recede; tabs cross-fade |
@@ -40,37 +40,34 @@ src/d2/
 
 ## Colour and contrast
 
-Raw palette: midnight `#0A1128`, ink `#141E45`, cobalt `#2448E0`, lime `#C8F135`, chartreuse `#DCFB72`, sky `#8EC5FF`, mist `#F3F5F9`, grey `#596276`. Light “paper” screens alternate with always-dark “night” spreads (weather, Kisani Didi, video band, tickets, receipts, the dock), so not every screen is dark. The theme setting adds a night edition.
+Second edition, after review: the first palette (midnight, cobalt, citrus lime) was too bold for this audience, so Direction 02 now uses light, warm, quiet tones. Photographs carry the colour; the interface stays calm.
+
+Raw palette: ivory `#FBF7F1` (pages), sand `#F3EADF` / `#EADFD1` (panels), white (cards), espresso `#3A2E28` (text), clay `#A8573A` (actions), deep clay `#94492C` (links and accent text), apricot `#F2C79B` (highlights, the New key, chips on photos), with muted sage, ochre, brick and slate-blue for status. Dark theme is a warm evening version (espresso surfaces, peach accents).
 
 Checked text pairs (WCAG 2.2 AA, 4.5:1 for text):
 
 | Pair | Ratio |
 |---|---|
-| Ink text on mist | 17.0 |
-| Secondary text on mist | 8.9 |
-| Tertiary text on mist / white | 5.6 / 6.1 |
-| Cobalt on white, white on cobalt | 6.8 |
-| Midnight on lime, lime on midnight | 14.3 |
-| Secondary night text on midnight | 9.0 |
-| Success / warning / danger / info text on their tints | 4.7 / 6.3 / 5.6 / 6.3 |
-| Dark theme: text, secondary, tertiary on surface | 17.4 / 9.5 / 6.3 |
+| Espresso text on ivory | 12.3 |
+| Secondary text on ivory | 6.8 |
+| Tertiary text on ivory / sand | 5.1 / 4.6 |
+| White on clay (buttons) | 5.1 |
+| Deep clay links on ivory / sand | 6.1 / 5.4 |
+| Espresso on apricot | 8.4 |
+| Success / warning / danger / info text on their tints | 5.3 / 5.4 / 5.2 / 5.5 |
+| Dark theme: text, tertiary, accent on surface | 15.1 / 6.7 / 7.7 |
 
-Lime is never used for text on light paper. Every status pairs colour with a word and a shape.
+Apricot is never used for text on light paper. Every status pairs colour with a word and a shape.
 
 ## Photography
 
-Real photographs could not be fetched: the build environment’s network policy blocks image hosts (Unsplash, Wikimedia Commons, Pexels, Pixabay, Flickr and Openverse all returned a gateway 403). No photos were invented or generated, and Direction 01’s illustrations are not used.
+Image hosts are still blocked by the build environment’s network policy. Agreed with the product owner, the 22 photo slots are filled with **AI-generated concept images** (Figma AI, gpt-image-2.5-flare) for the design review, to be replaced with licensed or commissioned photography before launch. They are labelled as AI concept images in the credit line under heroes, in Me → About (per slot) and in the review notes beside the device. They don’t show real people or places.
 
-Instead, every image is a named **photo slot** (`src/d2/photo/catalog.ts`, 22 slots) with:
+The shot list for replacing them, with where each image is used, is in [`photo-shot-list.md`](photo-shot-list.md). Each slot keeps its brief, alt text and focal point in `src/d2/photo/catalog.ts`. Drop a real photo into `src/d2/photo/files/` under the same name and update `src/d2/photo/credits.ts`.
 
-- a commissioning brief (subject, light, angle, place),
-- alt text and a focal point for art-directed crops,
-- a tonal “blur-up” field in the expected colours of the photo. This is shown until a photo exists, and as the loading placeholder after,
-- a visible “Photo slot” label on large images and an editorial credit line under heroes, so nobody mistakes a slot for a photo.
+Photography now runs through the whole app: heroes, covers, posters and rails, plus the Today index, order and booking tickets, notification thumbnails, the Me cover, search topics, season-step banners, success screens, location, help and contact.
 
-**To add a licensed photo:** save it as `src/d2/photo/files/<slot-id>.jpg` (or .webp/.avif) and add its credit to `src/d2/photo/credits.ts`. It then appears everywhere the slot is used. **Me → About** lists all slots with their status (Photo needed, Credit missing, or the credit). Content items whose `scene.src` is set use that photo directly.
-
-Sample videos (`public/media/fj/`) are rendered placeholders in the slot colours with a “Sample clip · footage to be supplied” slate (`scripts/make-d2-clips.py`).
+Sample videos (`public/media/fj/`) are still rendered placeholders with a “Sample clip · footage to be supplied” slate (`scripts/make-d2-clips.py`).
 
 ## Navigation decision
 
@@ -81,7 +78,7 @@ The product’s information architecture has four daily destinations: **Today** 
 - Page transitions: new pages rise from below over the current one, which recedes and dims; Back lowers them again. Tabs cross-fade.
 - Headlines reveal word by word from masks. Large photos unmask from a clip and settle from 1.14× zoom. Heroes drift slowly and move with parallax.
 - Section tabs slide an ink bar; toggles slide a thumb; trackers, segment bars and timelines draw in sequence.
-- Lottie (`src/d2/lottie`): loader, success, sprout, search, crate, calendar, bell, offline, pin, bookmark, records and weather. All are monoline drawings that draw themselves on.
+- Lottie (`src/d2/lottie`): loader, success, sprout, search, crate, calendar, bell, offline, pin, bookmark, records and weather. All are monoline drawings in espresso and clay, with apricot highlights, that draw themselves on.
 - Reduced motion (the phone setting or Display → Reduce animations) turns off drift, parallax and transforms, and Lottie shows its final frame.
 
 ## Screens

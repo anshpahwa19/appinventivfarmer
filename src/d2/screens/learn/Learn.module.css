@@ -82,7 +82,7 @@
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .collection {
   display: flex;

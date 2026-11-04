@@ -153,7 +153,7 @@
   background: currentColor;
 }
 .night .kicker {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .mastTitle {
   font: var(--fj-display);

@@ -75,10 +75,10 @@ export default function Video() {
               {item.author.name} · {formatDate(item.publishedAt)}
             </p>
             <div className={s.actions}>
-              <Button variant={saved ? 'accent' : 'glass'} size="sm" icon={<Bookmark aria-hidden fill={saved ? 'currentColor' : 'none'} />} onClick={toggle} aria-pressed={saved}>
+              <Button variant={saved ? 'accent' : 'secondary'} size="sm" icon={<Bookmark aria-hidden fill={saved ? 'currentColor' : 'none'} />} onClick={toggle} aria-pressed={saved}>
                 {saved ? 'Saved' : 'Save'}
               </Button>
-              <Button variant="glass" size="sm" icon={<Share2 aria-hidden />} onClick={share}>
+              <Button variant="secondary" size="sm" icon={<Share2 aria-hidden />} onClick={share}>
                 Share
               </Button>
             </div>

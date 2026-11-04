@@ -1,118 +1,123 @@
 /*
- * Direction 02 · "Field Journal" tokens.
+ * Direction 02 · "Field Journal" tokens · warm light edition.
  *
- * Scoped to `.fj` so Direction 01 (tokens on :root) is untouched. Two things
- * are deliberately shared with Direction 01 and referenced, not copied:
- *   - the typeface: var(--font) (Plus Jakarta Sans Variable, same woff2 files)
- *   - the corner radii: var(--r-sm|md|lg|xl|2xl|pill), same values
- * Everything else (colour, surfaces, type hierarchy, motion) is new.
+ * Scoped to `.fj` so Direction 01 (tokens on :root) is untouched. Shared with
+ * Direction 01 and referenced, not copied: the typeface (var(--font)) and the
+ * corner radii (var(--r-*)).
  *
- * Palette idea: a printed journal on cool paper (mist, white) interleaved
- * with night-ink spreads (midnight navy). Electric cobalt carries actions;
- * citrus lime is the editorial highlighter, used sparingly on dark surfaces.
- * Contrast pairs were checked against WCAG 2.2 AA (see docs/direction-02.md).
+ * Palette idea: sunlit paper. Warm ivory pages and soft sand panels, espresso
+ * ink, a clay accent for actions and a pale apricot for highlights. Photos carry
+ * the colour; the interface stays light and calm. Pairs checked against WCAG
+ * 2.2 AA (docs/direction-02.md). Token names from the first edition are kept
+ * (night, lime, midnight) so components did not need renaming:
+ *   night    → sand panels (light), with ink text
+ *   lime     → apricot highlight fill (and light accent text on photos)
+ *   midnight → espresso, for small dark elements (toasts, chips on photos)
  */
 
 .fj {
   /* ---------- Raw palette ---------- */
-  --fj-midnight: #0a1128;
-  --fj-ink-900: #0f1a3d;
-  --fj-ink-800: #141e45;
-  --fj-ink-700: #1e2f72;
-  --fj-cobalt-700: #1a37b8;
-  --fj-cobalt-600: #2448e0;
-  --fj-cobalt-500: #3d63ff;
-  --fj-cobalt-100: #e3e9ff;
-  --fj-lime-400: #c8f135;
-  --fj-lime-300: #dcfb72;
-  --fj-lime-100: #f3fdd2;
-  --fj-sky-300: #8ec5ff;
-  --fj-sky-100: #e2f0ff;
-  --fj-mist-50: #f3f5f9;
-  --fj-mist-100: #e9edf4;
-  --fj-mist-200: #d9dfea;
-  --fj-grey-500: #596276;
-  --fj-charcoal: #11141b;
+  --fj-espresso: #3a2e28;
+  --fj-clay-700: #8a4327;
+  --fj-clay-600: #a8573a;
+  --fj-clay-100: #f7e6da;
+  --fj-apricot: #f2c79b;
+  --fj-apricot-300: #f6d8b6;
+  --fj-sage: #9aa88a;
+  --fj-ivory: #fbf7f1;
+  --fj-sand-100: #f3eadf;
+  --fj-sand-200: #eadfd1;
+  --fj-sand-300: #dfd1c0;
   --fj-white: #ffffff;
 
-  /* ---------- Surfaces & text (light paper) ---------- */
-  --fj-bg: var(--fj-mist-50);
-  --fj-desk: #050916;
-  --fj-surface: var(--fj-white);
-  --fj-surface-2: var(--fj-mist-100);
-  --fj-surface-3: var(--fj-mist-200);
-  --fj-fg: #0b1229;
-  --fj-fg-2: #3b4459;
-  --fj-fg-3: var(--fj-grey-500);
-  --fj-line: rgba(11, 18, 41, 0.1);
-  --fj-line-strong: rgba(11, 18, 41, 0.22);
-  --fj-scrim: rgba(5, 9, 22, 0.56);
+  /* Legacy names, remapped (see header). */
+  --fj-midnight: var(--fj-espresso);
+  --fj-lime-400: var(--fj-apricot);
+  --fj-lime-300: var(--fj-apricot-300);
+  --fj-sky-300: #c9dbe4;
+  --fj-cobalt-500: var(--fj-clay-600);
 
-  /* Night spreads: always dark, in both themes. */
-  --fj-night: var(--fj-midnight);
-  --fj-night-2: var(--fj-ink-800);
-  --fj-night-3: #1c2858;
-  --fj-on-night: #f3f5fb;
-  --fj-on-night-2: #a9b4d0;
-  --fj-night-line: rgba(169, 180, 208, 0.18);
+  /* ---------- Surfaces & text ---------- */
+  --fj-bg: var(--fj-ivory);
+  --fj-desk: #efe6da;
+  --fj-surface: var(--fj-white);
+  --fj-surface-2: var(--fj-sand-100);
+  --fj-surface-3: var(--fj-sand-200);
+  --fj-fg: var(--fj-espresso);
+  --fj-fg-2: #62544b;
+  --fj-fg-3: #76665b;
+  --fj-line: rgba(58, 46, 40, 0.1);
+  --fj-line-strong: rgba(58, 46, 40, 0.2);
+  --fj-scrim: rgba(40, 28, 20, 0.42);
+
+  /* Sand panels (formerly night spreads). */
+  --fj-night: var(--fj-sand-100);
+  --fj-night-2: var(--fj-sand-200);
+  --fj-night-3: var(--fj-sand-300);
+  --fj-on-night: var(--fj-espresso);
+  --fj-on-night-2: #6b5c52;
+  --fj-night-line: rgba(58, 46, 40, 0.12);
+
+  /* Accent text on light panels (formerly lime text on night). */
+  --fj-hl-ink: #94492c;
 
   /* ---------- Actions ---------- */
-  --fj-primary: var(--fj-cobalt-600);
-  --fj-primary-pressed: var(--fj-cobalt-700);
+  --fj-primary: var(--fj-clay-600);
+  --fj-primary-pressed: var(--fj-clay-700);
   --fj-on-primary: #ffffff;
-  --fj-accent: var(--fj-lime-400);
-  --fj-accent-pressed: #b5dc22;
-  --fj-on-accent: var(--fj-midnight);
-  --fj-tonal: var(--fj-cobalt-100);
-  --fj-on-tonal: var(--fj-cobalt-700);
-  --fj-link: var(--fj-cobalt-600);
-  --fj-focus: var(--fj-cobalt-500);
-  --fj-disabled-bg: var(--fj-mist-200);
-  --fj-disabled-fg: #7a8295;
+  --fj-accent: var(--fj-apricot);
+  --fj-accent-pressed: #ecb984;
+  --fj-on-accent: var(--fj-espresso);
+  --fj-tonal: var(--fj-clay-100);
+  --fj-on-tonal: var(--fj-clay-700);
+  --fj-link: var(--fj-hl-ink);
+  --fj-focus: var(--fj-clay-600);
+  --fj-disabled-bg: var(--fj-sand-200);
+  --fj-disabled-fg: #8f8076;
 
-  /* ---------- Semantic status ---------- */
-  --fj-success-fg: #0b7a50;
-  --fj-success-bg: #ddf5ea;
-  --fj-success-solid: #0a7d52;
-  --fj-warning-fg: #8a4700;
-  --fj-warning-bg: #fff0d6;
-  --fj-warning-solid: #f5a524;
-  --fj-danger-fg: #b3172f;
-  --fj-danger-bg: #ffe3e6;
-  --fj-danger-solid: #d92a45;
-  --fj-info-fg: #1d46c9;
-  --fj-info-bg: #e3e9ff;
-  --fj-info-solid: var(--fj-cobalt-600);
-  --fj-live: #d11f3e;
-  --fj-unread: var(--fj-cobalt-600);
+  /* ---------- Semantic status (muted) ---------- */
+  --fj-success-fg: #3f6b3a;
+  --fj-success-bg: #e8efdf;
+  --fj-success-solid: #5d8a55;
+  --fj-warning-fg: #87561a;
+  --fj-warning-bg: #faeed8;
+  --fj-warning-solid: #e0a548;
+  --fj-danger-fg: #a63a2c;
+  --fj-danger-bg: #f8e2dc;
+  --fj-danger-solid: #c0503d;
+  --fj-info-fg: #3e6278;
+  --fj-info-bg: #e4ecf0;
+  --fj-info-solid: #6f93a8;
+  --fj-live: #b8432f;
+  --fj-unread: var(--fj-clay-600);
 
-  /* ---------- Glass (dark, used on photography only) ---------- */
-  --fj-glass: rgba(8, 14, 34, 0.5);
-  --fj-glass-strong: rgba(8, 14, 34, 0.78);
-  --fj-glass-line: rgba(255, 255, 255, 0.16);
-  --fj-glass-blur: blur(18px) saturate(140%);
+  /* ---------- Glass (warm, on photography only) ---------- */
+  --fj-glass: rgba(42, 30, 24, 0.38);
+  --fj-glass-strong: rgba(42, 30, 24, 0.7);
+  --fj-glass-line: rgba(255, 255, 255, 0.22);
+  --fj-glass-blur: blur(16px) saturate(130%);
 
-  /* ---------- Elevation ---------- */
-  --fj-shadow-1: 0 1px 2px rgba(10, 17, 40, 0.06), 0 4px 14px rgba(10, 17, 40, 0.06);
-  --fj-shadow-2: 0 2px 6px rgba(10, 17, 40, 0.08), 0 18px 40px rgba(10, 17, 40, 0.14);
-  --fj-shadow-3: 0 24px 70px rgba(5, 9, 22, 0.4);
+  /* ---------- Elevation (soft, warm) ---------- */
+  --fj-shadow-1: 0 1px 2px rgba(58, 46, 40, 0.05), 0 4px 14px rgba(58, 46, 40, 0.05);
+  --fj-shadow-2: 0 2px 6px rgba(58, 46, 40, 0.06), 0 16px 36px rgba(58, 46, 40, 0.1);
+  --fj-shadow-3: 0 22px 60px rgba(58, 40, 28, 0.18);
 
   /* ---------- Type: editorial hierarchy on the shared typeface ---------- */
-  --fj-display: 800 2.75rem/0.98 var(--font);      /* 44 · mastheads, covers */
-  --fj-title: 780 2rem/1.04 var(--font);           /* 32 · screen titles */
-  --fj-headline: 740 1.5rem/1.14 var(--font);      /* 24 · story headlines */
-  --fj-heading: 720 1.25rem/1.2 var(--font);       /* 20 · section headings */
-  --fj-sub: 660 1.0625rem/1.3 var(--font);         /* 17 · item titles */
-  --fj-lede: 380 1.1875rem/1.5 var(--font);        /* 19 · decks and ledes (light) */
-  --fj-read: 430 1.0625rem/1.7 var(--font);        /* 17 · reading text */
-  --fj-body: 500 1rem/1.5 var(--font);             /* 16 · interface text */
-  --fj-label: 660 0.9375rem/1.25 var(--font);      /* 15 · buttons, chips, labels */
-  --fj-small: 500 0.875rem/1.45 var(--font);       /* 14 · secondary text */
-  --fj-caption: 600 0.8125rem/1.35 var(--font);    /* 13 · meta, captions */
-  --fj-kicker: 760 0.75rem/1.1 var(--font);        /* 12 · uppercase kickers */
-  --fj-numeral: 220 4rem/0.86 var(--font);         /* 64 · thin editorial numerals */
-  --fj-track-display: -0.04em;
-  --fj-track-title: -0.03em;
+  --fj-display: 780 2.75rem/0.98 var(--font);
+  --fj-title: 760 2rem/1.04 var(--font);
+  --fj-headline: 720 1.5rem/1.14 var(--font);
+  --fj-heading: 700 1.25rem/1.2 var(--font);
+  --fj-sub: 650 1.0625rem/1.3 var(--font);
+  --fj-lede: 380 1.1875rem/1.5 var(--font);
+  --fj-read: 430 1.0625rem/1.7 var(--font);
+  --fj-body: 500 1rem/1.5 var(--font);
+  --fj-label: 650 0.9375rem/1.25 var(--font);
+  --fj-small: 500 0.875rem/1.45 var(--font);
+  --fj-caption: 600 0.8125rem/1.35 var(--font);
+  --fj-kicker: 740 0.75rem/1.1 var(--font);
+  --fj-numeral: 220 4rem/0.86 var(--font);
+  --fj-track-display: -0.035em;
+  --fj-track-title: -0.028em;
   --fj-track-kicker: 0.14em;
 
   /* ---------- Space ---------- */
@@ -141,42 +146,47 @@
   --safe-bottom: 0px;
 }
 
-/* ---------- Dark theme (night edition) ---------- */
+/* ---------- Dark theme: warm evening ---------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .fj {
-    --fj-bg: #060b1a;
-    --fj-surface: #0e1530;
-    --fj-surface-2: #151e3d;
-    --fj-surface-3: #1f2a50;
-    --fj-fg: #eef1f8;
-    --fj-fg-2: #b4bcd3;
-    --fj-fg-3: #8f98b2;
-    --fj-line: rgba(238, 241, 248, 0.1);
-    --fj-line-strong: rgba(238, 241, 248, 0.22);
-    --fj-night: #101a3c;
-    --fj-night-2: #18234d;
-    --fj-night-3: #233066;
-    --fj-primary: #8fa8ff;
-    --fj-primary-pressed: #7a96ff;
-    --fj-on-primary: #06102e;
-    --fj-tonal: #1b2756;
-    --fj-on-tonal: #c4d1ff;
-    --fj-link: #9db3ff;
-    --fj-focus: #9db3ff;
-    --fj-disabled-bg: #1b2341;
-    --fj-disabled-fg: #6d7590;
-    --fj-success-fg: #5fdca5;
-    --fj-success-bg: rgba(95, 220, 165, 0.13);
-    --fj-success-solid: #1fa874;
-    --fj-warning-fg: #ffc266;
-    --fj-warning-bg: rgba(255, 194, 102, 0.13);
-    --fj-danger-fg: #ff8a9a;
-    --fj-danger-bg: rgba(255, 138, 154, 0.13);
-    --fj-danger-solid: #e5485f;
-    --fj-info-fg: #9db3ff;
-    --fj-info-bg: rgba(157, 179, 255, 0.13);
-    --fj-live: #ff6b81;
-    --fj-unread: #9db3ff;
+    --fj-espresso: #f3eae2;
+    --fj-bg: #1c1612;
+    --fj-desk: #120e0b;
+    --fj-surface: #261e19;
+    --fj-surface-2: #2f2620;
+    --fj-surface-3: #3a2f28;
+    --fj-fg: #f3eae2;
+    --fj-fg-2: #cfc1b5;
+    --fj-fg-3: #b3a397;
+    --fj-line: rgba(243, 234, 226, 0.1);
+    --fj-line-strong: rgba(243, 234, 226, 0.2);
+    --fj-night: #2a211c;
+    --fj-night-2: #352a23;
+    --fj-night-3: #40332b;
+    --fj-on-night: #f3eae2;
+    --fj-on-night-2: #c9b9ac;
+    --fj-night-line: rgba(243, 234, 226, 0.12);
+    --fj-hl-ink: #f0b78f;
+    --fj-midnight: #1c1612;
+    --fj-primary: #e8a27f;
+    --fj-primary-pressed: #df8f68;
+    --fj-on-primary: #2a1a12;
+    --fj-on-accent: #2a1a12;
+    --fj-tonal: #3d2b22;
+    --fj-on-tonal: #f3c9ae;
+    --fj-link: #f0b78f;
+    --fj-focus: #f0b78f;
+    --fj-disabled-bg: #2f2620;
+    --fj-disabled-fg: #85766b;
+    --fj-success-fg: #a9cf9c;
+    --fj-success-bg: rgba(169, 207, 156, 0.13);
+    --fj-warning-fg: #f0c98a;
+    --fj-warning-bg: rgba(240, 201, 138, 0.13);
+    --fj-danger-fg: #f0a597;
+    --fj-danger-bg: rgba(240, 165, 151, 0.13);
+    --fj-info-fg: #a9c6d6;
+    --fj-info-bg: rgba(169, 198, 214, 0.13);
+    --fj-live: #f08b72;
     --fj-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
     --fj-shadow-2: 0 2px 6px rgba(0, 0, 0, 0.4), 0 18px 40px rgba(0, 0, 0, 0.45);
     color-scheme: dark;
@@ -184,39 +194,44 @@
 }
 
 :root[data-theme='dark'] .fj {
-  --fj-bg: #060b1a;
-  --fj-surface: #0e1530;
-  --fj-surface-2: #151e3d;
-  --fj-surface-3: #1f2a50;
-  --fj-fg: #eef1f8;
-  --fj-fg-2: #b4bcd3;
-  --fj-fg-3: #8f98b2;
-  --fj-line: rgba(238, 241, 248, 0.1);
-  --fj-line-strong: rgba(238, 241, 248, 0.22);
-  --fj-night: #101a3c;
-  --fj-night-2: #18234d;
-  --fj-night-3: #233066;
-  --fj-primary: #8fa8ff;
-  --fj-primary-pressed: #7a96ff;
-  --fj-on-primary: #06102e;
-  --fj-tonal: #1b2756;
-  --fj-on-tonal: #c4d1ff;
-  --fj-link: #9db3ff;
-  --fj-focus: #9db3ff;
-  --fj-disabled-bg: #1b2341;
-  --fj-disabled-fg: #6d7590;
-  --fj-success-fg: #5fdca5;
-  --fj-success-bg: rgba(95, 220, 165, 0.13);
-  --fj-success-solid: #1fa874;
-  --fj-warning-fg: #ffc266;
-  --fj-warning-bg: rgba(255, 194, 102, 0.13);
-  --fj-danger-fg: #ff8a9a;
-  --fj-danger-bg: rgba(255, 138, 154, 0.13);
-  --fj-danger-solid: #e5485f;
-  --fj-info-fg: #9db3ff;
-  --fj-info-bg: rgba(157, 179, 255, 0.13);
-  --fj-live: #ff6b81;
-  --fj-unread: #9db3ff;
+  --fj-espresso: #f3eae2;
+  --fj-bg: #1c1612;
+  --fj-desk: #120e0b;
+  --fj-surface: #261e19;
+  --fj-surface-2: #2f2620;
+  --fj-surface-3: #3a2f28;
+  --fj-fg: #f3eae2;
+  --fj-fg-2: #cfc1b5;
+  --fj-fg-3: #b3a397;
+  --fj-line: rgba(243, 234, 226, 0.1);
+  --fj-line-strong: rgba(243, 234, 226, 0.2);
+  --fj-night: #2a211c;
+  --fj-night-2: #352a23;
+  --fj-night-3: #40332b;
+  --fj-on-night: #f3eae2;
+  --fj-on-night-2: #c9b9ac;
+  --fj-night-line: rgba(243, 234, 226, 0.12);
+  --fj-hl-ink: #f0b78f;
+  --fj-midnight: #1c1612;
+  --fj-primary: #e8a27f;
+  --fj-primary-pressed: #df8f68;
+  --fj-on-primary: #2a1a12;
+  --fj-on-accent: #2a1a12;
+  --fj-tonal: #3d2b22;
+  --fj-on-tonal: #f3c9ae;
+  --fj-link: #f0b78f;
+  --fj-focus: #f0b78f;
+  --fj-disabled-bg: #2f2620;
+  --fj-disabled-fg: #85766b;
+  --fj-success-fg: #a9cf9c;
+  --fj-success-bg: rgba(169, 207, 156, 0.13);
+  --fj-warning-fg: #f0c98a;
+  --fj-warning-bg: rgba(240, 201, 138, 0.13);
+  --fj-danger-fg: #f0a597;
+  --fj-danger-bg: rgba(240, 165, 151, 0.13);
+  --fj-info-fg: #a9c6d6;
+  --fj-info-bg: rgba(169, 198, 214, 0.13);
+  --fj-live: #f08b72;
   --fj-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
   --fj-shadow-2: 0 2px 6px rgba(0, 0, 0, 0.4), 0 18px 40px rgba(0, 0, 0, 0.45);
   color-scheme: dark;

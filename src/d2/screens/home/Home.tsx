@@ -17,6 +17,7 @@ import { Button, IconButton } from '../../ui/Button';
 import { Segments, SectionHead, Skel } from '../../ui/Blocks';
 import { CoverStory, EventPoster, FieldTile, GuideCard, IndexStory, OrderTicket, StoryRow, VideoTile } from '../../content/Cards';
 import { KD_CONTACT, useUI } from '../../providers';
+import { photoOf } from '../../content/meta';
 import { useNav } from '../../nav';
 import { to } from '../../paths';
 import { WeatherPanel, WeatherSheet } from './Weather';
@@ -117,12 +118,14 @@ export default function Home() {
       stat: !verified ? 'Verify your number to order' : orders.status === 'loading' ? '…' : pending ? `${pending} awaiting approval` : 'All up to date',
       to: '/orders',
       locked: !verified,
+      photo: 'fom-product',
     },
     {
       key: 'forms',
       title: 'Season records',
       stat: progress ? `${cycle!.crop.name} · ${progress.done} of ${progress.total} steps recorded` : forms.status === 'loading' ? '…' : 'No records yet',
       to: cycle ? `/forms/${cycle.id}` : '/forms',
+      photo: 'village-meeting',
       extra: progress && <Segments done={progress.done} total={progress.total} label={`${progress.done} of ${progress.total} steps recorded`} />,
     },
     {
@@ -131,8 +134,9 @@ export default function Home() {
       stat: next ? (live ? 'Live now · join in' : `Next ${formatDayDistance(next.start).toLowerCase()}`) : events.status === 'loading' ? '…' : 'Nothing planned',
       to: '/events',
       live,
+      photo: next ? photoOf(next) : 'workshop-demo',
     },
-    { key: 'fields', title: 'My fields', stat: lands.data ? `${lands.data.length} fields · ${acres} acres` : '…', to: '/lands' },
+    { key: 'fields', title: 'My fields', stat: lands.data ? `${lands.data.length} fields · ${acres} acres` : '…', to: '/lands', photo: 'paddy-field' },
   ];
 
   return (
@@ -193,7 +197,7 @@ export default function Home() {
                     </span>
                     {g.extra}
                   </span>
-                  <ArrowUpRight className={s.glanceArrow} aria-hidden />
+                  <Photo id={g.photo} ratio="1/1" className={s.glanceThumb} decorative />
                 </Link>
               </li>
             </InView>
@@ -215,7 +219,7 @@ export default function Home() {
             <Button size="sm" variant="accent" icon={<Phone aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
               Call
             </Button>
-            <Button size="sm" variant="glass" icon={<MessageCircle aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
+            <Button size="sm" variant="secondary" icon={<MessageCircle aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
               Message
             </Button>
           </div>

@@ -10,6 +10,7 @@ import { Button } from '../../ui/Button';
 import { Sheet } from '../../ui/Sheet';
 import { Cascade, Rise } from '../../motion/Reveal';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import s from './Account.module.css';
 
 export default function Account() {
@@ -29,10 +30,13 @@ export default function Account() {
     <Screen title="Me" variant="masthead" kicker="Your account" tabRoot>
       <Cascade className={s.page}>
         <Rise>
-          <section className={s.profile} aria-label="Profile">
+          <div className={s.cover}>
+            <Photo id="farmer-portrait" ratio="16/9" shade="bottom" />
+          </div>
+          <section className={`${s.profile} ${s.profileOnCover}`} aria-label="Profile">
             <div className={s.profileTop}>
               <Avatar name={profile.name} size={76} verified={session.verified} night />
-              <Button size="sm" variant="glass" icon={<Pencil aria-hidden />} to="/account/profile">
+              <Button size="sm" variant="secondary" icon={<Pencil aria-hidden />} to="/account/profile">
                 Edit
               </Button>
             </div>
@@ -43,12 +47,12 @@ export default function Account() {
             </p>
             <div className={s.verifyRow}>
               {session.verified ? (
-                <StatusTag tone="success" icon={<ShieldCheck aria-hidden />} night>
+                <StatusTag tone="success" icon={<ShieldCheck aria-hidden />}>
                   Verified number
                 </StatusTag>
               ) : (
                 <>
-                  <StatusTag tone="warning" night>
+                  <StatusTag tone="warning">
                     Verification pending
                   </StatusTag>
                   <Button size="sm" variant="accent" onClick={() => nav('/account/verify')}>

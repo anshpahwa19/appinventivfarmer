@@ -8,8 +8,8 @@
   justify-content: center;
   gap: 28px;
   background:
-    radial-gradient(70% 40% at 50% 46%, rgba(61, 99, 255, 0.35), transparent 70%),
-    var(--fj-midnight);
+    radial-gradient(70% 40% at 50% 46%, rgba(242, 199, 155, 0.55), transparent 70%),
+    var(--fj-bg);
   cursor: pointer;
 }
 .horizon {
@@ -18,7 +18,8 @@
   right: 0;
   top: 50%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--fj-lime-400) 20%, var(--fj-lime-400) 80%, transparent);
+  background: linear-gradient(90deg, transparent, var(--fj-primary) 20%, var(--fj-primary) 80%, transparent);
+  opacity: 0.4 !important;
   transform-origin: left center;
   opacity: 0.7;
 }
@@ -32,7 +33,7 @@
   padding: 26px;
   border-radius: var(--r-2xl);
   background: #ffffff;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 24px 60px rgba(120, 80, 50, 0.18);
   overflow: hidden;
 }
 .logo {
@@ -45,7 +46,7 @@
   text-align: center;
 }
 .line span {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
   font-weight: 760;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -55,12 +56,12 @@
   bottom: calc(48px + var(--safe-bottom));
   width: 96px;
   height: 2px;
-  background: rgba(169, 180, 208, 0.25);
+  background: rgba(58, 46, 40, 0.25);
   overflow: hidden;
 }
 .meter span {
   display: block;
   height: 100%;
-  background: var(--fj-lime-400);
+  background: var(--fj-primary);
   transform-origin: left center;
 }

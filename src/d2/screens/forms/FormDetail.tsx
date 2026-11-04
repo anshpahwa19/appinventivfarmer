@@ -58,7 +58,7 @@ export default function FormDetail() {
                 </span>
                 <span className={s.scoreLabel}>steps recorded</span>
               </div>
-              <Segments done={p.done} total={p.total} night label={`${p.done} of ${p.total} steps recorded`} />
+              <Segments done={p.done} total={p.total} label={`${p.done} of ${p.total} steps recorded`} />
               <dl className={s.facts}>
                 <div>
                   <dt>Sown</dt>

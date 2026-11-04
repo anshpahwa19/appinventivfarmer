@@ -3,6 +3,7 @@ import { SUPPORT } from '@/data/people';
 import { Screen, PageTitle } from '../../layout/Screen';
 import { Row, RowGroup } from '../../ui/Blocks';
 import { KD_CONTACT, useUI } from '../../providers';
+import { Photo } from '../../photo/Photo';
 import s from './Account.module.css';
 
 export default function Contact() {
@@ -11,6 +12,9 @@ export default function Contact() {
     <Screen title="Contact us" backTo="/account">
       <PageTitle kicker="Help" title="Contact us" />
       <div className={s.sub}>
+        <div className={s.helpPhoto}>
+          <Photo id="village-meeting" ratio="16/9" alt="Your Kisani Didi with farmers" />
+        </div>
         <RowGroup title="Fastest">
           <Row icon={<UserRound />} title="Your Kisani Didi" subtitle={`${KD_CONTACT.name} · knows your farm`} onClick={() => openContact(KD_CONTACT)} />
         </RowGroup>

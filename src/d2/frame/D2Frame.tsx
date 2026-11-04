@@ -88,7 +88,7 @@ function Aside() {
       <p className={s.asideTitle}>Field Journal</p>
       <p className={s.asideText}>An editorial, photography-led take on the same farmer app: same features, data and flows as Direction 01, with a new colour system, layouts, navigation and motion.</p>
       <ul className={s.asideList}>
-        <li>Photos are art-directed slots. Licensed photography could not be fetched in this build, so each slot shows its tonal field and brief.</li>
+        <li>Photos are AI-generated concept images for this review, to be replaced with licensed or commissioned photography before launch.</li>
         <li>Me → Prototype controls: verified status, offline, slow network, empty states.</li>
         <li>OTP code: 123456.</li>
       </ul>

@@ -28,7 +28,7 @@
   font: 760 1rem/1.2 var(--font);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-apricot);
 }
 .heroText {
   position: absolute;
@@ -92,7 +92,7 @@
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .tValue {
   flex: 1;
@@ -242,7 +242,7 @@
   z-index: 65;
   display: flex;
   flex-direction: column;
-  background: rgba(5, 9, 22, 0.96);
+  background: rgba(30, 20, 14, 0.96);
   pointer-events: auto;
 }
 .viewerTop {

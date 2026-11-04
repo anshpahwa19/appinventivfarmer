@@ -133,7 +133,11 @@ export function PhotoCredit({ id, className }: { id: string; className?: string 
   const p = resolvePhoto(id);
   return (
     <p className={`${s.credit} ${className ?? ''}`}>
-      {p.src && p.credit ? (
+      {p.src && p.credit?.ai ? (
+        <>
+          <Camera aria-hidden /> AI-generated concept image · real photo to come
+        </>
+      ) : p.src && p.credit ? (
         <>
           Photo: {p.credit.author} · {p.credit.source} · {p.credit.licence}
         </>

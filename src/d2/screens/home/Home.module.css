@@ -231,7 +231,7 @@
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .didiName {
   margin-top: 8px;
@@ -325,7 +325,7 @@
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: rgba(255, 255, 255, 0.85);
 }
 .endLink svg {
   flex: none;
@@ -337,4 +337,10 @@
 }
 :root[data-theme='dark'] .endKicker {
   color: var(--fj-on-primary);
+}
+
+.glanceThumb {
+  flex: none;
+  width: 64px !important;
+  border-radius: var(--r-md);
 }

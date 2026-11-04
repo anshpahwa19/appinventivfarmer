@@ -31,7 +31,7 @@
   border-radius: 50%;
   background: var(--fj-lime-400);
   color: var(--fj-midnight);
-  box-shadow: 0 0 0 10px rgba(200, 241, 53, 0.2);
+  box-shadow: 0 0 0 10px rgba(242, 199, 155, 0.2);
 }
 .bigPlay svg {
   width: 28px;
@@ -44,7 +44,7 @@
   bottom: 12px;
   padding: 5px 9px;
   border-radius: var(--r-xs);
-  background: rgba(5, 9, 22, 0.6);
+  background: rgba(30, 20, 14, 0.6);
   color: #fff;
   font: 700 0.75rem/1 var(--font);
 }
@@ -57,7 +57,7 @@
   margin: -20px;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: var(--fj-lime-400);
+  border-top-color: var(--fj-hl-ink);
   animation: fj-spin 0.8s linear infinite;
 }
 @keyframes fj-spin {
@@ -74,7 +74,7 @@
   justify-content: center;
   gap: 12px;
   padding: 20px;
-  background: rgba(5, 9, 22, 0.85);
+  background: rgba(30, 20, 14, 0.85);
   color: #fff;
   font: var(--fj-small);
   text-align: center;

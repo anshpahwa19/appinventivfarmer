@@ -5,7 +5,7 @@
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .title {
   margin-top: 10px;
@@ -43,7 +43,7 @@
   min-height: 44px;
   margin-top: 6px;
   font: var(--fj-label);
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .next {
   margin: 28px var(--fj-gutter) 0;
@@ -82,7 +82,7 @@
   bottom: 6px;
   padding: 3px 6px;
   border-radius: var(--r-xs);
-  background: rgba(5, 9, 22, 0.7);
+  background: rgba(30, 20, 14, 0.7);
   font: 700 0.6875rem/1 var(--font);
 }
 .nextText {

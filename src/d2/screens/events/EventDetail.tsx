@@ -145,7 +145,7 @@ export default function EventDetail() {
                   {ev.organizer.name}
                   <small>{ev.organizer.role}</small>
                 </span>
-                <Button size="sm" variant="glass" icon={<Phone aria-hidden />} onClick={() => openContact({ name: ev.organizer.name, role: 'Event organiser', phone: ev.organizer.phone, message: `Namaste, I have a question about "${ev.title}".` })}>
+                <Button size="sm" variant="secondary" icon={<Phone aria-hidden />} onClick={() => openContact({ name: ev.organizer.name, role: 'Event organiser', phone: ev.organizer.phone, message: `Namaste, I have a question about "${ev.title}".` })}>
                   Contact
                 </Button>
               </div>

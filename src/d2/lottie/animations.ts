@@ -1,6 +1,6 @@
 /**
- * Direction 02 animations. One visual rule: monoline strokes in ink and
- * cobalt that draw themselves on, with lime as the single highlight.
+ * Direction 02 animations. One visual rule: monoline strokes in espresso ink
+ * and clay that draw themselves on, with soft apricot as the single highlight.
  */
 import { doc, ellipse, fill, group, hex, layer, path, rect, stroke, trim, curve, type LottieDoc, type RGB } from './kit';
 
@@ -12,10 +12,10 @@ export interface Palette {
   paper: RGB;
 }
 
-export const LIGHT: Palette = { ink: hex('#0a1128'), primary: hex('#2448e0'), lime: hex('#c8f135'), soft: hex('#d9dfea'), paper: hex('#ffffff') };
-export const DARK: Palette = { ink: hex('#eef1f8'), primary: hex('#8fa8ff'), lime: hex('#c8f135'), soft: hex('#1f2a50'), paper: hex('#0e1530') };
-/** For use on night (always-dark) surfaces in either theme. */
-export const NIGHT: Palette = { ink: hex('#f3f5fb'), primary: hex('#8fa8ff'), lime: hex('#c8f135'), soft: hex('#233066'), paper: hex('#141e45') };
+export const LIGHT: Palette = { ink: hex('#3a2e28'), primary: hex('#a8573a'), lime: hex('#f2c79b'), soft: hex('#eadfd1'), paper: hex('#ffffff') };
+export const DARK: Palette = { ink: hex('#f3eae2'), primary: hex('#e8a27f'), lime: hex('#f2c79b'), soft: hex('#3a2f28'), paper: hex('#261e19') };
+/** For sand panels and photo overlays (formerly always-dark surfaces). */
+export const NIGHT: Palette = { ink: hex('#3a2e28'), primary: hex('#a8573a'), lime: hex('#f2c79b'), soft: hex('#dfd1c0'), paper: hex('#fbf7f1') };
 
 const C: [number, number, number] = [80, 80, 0];
 
@@ -36,7 +36,7 @@ function success(c: Palette): LottieDoc {
     layer('burst', rays, { p: C, s: [{ t: 40, v: [70, 70, 100], e: 'o' }, { t: 76, v: [118, 118, 100] }], o: [{ t: 40, v: 0 }, { t: 46, v: 100 }, { t: 78, v: 0 }] }, op),
     layer('disc', [group([ellipse(104), fill(c.lime)])], { p: C, s: [{ t: 0, v: [0, 0, 100], e: 'b' }, { t: 26, v: [100, 100, 100] }] }, op),
     layer('ring', [group([ellipse(128), trim([{ t: 8, v: 0, e: 'o' }, { t: 46, v: 100 }]), stroke(c.primary, 4)])], { p: C, r: -90 }, op),
-    layer('check', [group([path([[-22, 2], [-6, 18], [24, -16]]), trim([{ t: 26, v: 0, e: 'o' }, { t: 54, v: 100 }]), stroke(hex('#0a1128'), 8)])], { p: C }, op),
+    layer('check', [group([path([[-22, 2], [-6, 18], [24, -16]]), trim([{ t: 26, v: 0, e: 'o' }, { t: 54, v: 100 }]), stroke(hex('#3a2e28'), 8)])], { p: C }, op),
   ]);
 }
 

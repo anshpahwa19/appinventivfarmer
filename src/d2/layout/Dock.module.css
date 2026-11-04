@@ -9,12 +9,11 @@
   gap: 4px;
   padding: 8px 10px calc(8px + var(--safe-bottom)) 6px;
   border-radius: var(--r-xl) var(--r-xl) 0 0;
-  background: var(--fj-midnight);
-  box-shadow: 0 -10px 40px rgba(5, 9, 22, 0.25);
+  background: var(--fj-surface);
+  box-shadow: 0 -1px 0 var(--fj-line), 0 -10px 30px rgba(58, 46, 40, 0.08);
 }
 :root[data-theme='dark'] .dock {
-  background: #0d1533;
-  box-shadow: inset 0 1px 0 rgba(169, 180, 208, 0.12);
+  box-shadow: inset 0 1px 0 rgba(243, 234, 226, 0.1);
 }
 .tabs {
   flex: 1;
@@ -29,12 +28,12 @@
   justify-content: center;
   gap: 4px;
   min-height: var(--fj-dock-h);
-  color: var(--fj-on-night-2);
+  color: var(--fj-fg-3);
   text-decoration: none;
   transition: color var(--fj-dur-2);
 }
 .active {
-  color: #ffffff;
+  color: var(--fj-fg);
 }
 .bar {
   position: absolute;
@@ -43,7 +42,7 @@
   right: 22%;
   height: 3px;
   border-radius: 0 0 3px 3px;
-  background: var(--fj-lime-400);
+  background: var(--fj-primary);
 }
 .glyph {
   position: relative;
@@ -57,7 +56,7 @@
   height: 9px;
   border-radius: 50%;
   background: var(--fj-lime-400);
-  box-shadow: 0 0 0 2px var(--fj-midnight);
+  box-shadow: 0 0 0 2px var(--fj-surface);
 }
 .label {
   font: 680 0.8125rem/1 var(--font);
@@ -67,7 +66,7 @@
   align-self: center;
   width: 1px;
   height: 36px;
-  background: rgba(169, 180, 208, 0.2);
+  background: rgba(58, 46, 40, 0.2);
 }
 .create {
   flex: none;
@@ -90,5 +89,6 @@
   font: 760 0.75rem/1 var(--font);
 }
 .createOpen {
-  background: #ffffff;
+  background: var(--fj-primary);
+  color: #fff;
 }

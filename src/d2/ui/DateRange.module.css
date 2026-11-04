@@ -90,7 +90,7 @@
   font-variant-numeric: tabular-nums;
 }
 .day:disabled {
-  color: rgba(169, 180, 208, 0.32);
+  color: rgba(58, 46, 40, 0.32);
   text-decoration: line-through;
   text-decoration-thickness: 1px;
 }
@@ -110,13 +110,13 @@
   background: var(--fj-lime-400);
 }
 .between {
-  background: rgba(200, 241, 53, 0.14);
+  background: rgba(242, 199, 155, 0.14);
 }
 .start {
-  background: linear-gradient(90deg, transparent 50%, rgba(200, 241, 53, 0.14) 50%);
+  background: linear-gradient(90deg, transparent 50%, rgba(242, 199, 155, 0.14) 50%);
 }
 .endDay {
-  background: linear-gradient(90deg, rgba(200, 241, 53, 0.14) 50%, transparent 50%);
+  background: linear-gradient(90deg, rgba(242, 199, 155, 0.14) 50%, transparent 50%);
 }
 .solo {
   background: none;

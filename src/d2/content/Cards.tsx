@@ -246,8 +246,16 @@ export function OrderTicket({ order }: { order: FomOrder }) {
         )}
         {order.origin === 'device' && <span className={s.deviceNote}>Saved on this phone only</span>}
       </span>
+      <span className={s.ticketPhoto}>
+        <Photo id="fom-product" ratio="3/4" decorative muted={order.status === 'rejected'} />
+      </span>
     </Tap>
   );
+}
+
+const BOOKING_PHOTO: Record<string, string> = { Wheat: 'wheat-field', Rice: 'harvest-baler', Paddy: 'harvest-baler', Cotton: 'cotton-picking' };
+export function bookingPhoto(b: Booking) {
+  return BOOKING_PHOTO[b.crop.split(' ')[0]] ?? 'harvest-bales';
 }
 
 export function BookingTicket({ booking }: { booking: Booking }) {
@@ -275,6 +283,9 @@ export function BookingTicket({ booking }: { booking: Booking }) {
           {booking.requestedBy.role === 'Farm manager' ? ` · by ${booking.requestedBy.name}` : ''}
         </span>
         {booking.origin === 'device' && <span className={s.deviceNote}>Saved on this phone only</span>}
+      </span>
+      <span className={s.ticketPhoto}>
+        <Photo id={bookingPhoto(booking)} ratio="3/4" decorative muted={booking.status === 'rejected'} />
       </span>
     </Tap>
   );

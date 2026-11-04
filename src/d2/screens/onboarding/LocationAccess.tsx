@@ -7,6 +7,7 @@ import { Note } from '../../ui/Blocks';
 import { useToast } from '../../ui/Toast';
 import { RevealText, Cascade, Rise } from '../../motion/Reveal';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import s from './Onboarding.module.css';
 
 const BENEFITS = [
@@ -21,7 +22,7 @@ export default function LocationAccess() {
   const profile = useStore((st) => st.profile);
   const [asking, setAsking] = useState(false);
   const [denied, setDenied] = useState(false);
-  useStatusTone('light');
+  useStatusTone('dark');
   const done = () => nav('/home', { replace: true });
 
   const allow = () => {
@@ -49,6 +50,9 @@ export default function LocationAccess() {
 
   return (
     <div className={`${s.location}`}>
+      <div className={s.locPhoto}>
+        <Photo id="dawn-field" ratio="fill" shade="bottom" priority />
+      </div>
       <div className={s.locTop}>
         <FjLottie name="pin" size={150} night />
         <p className={s.section}>One last thing</p>

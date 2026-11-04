@@ -34,16 +34,24 @@
   color: var(--fj-primary);
 }
 .topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   margin-top: 12px;
 }
 .topic {
-  min-height: 40px;
-  padding: 0 14px;
-  border-radius: var(--r-pill);
-  box-shadow: inset 0 0 0 1.5px var(--fj-line-strong);
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  text-align: left;
+}
+.topic span {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  color: #fff;
   font: var(--fj-label);
 }
 .chips {

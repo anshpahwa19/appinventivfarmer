@@ -7,9 +7,10 @@ import { Button } from '../ui/Button';
 import s from './VideoPlayer.module.css';
 
 /** Direction 02 sample clips, one per video photo slot (see scripts/make-d2-clips.py). */
-const CLIPS = new Set(['harvest-baler', 'soil-sample', 'cotton-drip', 'paddy-closeup', 'paddy-field', 'wheat-grain']);
+const CLIPS = new Set(['harvest-hands', 'harvest-baler', 'soil-sample', 'cotton-drip', 'paddy-closeup', 'paddy-field', 'wheat-grain']);
 export function clipFor(slot: string, fallback: string) {
-  return CLIPS.has(slot) ? `media/fj/${slot}.mp4` : fallback;
+  const file = slot === 'harvest-hands' ? 'harvest-baler' : slot;
+  return CLIPS.has(slot) ? `media/fj/${file}.mp4` : fallback;
 }
 
 interface Props {

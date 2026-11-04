@@ -42,7 +42,7 @@ export default function BookingDetail() {
             <motion.div className={s.page} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
               <section className={s.statusHero}>
                 <div className={s.statusTop}>
-                  <StatusTag tone={meta.tone} icon={meta.icon} size="lg" night>
+                  <StatusTag tone={meta.tone} icon={meta.icon} size="lg">
                     {meta.label}
                   </StatusTag>
                   <span className={s.statusId}>#{b.id}</span>
@@ -53,7 +53,7 @@ export default function BookingDetail() {
                 <p className={s.explain}>
                   {b.landName} · {formatDate(b.date, 'weekday')}, {formatTime(b.slot)}
                 </p>
-                <Tracker steps={steps} night />
+                <Tracker steps={steps} />
               </section>
 
               {b.status === 'rejected' && (

@@ -11,17 +11,21 @@ import { RevealText } from '../../motion/Reveal';
 import { Button } from '../../ui/Button';
 import { Note, Receipt } from '../../ui/Blocks';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import s from './Orders.module.css';
 
 export default function BookingRequested() {
   const { id = '' } = useParams();
   const nav = useNav();
-  useStatusTone('light');
+  useStatusTone('dark');
   const passed = (useLocation().state as { booking?: Booking } | null)?.booking;
   const q = useQuery(`booking:${id}`, () => api.getBooking(id), { enabled: !passed });
   const b = passed ?? q.data;
   return (
     <div className={`${s.success}`}>
+      <div className={s.successPhoto}>
+        <Photo id="harvest-baler" ratio="fill" shade="bottom" priority />
+      </div>
       <div className={s.successTop}>
         <FjLottie name="success" size={132} loop={false} night label="Booking requested" />
         <p className={s.successKicker}>Booking #{id}</p>

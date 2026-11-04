@@ -12,17 +12,21 @@ import { RevealText } from '../../motion/Reveal';
 import { Button } from '../../ui/Button';
 import { Note, Receipt, Tracker } from '../../ui/Blocks';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import s from './Orders.module.css';
 
 export default function OrderPlaced() {
   const { id = '' } = useParams();
   const nav = useNav();
-  useStatusTone('light');
+  useStatusTone('dark');
   const passed = (useLocation().state as { order?: FomOrder } | null)?.order;
   const q = useQuery(`order:${id}`, () => api.getOrder(id), { enabled: !passed });
   const o = passed ?? q.data;
   return (
     <div className={`${s.success}`}>
+      <div className={s.successPhoto}>
+        <Photo id="village-delivery" ratio="fill" shade="bottom" priority />
+      </div>
       <div className={s.successTop}>
         <FjLottie name="success" size={132} loop={false} night label="Order placed" />
         <p className={s.successKicker}>Order {o?.id ?? id}</p>

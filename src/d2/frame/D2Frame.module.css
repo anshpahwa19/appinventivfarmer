@@ -41,9 +41,9 @@
   padding: 24px;
   overflow: hidden;
   background:
-    radial-gradient(50% 60% at 78% 18%, rgba(61, 99, 255, 0.28), transparent 70%),
-    radial-gradient(40% 50% at 12% 92%, rgba(200, 241, 53, 0.12), transparent 70%),
-    linear-gradient(180deg, #070c1d, #03060f);
+    radial-gradient(50% 60% at 78% 18%, rgba(242, 199, 155, 0.45), transparent 70%),
+    radial-gradient(40% 50% at 12% 92%, rgba(154, 168, 138, 0.25), transparent 70%),
+    linear-gradient(180deg, #f4ece1, #ebe0d2);
 }
 .stage {
   flex: none;
@@ -61,8 +61,8 @@
   box-shadow:
     0 0 0 2px #2a2f3d,
     0 0 0 3px #0a0b0f,
-    0 40px 120px -20px rgba(61, 99, 255, 0.35),
-    0 30px 60px -30px rgba(0, 0, 0, 0.8);
+    0 40px 100px -30px rgba(120, 80, 50, 0.35),
+    0 30px 60px -30px rgba(0, 0, 0, 0.35);
 }
 .screen {
   position: relative;
@@ -133,31 +133,31 @@
     flex-direction: column;
     gap: 16px;
     max-width: 330px;
-    color: #a9b4d0;
+    color: var(--fj-fg-2);
   }
 }
 .asideKicker {
   font: var(--fj-kicker);
   letter-spacing: var(--fj-track-kicker);
   text-transform: uppercase;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .asideTitle {
   font: var(--fj-display);
   font-size: 3.5rem;
   letter-spacing: var(--fj-track-display);
-  color: #fff;
+  color: var(--fj-fg);
 }
 .asideText {
   font: var(--fj-lede);
-  color: #c9d1e6;
+  color: var(--fj-fg-2);
 }
 .asideList {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-top: 16px;
-  border-top: 1px solid rgba(169, 180, 208, 0.2);
+  border-top: 1px solid rgba(58, 46, 40, 0.2);
   font: var(--fj-small);
 }
 .asideList li {
@@ -170,7 +170,7 @@
   width: 14px;
   height: 2px;
   margin-top: 10px;
-  background: var(--fj-lime-400);
+  background: var(--fj-primary);
 }
 
 .offline {
@@ -194,5 +194,5 @@
 .offline svg {
   width: 15px;
   height: 15px;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }

@@ -11,11 +11,11 @@ import { Photo } from '../../photo/Photo';
 import s from './DesignSystem.module.css';
 
 const COLOURS = [
-  { group: 'Night ink', items: [['Midnight', '#0A1128'], ['Ink 800', '#141E45'], ['Ink 700', '#1E2F72']] },
-  { group: 'Action', items: [['Cobalt 600', '#2448E0'], ['Cobalt 500', '#3D63FF'], ['Cobalt 100', '#E3E9FF']] },
-  { group: 'Highlight', items: [['Citrus lime', '#C8F135'], ['Chartreuse', '#DCFB72'], ['Sky', '#8EC5FF']] },
-  { group: 'Paper', items: [['Mist 50', '#F3F5F9'], ['Mist 200', '#D9DFEA'], ['Grey 500', '#596276']] },
-  { group: 'Status', items: [['Success', '#0A7D52'], ['Warning', '#F5A524'], ['Danger', '#D92A45'], ['Live', '#D11F3E']] },
+  { group: 'Paper', items: [['Ivory', '#FBF7F1'], ['Sand', '#F3EADF'], ['Sand 200', '#EADFD1']] },
+  { group: 'Ink', items: [['Espresso', '#3A2E28'], ['Ink 2', '#62544B'], ['Ink 3', '#76665B']] },
+  { group: 'Action', items: [['Clay', '#A8573A'], ['Deep clay', '#94492C'], ['Clay tint', '#F7E6DA']] },
+  { group: 'Highlight', items: [['Apricot', '#F2C79B'], ['Apricot 300', '#F6D8B6'], ['Sage', '#9AA88A']] },
+  { group: 'Status', items: [['Success', '#5D8A55'], ['Warning', '#E0A548'], ['Danger', '#C0503D'], ['Info', '#6F93A8']] },
 ];
 const RADII = [
   ['--r-xs', '8', 'tags'],
@@ -63,7 +63,7 @@ export default function DesignSystem() {
               </div>
             ))}
           </div>
-          <p className={s.note}>Every text pair meets WCAG 2.2 AA. Lime is never used for text on light paper.</p>
+          <p className={s.note}>Light, warm and quiet: photographs carry the colour. Every text pair meets WCAG 2.2 AA; apricot is never used for text on paper.</p>
         </section>
 
         <section>
@@ -110,7 +110,7 @@ export default function DesignSystem() {
             <Photo id="soil-sample" ratio="1/1" className={s.p2} />
             <Photo id="mustard-field" ratio="16/9" className={s.p3} />
           </div>
-          <p className={s.note}>Full-bleed covers, asymmetric crops and collages. Each slot has a brief and a focal point; until a licensed photo is added it shows its tonal field. See Me → About for the slot list.</p>
+          <p className={s.note}>Full-bleed covers, asymmetric crops and collages. Images are AI-generated concept photographs for this review, to be replaced with licensed photography (Me → About lists every slot).</p>
         </section>
 
         <section>
@@ -135,7 +135,7 @@ export default function DesignSystem() {
             </div>
             <div className={s.nightRow}>
               <Button variant="accent" size="sm">
-                Accent on night
+                Accent
               </Button>
               <Button variant="glass" size="sm">
                 Glass

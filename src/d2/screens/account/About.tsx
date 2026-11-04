@@ -7,7 +7,8 @@ import { StatusTag } from '../../ui/Blocks';
 import s from './Account.module.css';
 
 export default function About() {
-  const filled = SLOTS.filter((x) => hasFile(x.id)).length;
+  const filled = SLOTS.filter((x) => hasFile(x.id) && !CREDITS[x.id]?.ai).length;
+  const ai = SLOTS.filter((x) => hasFile(x.id) && CREDITS[x.id]?.ai).length;
   return (
     <Screen title="About" backTo="/account">
       <PageTitle kicker="Kisani Urjaa" title="About" />
@@ -40,7 +41,7 @@ export default function About() {
         <section className={s.prose} aria-labelledby="fj-photos">
           <h2 id="fj-photos">Photography</h2>
           <p>
-            {filled} of {SLOTS.length} photo slots have a licensed photograph. Each slot below has a brief for commissioning or licensing; until a photo is added it shows the slot’s tonal field.
+            {filled} of {SLOTS.length} photo slots have a licensed photograph. {ai} use an AI-generated concept image made for this design review: they don’t show real people or places, and each must be replaced with a licensed or commissioned photo before launch. The brief under each slot is the shot to commission.
           </p>
         </section>
         <ul className={s.slots}>
@@ -54,7 +55,9 @@ export default function About() {
                   <span className={s.slotId}>{x.id}</span>
                   <span className={s.slotSubject}>{x.subject}</span>
                   <span className={s.slotStatus}>
-                    {file && credit ? (
+                    {file && credit?.ai ? (
+                      <StatusTag tone="warning">AI concept · replace before launch</StatusTag>
+                    ) : file && credit ? (
                       <StatusTag tone="success">
                         {credit.author} · {credit.licence}
                       </StatusTag>

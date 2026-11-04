@@ -171,7 +171,7 @@
   height: 26px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(10, 17, 40, 0.25);
+  box-shadow: 0 2px 6px rgba(58, 46, 40, 0.25);
 }
 .switchOn .knob {
   background: var(--fj-lime-400);

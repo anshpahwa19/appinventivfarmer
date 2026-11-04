@@ -10,7 +10,10 @@ import { Screen } from '../../layout/Screen';
 import { Accordion, Avatar, EmptyState, ErrorState, Receipt, Segments, Skel } from '../../ui/Blocks';
 import { Button } from '../../ui/Button';
 import { to } from '../../paths';
+import { Photo } from '../../photo/Photo';
 import s from './Forms.module.css';
+
+const STEP_PHOTO: Record<string, string> = { 'land-preparation': 'machinery-tractor', sowing: 'paddy-transplant', intercultivation: 'cotton-picking', water: 'cotton-drip', nutrients: 'fom-product', pesticides: 'paddy-closeup', harvest: 'harvest-baler', transport: 'village-delivery' };
 
 function Entry({ entry, flat }: { entry: StepEntry; flat?: boolean }) {
   return (
@@ -54,6 +57,9 @@ export default function StepDetail() {
       )}
       {c && step && (
         <motion.div key={step.id} className={s.page} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
+          <div className={s.stepPhoto}>
+            <Photo id={STEP_PHOTO[step.id]} ratio="16/9" reveal />
+          </div>
           <div>
             <p className={s.stepNum}>
               {String(idx + 1).padStart(2, '0')}

@@ -57,7 +57,7 @@
   min-height: 40px;
   padding: 0 14px;
   border-radius: var(--r-sm);
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
   font: 760 0.9375rem/1 var(--font);
 }
 .action:hover {
@@ -69,6 +69,6 @@
   right: 0;
   bottom: 0;
   height: 2px;
-  background: rgba(200, 241, 53, 0.6);
+  background: rgba(242, 199, 155, 0.6);
   transform-origin: left center;
 }

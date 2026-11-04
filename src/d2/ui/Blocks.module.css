@@ -73,7 +73,7 @@
   color: #b3c4ff;
 }
 .tagNight.tag_neutral {
-  background: rgba(169, 180, 208, 0.16);
+  background: rgba(58, 46, 40, 0.16);
   color: var(--fj-on-night-2);
 }
 
@@ -198,7 +198,7 @@
 .stale svg {
   width: 16px;
   height: 16px;
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .loading {
   display: flex;
@@ -257,7 +257,7 @@
   background: var(--fj-primary);
 }
 .segNight .seg {
-  background: rgba(169, 180, 208, 0.22);
+  background: rgba(58, 46, 40, 0.22);
 }
 .segNight .segOn {
   background: var(--fj-lime-400);
@@ -344,7 +344,7 @@
   color: var(--fj-fg-3);
 }
 .trackerNight .trackNode {
-  background: rgba(169, 180, 208, 0.2);
+  background: rgba(58, 46, 40, 0.2);
   color: var(--fj-on-night-2);
 }
 .trackerNight .ts_done .trackNode {
@@ -352,7 +352,7 @@
   color: var(--fj-midnight);
 }
 .trackerNight .trackLine {
-  background: rgba(169, 180, 208, 0.2);
+  background: rgba(58, 46, 40, 0.2);
 }
 .trackerNight .trackLine span {
   background: var(--fj-lime-400);
@@ -526,7 +526,7 @@
   color: var(--fj-on-night);
 }
 .receiptNight .rTotal dd {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 
 /* ---------- Accordion ---------- */
@@ -707,11 +707,11 @@ button.row:hover {
   color: var(--fj-on-night);
 }
 .shNight .shKicker {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .shNight .shIndex {
   color: var(--fj-on-night-2);
 }
 .shNight .shLink {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }

@@ -76,7 +76,7 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
   }, []);
 
   const onImage = (variant === 'overlay' || (variant === 'bare' && !!lightTop)) && !past;
-  const dark = night || theme === 'dark';
+  const dark = theme === 'dark';
   useEffect(() => setStatusTone(onImage || dark ? 'light' : 'dark'), [onImage, dark]);
 
   const goBack = () => {

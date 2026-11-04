@@ -214,7 +214,7 @@
   z-index: 2;
   padding: 4px 8px;
   border-radius: var(--r-xs);
-  background: rgba(5, 9, 22, 0.6);
+  background: rgba(30, 20, 14, 0.6);
   color: #fff;
   font: 700 0.75rem/1 var(--font);
   font-variant-numeric: tabular-nums;
@@ -396,9 +396,10 @@
 }
 .ticketTop {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px 8px;
 }
 .ticketId {
   font: 600 0.8125rem/1 var(--font);
@@ -517,8 +518,18 @@
 }
 
 .videoNight .kicker {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .videoNight .videoTitle {
   color: var(--fj-on-night);
+}
+
+.ticketPhoto {
+  flex: none;
+  width: 76px;
+  align-self: stretch;
+}
+.ticketPhoto > div {
+  height: 100%;
+  border-radius: var(--r-md);
 }

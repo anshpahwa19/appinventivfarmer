@@ -14,6 +14,7 @@ import { Note, Receipt, Segments } from '../../ui/Blocks';
 import { FjLottie } from '../../lottie/Lottie';
 import { RevealText } from '../../motion/Reveal';
 import { useNav } from '../../nav';
+import { Photo } from '../../photo/Photo';
 import o from '../orders/Orders.module.css';
 import s from './Lands.module.css';
 
@@ -23,9 +24,12 @@ const SCENES: SceneKind[] = ['paddy', 'wheat', 'cotton', 'mustard', 'canal', 'so
 
 function Saved({ land }: { land: Land }) {
   const nav = useNav();
-  useStatusTone('light');
+  useStatusTone('dark');
   return (
     <div className={`${o.success}`}>
+      <div className={o.successPhoto}>
+        <Photo id="paddy-field" ratio="fill" shade="bottom" priority />
+      </div>
       <div className={o.successTop}>
         <FjLottie name="sprout" size={140} night loop={false} label="Field saved" />
         <p className={o.successKicker}>{land.areaAcres} acres · {land.address.village}</p>

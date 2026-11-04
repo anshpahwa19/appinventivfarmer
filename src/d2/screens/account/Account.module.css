@@ -267,3 +267,15 @@
 .credits strong {
   color: var(--fj-fg);
 }
+
+.cover > div {
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+.profileOnCover {
+  position: relative;
+  margin-top: -36px;
+  border-radius: var(--r-xl);
+}
+.helpPhoto > div {
+  border-radius: var(--r-xl);
+}

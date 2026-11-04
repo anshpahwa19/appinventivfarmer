@@ -172,7 +172,7 @@
 }
 .i_glass.iActive,
 .i_night.iActive {
-  color: var(--fj-lime-400);
+  color: var(--fj-hl-ink);
 }
 .badge {
   position: absolute;
@@ -187,5 +187,5 @@
   background: var(--fj-lime-400);
   color: var(--fj-midnight);
   font: 800 0.6875rem/1 var(--font);
-  box-shadow: 0 0 0 2px var(--fj-midnight);
+  box-shadow: 0 0 0 2px var(--fj-bg);
 }

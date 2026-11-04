@@ -147,7 +147,7 @@
   background: var(--fj-night-2);
 }
 .fj .fj-skel-night::after {
-  background: linear-gradient(100deg, transparent 20%, rgba(169, 180, 208, 0.12) 50%, transparent 80%);
+  background: linear-gradient(100deg, transparent 20%, rgba(58, 46, 40, 0.12) 50%, transparent 80%);
 }
 
 @keyframes fj-sweep {

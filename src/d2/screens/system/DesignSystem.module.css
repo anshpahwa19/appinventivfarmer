@@ -112,7 +112,7 @@
   gap: 8px;
   padding: 14px;
   border-radius: var(--r-lg);
-  background: var(--fj-night);
+  background: linear-gradient(rgba(30, 20, 14, 0.35), rgba(30, 20, 14, 0.35)), url(../../photo/files/mustard-field.webp) center/cover;
 }
 .lotties {
   display: grid;
