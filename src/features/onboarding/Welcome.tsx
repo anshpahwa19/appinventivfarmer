@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import type { SceneSpec } from '@/types';
 import { Scene } from '@/components/media/Scene';
 import { Button } from '@/components/ui/Button';
-import { Logo } from '@/components/brand/Logo';
+import { LogoPlate } from '@/components/brand/Logo';
 import { actions } from '@/services/store';
 import s from './Onboarding.module.css';
 
@@ -71,7 +71,7 @@ export default function Welcome() {
       <motion.div className={s.drag} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.12} onDragEnd={onDragEnd} aria-hidden />
 
       <div className={s.top}>
-        <Logo size={34} light />
+        <LogoPlate size={44} name light />
         {!last && (
           <button type="button" className={s.skip} onClick={finish}>
             Skip

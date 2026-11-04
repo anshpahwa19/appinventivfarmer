@@ -1,0 +1,39 @@
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  background:
+    radial-gradient(70% 45% at 50% 42%, rgba(244, 194, 77, 0.22), transparent 70%),
+    radial-gradient(80% 50% at 50% 100%, rgba(95, 175, 122, 0.18), transparent 70%),
+    #fbf9f3;
+}
+.logo {
+  width: 68%;
+  max-width: 280px;
+  height: auto;
+}
+.bar {
+  width: 120px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(91, 52, 26, 0.12);
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8a5a2f, #e0a43a);
+  transform-origin: left;
+}
+.foot {
+  position: absolute;
+  bottom: calc(28px + var(--safe-bottom));
+  font: var(--t-caption);
+  color: #7a6a58;
+  letter-spacing: 0.04em;
+}

@@ -1,20 +1,35 @@
-/** Kisani Urjaa mark: sun over a field furrow. Recreate from the official logo source when available. */
-export function LogoMark({ size = 40 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden>
-      <rect width="64" height="64" rx="18" fill="#173a29" />
-      <circle cx="40" cy="22" r="8" fill="#f4c24d" />
-      <path d="M14 46c8-2 14-8 18-18 1 10 6 16 18 18" fill="none" stroke="#f6f3ea" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 50h40" stroke="#5faf7a" strokeWidth="4" strokeLinecap="round" />
-    </svg>
-  );
+import logoUrl from '@/assets/brand/kisani-urjaa-logo.webp';
+import markUrl from '@/assets/brand/kisani-urjaa-mark.webp';
+import s from './Logo.module.css';
+
+/**
+ * Official Kisani Urjaa logo (client artwork). Its brown wordmark and black
+ * tagline need a light surface, so over photos or dark screens use `plate`.
+ */
+export function Logo({ height = 160, className }: { height?: number; className?: string }) {
+  return <img src={logoUrl} alt="Kisani Urjaa: From Waste to Wealth, for Farmers’ Health" className={className} style={{ height, width: 'auto' }} draggable={false} />;
 }
 
-export function Logo({ size = 36, light }: { size?: number; light?: boolean }) {
+/** The pickaxe “K”, fist and wheat on their own, for small sizes. */
+export function LogoMark({ size = 40, className }: { size?: number; className?: string }) {
+  return <img src={markUrl} alt="" aria-hidden className={className} style={{ height: size, width: 'auto' }} draggable={false} />;
+}
+
+/** Mark on a cream rounded tile, readable on any background. Optional name beside it. */
+export function LogoPlate({ size = 48, name = false, light = false }: { size?: number; name?: boolean; light?: boolean }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: light ? '#fff' : 'var(--fg)' }}>
-      <LogoMark size={size} />
-      <span style={{ font: `750 ${Math.round(size * 0.5)}px/1 var(--font)`, letterSpacing: '-0.02em' }}>Kisani Urjaa</span>
+    <span className={s.lockup}>
+      <span className={s.plate} style={{ width: size, height: size, borderRadius: size * 0.3 }}>
+        <LogoMark size={size * 0.82} />
+      </span>
+      {name && (
+        <span className={s.name} style={{ color: light ? '#fff' : undefined, fontSize: Math.round(size * 0.4) }}>
+          Kisani <span className={s.urjaa}>Urjaa</span>
+        </span>
+      )}
+      <span className="sr-only">Kisani Urjaa</span>
     </span>
   );
 }
+
+export { logoUrl, markUrl };

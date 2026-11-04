@@ -25,6 +25,7 @@ npm run dev        # http://localhost:5173 (phone-sized frame on desktop)
 
 | Module | Screens |
 |---|---|
+| Brand | Client logo on a splash screen (tap to skip; shorter with reduced motion), welcome, sign-in, About, app icons and favicon |
 | Onboarding | Welcome carousel, phone sign-up and log-in, OTP, continue without verifying, location permission |
 | Home | Weather card with a spray advisory, quick actions with live counts, Kisani Didi contact, next event, fields, news, videos, guides |
 | Learn | News / Videos / Articles in one hub: search, categories, date filter (90-day cap), bookmarks, sharing, reading progress, custom video player |

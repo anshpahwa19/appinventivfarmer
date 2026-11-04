@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Clock3, Info, Plus, XCircle } from 'lucide-react';
 import type { SceneKind, SceneTime } from '@/types';
 import { Screen } from '@/components/layout/Screen';
+import { Logo, LogoMark, LogoPlate } from '@/components/brand/Logo';
 import { Scene } from '@/components/media/Scene';
 import { Lottie } from '@/components/media/Lottie';
 import { Button } from '@/components/ui/Button';
@@ -58,6 +59,24 @@ export default function DesignSystem() {
       <div className={s.page}>
         <section>
           <p className={s.intro}>Morning field light: a warm cream ground, deep forest green for actions, botanical green for growth and success, and harvest orange only where attention is needed.</p>
+        </section>
+
+        <section>
+          <h2 className={s.h2}>Brand</h2>
+          <p className={s.lede}>Client logo. Its brown wordmark and black tagline need a light surface; over photos use the mark on a cream tile.</p>
+          <div className={s.brandRow}>
+            <div className={s.brandTile}>
+              <Logo height={150} />
+            </div>
+            <div className="stack" style={{ ['--gap' as string]: '12px' }}>
+              <div className={s.brandTile}>
+                <LogoMark size={64} />
+              </div>
+              <div className={s.brandTileDark}>
+                <LogoPlate size={44} name light />
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>

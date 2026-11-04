@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ShieldAlert } from 'lucide-react';
 import { Scene } from '@/components/media/Scene';
-import { Logo } from '@/components/brand/Logo';
+import { LogoPlate } from '@/components/brand/Logo';
 import { Button } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/TextField';
 import { Sheet } from '@/components/ui/Sheet';
@@ -70,7 +70,7 @@ export default function Auth() {
         <Scene scene={{ kind: 'paddy', seed: 21, time: 'morning' }} aspect="wide" detail="high" className={s.authHeroScene} />
         <div className={s.authHeroScrim} aria-hidden />
         <div className={s.authBrand}>
-          <Logo size={36} light />
+          <LogoPlate size={44} name light />
         </div>
       </div>
 

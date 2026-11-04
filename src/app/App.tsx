@@ -6,6 +6,7 @@ import { AppRoutes, prefetchScreens } from './routes';
 import { UIProvider } from './providers';
 import { ToastProvider } from '@/components/ui/Toast';
 import { TabBar, isTabRoot } from '@/components/layout/TabBar';
+import { Splash } from '@/components/brand/Splash';
 import { useStore } from '@/services/store';
 import { useReducedMotion } from '@/lib/theme';
 import { readSession, writeSession } from '@/lib/storage';
@@ -105,6 +106,7 @@ export function App() {
           <ToastProvider>
             <UIProvider>
               <AnimatedRoutes />
+              <Splash />
               <TabBar />
             </UIProvider>
           </ToastProvider>

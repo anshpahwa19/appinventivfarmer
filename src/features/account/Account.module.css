@@ -195,3 +195,12 @@
 .credits strong {
   color: var(--fg);
 }
+
+.brand {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border-radius: var(--r-xl);
+  background: radial-gradient(70% 70% at 50% 40%, rgba(244, 194, 77, 0.18), transparent 70%), #fbf9f3;
+  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--line);
+}

@@ -12,6 +12,10 @@ export function setStatusTone(next: StatusTone) {
   subs.forEach((s) => s());
 }
 
+export function getStatusTone(): StatusTone {
+  return tone;
+}
+
 export function useStatusToneValue(): StatusTone {
   return useSyncExternalStore(
     (cb) => {

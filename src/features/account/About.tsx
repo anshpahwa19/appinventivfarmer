@@ -1,17 +1,13 @@
 import { Screen } from '@/components/layout/Screen';
 import { Logo } from '@/components/brand/Logo';
-import { Scene } from '@/components/media/Scene';
 import s from './Account.module.css';
 
 export default function About() {
   return (
     <Screen title="About" back backTo="/account">
       <div className={s.page}>
-        <div style={{ position: 'relative', height: 180, borderRadius: 28, overflow: 'hidden' }}>
-          <Scene scene={{ kind: 'harvest', seed: 5, time: 'golden' }} aspect="wide" detail="high" style={{ position: 'absolute', inset: 0 }} />
-          <div style={{ position: 'absolute', left: 18, bottom: 16 }}>
-            <Logo size={40} light />
-          </div>
+        <div className={s.brand}>
+          <Logo height={170} />
         </div>
         <div className={s.prose}>
           <p>Kisani Urjaa works with farmers to turn crop residue into energy and organic manure, so fields are cleared without burning and soil gets richer.</p>

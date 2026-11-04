@@ -1,0 +1,24 @@
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.plate {
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: #fbf9f3;
+  box-shadow: 0 6px 18px rgba(16, 30, 20, 0.18), inset 0 0 0 1px rgba(91, 52, 26, 0.08);
+}
+.name {
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--fg);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+.urjaa {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.78em;
+}
