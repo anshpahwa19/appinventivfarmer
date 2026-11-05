@@ -28,43 +28,55 @@ export function conditionIcon(code: number): ConditionIcon {
   return 'cloud';
 }
 
+export type SprayKind = 'rain' | 'wind' | 'heat' | 'good';
+
+/** Which spray advice applies, from the current conditions and the next 24 hours of rain chances. */
+export function sprayKind(current: Weather['current'], next24RainMax: number): SprayKind {
+  const raining = current.code >= 51 && current.code !== 45 && current.code !== 48;
+  if (raining || next24RainMax >= 60) return 'rain';
+  if (current.windKph >= 15) return 'wind';
+  if (current.tempC >= 35) return 'heat';
+  return 'good';
+}
+
 /**
  * Spray advisory from the next 24 hours. This replaces the original fixed
  * "Today is a good day to apply pesticides" line.
  */
 export function sprayAdvisory(current: Weather['current'], next24RainMax: number): Advisory {
-  const raining = current.code >= 51 && current.code !== 45 && current.code !== 48;
-  if (raining || next24RainMax >= 60) {
-    return { tone: 'warning', title: 'Avoid spraying today', text: `Rain is likely (${Math.max(next24RainMax, current.rainChance)}% chance). Spray may wash off.` };
+  switch (sprayKind(current, next24RainMax)) {
+    case 'rain':
+      return { tone: 'warning', title: 'Avoid spraying today', text: `Rain is likely (${Math.max(next24RainMax, current.rainChance)}% chance). Spray may wash off.` };
+    case 'wind':
+      return { tone: 'caution', title: 'Too windy to spray', text: `Wind at ${Math.round(current.windKph)} km/h will carry spray away. Try early tomorrow.` };
+    case 'heat':
+      return { tone: 'caution', title: 'Spray before 10 AM', text: 'It is hot. Spray in the cool morning or after 4 PM.' };
+    default:
+      return { tone: 'good', title: 'Good day to spray', text: 'Calm and dry. Spray in the morning or late afternoon.' };
   }
-  if (current.windKph >= 15) {
-    return { tone: 'caution', title: 'Too windy to spray', text: `Wind at ${Math.round(current.windKph)} km/h will carry spray away. Try early tomorrow.` };
-  }
-  if (current.tempC >= 35) {
-    return { tone: 'caution', title: 'Spray before 10 AM', text: 'It is hot. Spray in the cool morning or after 4 PM.' };
-  }
-  return { tone: 'good', title: 'Good day to spray', text: 'Calm and dry. Spray in the morning or late afternoon.' };
 }
 
 /** A believable sample forecast for Buldhana, used offline or when the live service is unreachable. */
 export function sampleWeather(locationName: string, now = new Date()): Weather {
   const today = startOfDay(now);
-  const pattern: [number, number, number, number][] = [
-    // code, max, min, rain%
-    [2, 32, 21, 10],
-    [1, 33, 21, 5],
-    [3, 31, 22, 25],
-    [80, 28, 21, 70],
-    [61, 27, 20, 80],
-    [2, 30, 20, 20],
-    [1, 31, 20, 10],
+  const pattern: [number, number, number, number, number, number][] = [
+    // code, max, min, rain%, rain mm, max wind km/h
+    [2, 32, 21, 10, 0, 14],
+    [1, 33, 21, 5, 0, 12],
+    [3, 31, 22, 25, 0.4, 16],
+    [80, 28, 21, 70, 18, 24],
+    [61, 27, 20, 80, 26, 22],
+    [2, 30, 20, 20, 1, 15],
+    [1, 31, 20, 10, 0, 12],
   ];
-  const daily: WeatherDay[] = pattern.map(([code, maxC, minC, rainChance], i) => ({
+  const daily: WeatherDay[] = pattern.map(([code, maxC, minC, rainChance, rainMm, windMaxKph], i) => ({
     date: toISODate(addDays(today, i)),
     code,
     maxC,
     minC,
     rainChance,
+    rainMm,
+    windMaxKph,
   }));
   const hourly: WeatherHour[] = Array.from({ length: 12 }, (_, i) => {
     const t = new Date(now);
@@ -99,7 +111,7 @@ interface OpenMeteoResponse {
     precipitation_probability?: number;
   };
   hourly?: { time: string[]; temperature_2m: number[]; weather_code: number[]; precipitation_probability: number[] };
-  daily?: { time: string[]; weather_code: number[]; temperature_2m_max: number[]; temperature_2m_min: number[]; precipitation_probability_max: number[] };
+  daily?: { time: string[]; weather_code: number[]; temperature_2m_max: number[]; temperature_2m_min: number[]; precipitation_probability_max: number[]; precipitation_sum?: number[]; wind_speed_10m_max?: number[] };
 }
 
 /** Parses an Open-Meteo forecast. Throws if the shape is not what we expect. */
@@ -121,6 +133,8 @@ export function parseOpenMeteo(json: OpenMeteoResponse, locationName: string, no
     maxC: Math.round(d.temperature_2m_max[i]),
     minC: Math.round(d.temperature_2m_min[i]),
     rainChance: d.precipitation_probability_max[i] ?? 0,
+    rainMm: d.precipitation_sum?.[i] != null ? Math.round(d.precipitation_sum[i] * 10) / 10 : undefined,
+    windMaxKph: d.wind_speed_10m_max?.[i] != null ? Math.round(d.wind_speed_10m_max[i]) : undefined,
   }));
   const current = {
     tempC: Math.round(c.temperature_2m),
@@ -147,7 +161,7 @@ export function openMeteoUrl(latitude: number, longitude: number): string {
     longitude: longitude.toFixed(3),
     current: 'temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,precipitation_probability',
     hourly: 'temperature_2m,weather_code,precipitation_probability',
-    daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max',
+    daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max',
     timezone: 'auto',
     forecast_days: '7',
     wind_speed_unit: 'kmh',

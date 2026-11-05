@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { ListGroup, ListRow } from '@/components/ui/Blocks';
 import { Sheet } from '@/components/ui/Sheet';
-import { actions, useStore } from '@/services/store';
+import { actions, useStore, LANGUAGE_NAMES } from '@/services/store';
 import { formatPhone, monthYear } from '@/lib/format';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import s from './Account.module.css';
@@ -76,7 +76,7 @@ export default function Account() {
 
         <StaggerItem>
         <ListGroup title="Preferences">
-          <ListRow icon={<Languages />} title="Language" value="English" to="/account/language" />
+          <ListRow icon={<Languages />} title="Language" value={LANGUAGE_NAMES[prefs.language]} to="/account/language" />
           <ListRow icon={<Palette />} title="Display" value={prefs.text === 'large' ? 'Large text' : prefs.theme === 'dark' ? 'Dark' : undefined} subtitle="Text size, theme, animations" to="/account/display" />
           {session.verified && <ListRow icon={<KeyRound />} title="Change password" to="/account/password" />}
         </ListGroup>

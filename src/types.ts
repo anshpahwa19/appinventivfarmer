@@ -269,6 +269,10 @@ export interface WeatherDay {
   maxC: number;
   minC: number;
   rainChance: number;
+  /** Forecast rain total for the day in mm, when the source provides it. */
+  rainMm?: number;
+  /** Strongest wind expected that day in km/h, when the source provides it. */
+  windMaxKph?: number;
 }
 
 export interface WeatherHour {

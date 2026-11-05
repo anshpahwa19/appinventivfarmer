@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LayoutTemplate, LogOut, MessageCircle, Palette, Pencil, Repeat, ScrollText, ShieldCheck, Sprout, Tractor } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { actions, useStore } from '@/services/store';
+import { actions, useStore, LANGUAGE_NAMES } from '@/services/store';
 import { formatPhone, monthYear } from '@/lib/format';
 import { counterpartPath } from '@/app/DirectionSwitcher';
 import { Screen } from '../../layout/Screen';
@@ -14,6 +14,7 @@ import { Photo } from '../../photo/Photo';
 import s from './Account.module.css';
 
 export default function Account() {
+  const language = useStore((st) => st.prefs.language);
   const nav = useNav();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ export default function Account() {
         </Rise>
         <Rise>
           <RowGroup title="Preferences">
-            <Row icon={<Languages />} title="Language" value="English" to="/account/language" />
+            <Row icon={<Languages />} title="Language" value={LANGUAGE_NAMES[language]} to="/account/language" />
             <Row icon={<Palette />} title="Display" subtitle="Text size, theme, animations" value={prefs.text === 'large' ? 'Large text' : prefs.theme === 'dark' ? 'Dark' : undefined} to="/account/display" />
             {session.verified && <Row icon={<KeyRound />} title="Change password" to="/account/password" />}
           </RowGroup>

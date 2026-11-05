@@ -1,22 +1,24 @@
 import { Check } from 'lucide-react';
+import { actions, useStore, type Language } from '@/services/store';
 import { Screen, PageTitle } from '../../layout/Screen';
 import { Note } from '../../ui/Blocks';
 import s from './Account.module.css';
 
-const LANGS = [
+const LANGS: { code: Language; name: string; native: string; ready: boolean }[] = [
   { code: 'en', name: 'English', native: 'English', ready: true },
-  { code: 'hi', name: 'Hindi', native: 'हिन्दी', ready: false },
-  { code: 'mr', name: 'Marathi', native: 'मराठी', ready: false },
+  { code: 'hi', name: 'Hindi', native: 'हिन्दी', ready: true },
+  { code: 'mr', name: 'Marathi', native: 'मराठी', ready: true },
 ];
 
-export default function Language() {
+export default function LanguageScreen() {
+  const current = useStore((st) => st.prefs.language);
   return (
     <Screen title="Language" backTo="/account">
       <PageTitle kicker="Preferences" title="Language" />
       <div className={s.sub}>
         <div className="fj-stack" role="radiogroup" aria-label="App language" style={{ ['--gap' as string]: '10px' }}>
           {LANGS.map((l) => (
-            <button key={l.code} type="button" role="radio" aria-checked={l.code === 'en'} className={s.option} disabled={!l.ready} lang={l.code}>
+            <button key={l.code} type="button" role="radio" aria-checked={l.code === current} className={s.option} disabled={!l.ready} lang={l.code} onClick={() => actions.setPrefs({ language: l.code })}>
               <span className={s.optionText}>
                 <span className={s.optionTitle}>{l.native}</span>
                 <span className={s.optionSub} lang="en">
@@ -25,7 +27,7 @@ export default function Language() {
               </span>
               {l.ready ? (
                 <span className={s.radio} aria-hidden>
-                  <Check strokeWidth={3} />
+                  {l.code === current && <Check strokeWidth={3} />}
                 </span>
               ) : (
                 <span className={s.soon} lang="en">
@@ -35,8 +37,8 @@ export default function Language() {
             </button>
           ))}
         </div>
-        <Note tone="info" title="Hindi and Marathi are on the way">
-          Translations are being prepared with farmers and Kisani Didis. Until then the app stays in English.
+        <Note tone="info" title="Hindi and Marathi: Home screen first">
+          The Home screen is available in Hindi and Marathi. Other screens stay in English while translations are prepared with farmers and Kisani Didis. The Hindi and Marathi text is a first draft awaiting review by native speakers.
         </Note>
       </div>
     </Screen>

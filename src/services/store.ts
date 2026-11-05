@@ -21,7 +21,17 @@ export interface Prefs {
   theme: 'system' | 'light' | 'dark';
   text: 'default' | 'large';
   motion: 'system' | 'reduce';
-  language: 'en';
+  language: Language;
+}
+
+/** App languages. Hindi and Marathi currently cover the Home screen only. */
+export type Language = 'en' | 'hi' | 'mr';
+export const LANGUAGES: readonly Language[] = ['en', 'hi', 'mr'];
+export const LANGUAGE_NAMES: Record<Language, string> = { en: 'English', hi: 'हिन्दी', mr: 'मराठी' };
+
+/** Unknown or missing values (older saves, hand-edited storage) fall back to English. */
+export function normalizeLanguage(value: unknown): Language {
+  return LANGUAGES.includes(value as Language) ? (value as Language) : 'en';
 }
 
 export interface DemoSettings {
@@ -84,7 +94,9 @@ function load(): AppState {
   if (!saved || saved.version !== 3) return initialState();
   // Merge so new fields get defaults after an update.
   const base = initialState();
-  return { ...base, ...saved, session: { ...base.session, ...saved.session }, prefs: { ...base.prefs, ...saved.prefs }, demo: { ...base.demo, ...saved.demo } };
+  const prefs = { ...base.prefs, ...saved.prefs };
+  prefs.language = normalizeLanguage(prefs.language);
+  return { ...base, ...saved, session: { ...base.session, ...saved.session }, prefs, demo: { ...base.demo, ...saved.demo } };
 }
 
 /* ------------------------------------------------------------------ */
