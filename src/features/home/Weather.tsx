@@ -118,7 +118,7 @@ export function WeatherSheet({ open, onClose, weather, onRetry, t, tokens }: { o
   const spray = spraySummary(weather, t);
   return (
     <Sheet open={open} onClose={onClose} title={`${t.weather} · ${weather.locationName}`} description={t.updated(t.ago(weather.updatedAt))}>
-      <div className={`stack ${tokens}`} lang={t.lang} style={{ ['--gap' as string]: '16px' }}>
+      <div className={`stack ${tokens}`} lang={t.contentLang} style={{ ['--gap' as string]: '16px' }}>
         <div className={s.wxNow}>
           <WeatherIcon code={weather.current.code} className={s.wxNowIcon} />
           <div>

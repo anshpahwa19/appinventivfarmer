@@ -5,66 +5,103 @@ import type { HomeT } from '@/i18n/home';
 import s from './HomeShared.module.css';
 
 /**
- * Header button: shows the current language in its own script and opens the
- * picker. One tap to open, one tap to choose. Scales to any number of languages.
+ * Header control: shows the current language in its own script and opens the
+ * picker. One tap to open, one tap to choose.
+ * - `pill` (Direction 01): rounded glass pill with a language icon.
+ * - `journal` (Direction 02): a squared glass tag with a small kicker, in the journal's editorial voice.
  */
-export function LanguageButton({ t, tone = 'surface', onOpen, className }: { t: HomeT; tone?: 'glass' | 'surface'; onOpen: () => void; className?: string }) {
-  const current = LANGUAGE_CATALOG.find((l) => l.code === t.lang)!;
+export function LanguageButton({ t, variant, onOpen, className }: { t: HomeT; variant: 'pill' | 'journal'; onOpen: () => void; className?: string }) {
+  const current = LANGUAGE_CATALOG.find((l) => l.code === t.lang) ?? LANGUAGE_CATALOG[0];
+  const label = t.languagePicker.current(current.native);
+  if (variant === 'journal')
+    return (
+      <button type="button" className={`${s.langTag} ${className ?? ''}`} onClick={onOpen} aria-haspopup="dialog" aria-label={label}>
+        <span className={s.langTagText}>
+          <span className={s.langTagKicker}>{t.language}</span>
+          <span className={s.langTagName} lang={current.code}>
+            {current.native}
+          </span>
+        </span>
+        <ChevronDown aria-hidden />
+      </button>
+    );
   return (
-    <button type="button" className={`${s.langBtn} ${tone === 'glass' ? s.langGlass : s.langSurface} ${className ?? ''}`} onClick={onOpen} aria-haspopup="dialog" aria-label={t.languagePicker.current(current.native)}>
+    <button type="button" className={`${s.langBtn} ${className ?? ''}`} onClick={onOpen} aria-haspopup="dialog" aria-label={label}>
       <Languages aria-hidden />
-      <span lang={current.code}>{current.native}</span>
+      <span className={s.langBtnName} lang={current.code}>
+        {current.native}
+      </span>
       <ChevronDown aria-hidden className={s.langChevron} />
     </button>
   );
 }
 
 /**
- * The picker body: a two-column grid of radio cards, each with the language
- * in its own script, its English name and a large script sign. Choosing a
- * ready language applies at once (writes prefs.language) and calls onDone.
+ * The picker body. Choosing a language applies at once (writes
+ * prefs.language) and then calls onDone.
+ * - `cards` (Direction 01): two-column grid of radio cards with a large script sign.
+ * - `index` (Direction 02): a ruled index list, the script sign set like a journal numeral.
  */
-export function LanguagePicker({ t, onDone }: { t: HomeT; onDone: () => void }) {
+export function LanguagePicker({ t, variant, onDone }: { t: HomeT; variant: 'cards' | 'index'; onDone: () => void }) {
   const current = useStore((st) => st.prefs.language);
   const device = deviceLanguage();
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
-  const ready = LANGUAGE_CATALOG.filter((l) => l.ready);
 
-  const pick = (code: string) => {
-    actions.setPrefs({ language: code as Language });
+  const pick = (code: Language) => {
+    actions.setPrefs({ language: code });
     setTimeout(onDone, 220);
   };
 
-  const onKey = (e: KeyboardEvent, code: string) => {
+  const onKey = (e: KeyboardEvent, i: number) => {
     const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
     if (!dir) return;
     e.preventDefault();
-    const i = ready.findIndex((l) => l.code === code);
-    const next = ready[(i + dir + ready.length) % ready.length];
-    refs.current[LANGUAGE_CATALOG.indexOf(next)]?.focus();
-    actions.setPrefs({ language: next.code as Language });
+    const next = (i + dir + LANGUAGE_CATALOG.length) % LANGUAGE_CATALOG.length;
+    refs.current[next]?.focus();
+    actions.setPrefs({ language: LANGUAGE_CATALOG[next].code });
   };
+
+  const index = variant === 'index';
 
   return (
     <div className={s.picker}>
-      <div className={s.pickGrid} role="radiogroup" aria-label={t.languagePicker.title}>
+      <div className={index ? s.pickList : s.pickGrid} role="radiogroup" aria-label={t.languagePicker.title}>
         {LANGUAGE_CATALOG.map((l, i) => {
           const on = l.code === current;
+          const isDevice = device === l.code;
+          const common = {
+            ref: (el: HTMLButtonElement | null) => (refs.current[i] = el),
+            type: 'button' as const,
+            role: 'radio',
+            'aria-checked': on,
+            tabIndex: on ? 0 : -1,
+            onClick: () => pick(l.code),
+            onKeyDown: (e: KeyboardEvent) => onKey(e, i),
+            'data-autofocus': on || undefined,
+          };
+          if (index)
+            return (
+              <button key={l.code} {...common} className={`${s.pickRow} ${on ? s.pickRowOn : ''}`}>
+                <span className={s.pickRowMark} aria-hidden lang={l.code}>
+                  {l.mark}
+                </span>
+                <span className={s.pickRowText}>
+                  <span className={s.pickRowKicker} lang="en">
+                    {l.english}
+                    {isDevice && <span className={s.pickRowDevice}> · {t.languagePicker.device}</span>}
+                  </span>
+                  <span className={s.pickRowNative} lang={l.code}>
+                    {l.native}
+                  </span>
+                </span>
+                <span className={s.pickRowCheck} aria-hidden>
+                  {on && <Check strokeWidth={3} />}
+                </span>
+              </button>
+            );
           return (
-            <button
-              key={l.code}
-              ref={(el) => (refs.current[i] = el)}
-              type="button"
-              role="radio"
-              aria-checked={on}
-              aria-disabled={!l.ready || undefined}
-              tabIndex={on ? 0 : -1}
-              className={`${s.pickCard} ${on ? s.pickOn : ''} ${!l.ready ? s.pickSoon : ''}`}
-              onClick={() => l.ready && pick(l.code)}
-              onKeyDown={(e) => onKey(e, l.code)}
-              data-autofocus={on || undefined}
-            >
-              {device === l.code && <span className={s.pickDevice}>{t.languagePicker.device}</span>}
+            <button key={l.code} {...common} className={`${s.pickCard} ${on ? s.pickOn : ''}`}>
+              {isDevice && <span className={s.pickDevice}>{t.languagePicker.device}</span>}
               <span className={s.pickRadio} aria-hidden>
                 {on && <Check strokeWidth={3} />}
               </span>
@@ -75,7 +112,6 @@ export function LanguagePicker({ t, onDone }: { t: HomeT; onDone: () => void }) 
                 <span className={s.pickEnglish} lang="en">
                   {l.english}
                 </span>
-                {!l.ready && <span className={s.pickTag}>{t.languagePicker.soon}</span>}
               </span>
               <span className={s.pickMark} aria-hidden lang={l.code}>
                 {l.mark}
@@ -84,7 +120,6 @@ export function LanguagePicker({ t, onDone }: { t: HomeT; onDone: () => void }) 
           );
         })}
       </div>
-      <p className={s.pickNote}>{t.languagePicker.soonNote}</p>
       {t.reviewNote && <p className={s.pickNote}>{t.reviewNote}</p>}
     </div>
   );

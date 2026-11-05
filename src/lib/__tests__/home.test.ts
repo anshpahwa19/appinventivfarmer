@@ -100,9 +100,20 @@ describe('home i18n', () => {
   });
 });
 
+describe('languages without Home strings yet', () => {
+  it('can be chosen and show Home in English, with an honest lang attribute', () => {
+    const t = makeT('pa');
+    expect(t.lang).toBe('pa');
+    expect(t.contentLang).toBe('en');
+    expect(t.alertsTitle).toBe(HOME_STRINGS.en.alertsTitle);
+    expect(makeT('hi').contentLang).toBe('hi');
+  });
+});
+
 describe('language preference', () => {
   it('keeps known languages and falls back to English', () => {
     expect(normalizeLanguage('mr')).toBe('mr');
+    expect(normalizeLanguage('te')).toBe('te');
     expect(normalizeLanguage('fr')).toBe('en');
     expect(normalizeLanguage(undefined)).toBe('en');
   });

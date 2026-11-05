@@ -25,31 +25,31 @@ export interface Prefs {
 }
 
 /** App languages. Hindi and Marathi currently cover the Home screen only. */
-export type Language = 'en' | 'hi' | 'mr';
-export const LANGUAGES: readonly Language[] = ['en', 'hi', 'mr'];
-export const LANGUAGE_NAMES: Record<Language, string> = { en: 'English', hi: 'हिन्दी', mr: 'मराठी' };
+export type Language = 'en' | 'hi' | 'pa' | 'gu' | 'mr' | 'te' | 'or';
+export const LANGUAGES: readonly Language[] = ['en', 'hi', 'pa', 'gu', 'mr', 'te', 'or'];
+export const LANGUAGE_NAMES: Record<Language, string> = { en: 'English', hi: 'हिन्दी', pa: 'ਪੰਜਾਬੀ', gu: 'ગુજરાતી', mr: 'मराठी', te: 'తెలుగు', or: 'ଓଡ଼ିଆ' };
 
 /**
- * Every language Kisani Urjaa offers. `ready` languages can be chosen today
- * (their Home screen is translated); the rest are listed as coming soon so the
- * picker already has its final shape. `mark` is a short native-script sign
- * used as the card's visual.
+ * Every language Kisani Urjaa offers; all can be chosen. `translated` marks
+ * the ones whose Home strings exist today (the others show Home in English
+ * until their strings are added). `mark` is a short native-script sign used
+ * as the picker's visual.
  */
-export const LANGUAGE_CATALOG: { code: string; native: string; english: string; mark: string; ready: boolean }[] = [
-  { code: 'en', native: 'English', english: 'English', mark: 'Aa', ready: true },
-  { code: 'hi', native: 'हिन्दी', english: 'Hindi', mark: 'हि', ready: true },
-  { code: 'pa', native: 'ਪੰਜਾਬੀ', english: 'Punjabi', mark: 'ਪੰ', ready: false },
-  { code: 'gu', native: 'ગુજરાતી', english: 'Gujarati', mark: 'ગુ', ready: false },
-  { code: 'mr', native: 'मराठी', english: 'Marathi', mark: 'म', ready: true },
-  { code: 'te', native: 'తెలుగు', english: 'Telugu', mark: 'తె', ready: false },
-  { code: 'or', native: 'ଓଡ଼ିଆ', english: 'Odia', mark: 'ଓ', ready: false },
+export const LANGUAGE_CATALOG: { code: Language; native: string; english: string; mark: string; translated: boolean }[] = [
+  { code: 'en', native: 'English', english: 'English', mark: 'Aa', translated: true },
+  { code: 'hi', native: 'हिन्दी', english: 'Hindi', mark: 'हि', translated: true },
+  { code: 'pa', native: 'ਪੰਜਾਬੀ', english: 'Punjabi', mark: 'ਪੰ', translated: false },
+  { code: 'gu', native: 'ગુજરાતી', english: 'Gujarati', mark: 'ગુ', translated: false },
+  { code: 'mr', native: 'मराठी', english: 'Marathi', mark: 'म', translated: true },
+  { code: 'te', native: 'తెలుగు', english: 'Telugu', mark: 'తె', translated: false },
+  { code: 'or', native: 'ଓଡ଼ିଆ', english: 'Odia', mark: 'ଓ', translated: false },
 ];
 
 /** The device's language, if it is one we list. */
-export function deviceLanguage(): string | undefined {
+export function deviceLanguage(): Language | undefined {
   if (typeof navigator === 'undefined') return undefined;
   const codes = (navigator.languages?.length ? navigator.languages : [navigator.language]).map((l) => l?.slice(0, 2).toLowerCase());
-  return codes.find((c) => LANGUAGE_CATALOG.some((l) => l.code === c));
+  return LANGUAGE_CATALOG.find((l) => codes.includes(l.code))?.code;
 }
 
 /** Unknown or missing values (older saves, hand-edited storage) fall back to English. */

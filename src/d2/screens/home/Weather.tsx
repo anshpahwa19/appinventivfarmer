@@ -113,7 +113,7 @@ export function WeatherSheet({ open, onClose, weather, onRetry, t, tokens }: { o
   const min = Math.min(...weather.daily.map((d) => d.minC));
   return (
     <Sheet open={open} onClose={onClose} kicker={`${weather.source === 'live' ? t.live : t.sample} · ${t.updated(t.ago(weather.updatedAt))}`} title={weather.locationName}>
-      <div className={`${s.sheet} ${tokens}`} lang={t.lang}>
+      <div className={`${s.sheet} ${tokens}`} lang={t.contentLang}>
         <div className={s.now}>
           <span className={s.nowTemp}>
             {weather.current.tempC}

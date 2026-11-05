@@ -73,7 +73,7 @@ function HomeHero({ scene, name, firstName, verified, unread, t, locale, offline
           <Avatar name={name} size={44} verified={verified} />
         </Link>
         <span className={s.heroSpacer} />
-        <LanguageButton t={t} tone="glass" onOpen={onLang} />
+        <LanguageButton t={t} variant="pill" onOpen={onLang} />
         <IconButton label={t.notifications} variant="onImage" badge={unread} to="/notifications">
           <Bell />
         </IconButton>
@@ -169,7 +169,7 @@ export default function Home() {
 
   return (
     <Screen noHeader tabRoot heroTone="light" heroHeight={250}>
-      <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
+      <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
         <HomeHero scene={scene} name={profile.name} firstName={firstName} verified={verified} unread={unread} t={t} locale={t.locale} offline={d.offline} onLang={() => setLangOpen(true)} />
 
         <motion.div className={s.body} variants={stagger} initial="hidden" animate="show">
@@ -306,14 +306,14 @@ export default function Home() {
 
       <WeatherSheet open={weatherOpen} onClose={() => setWeatherOpen(false)} weather={weather.data} onRetry={weather.refetch} t={t} tokens={s.tokens} />
 
-      <Sheet open={langOpen} onClose={() => setLangOpen(false)} title={t.languagePicker.title} description={t.lang === 'en' ? undefined : 'Choose your language'}>
-        <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
-          <LanguagePicker t={t} onDone={() => setLangOpen(false)} />
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} title={t.languagePicker.title} description={t.contentLang === 'en' ? undefined : 'Choose your language'}>
+        <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
+          <LanguagePicker t={t} variant="cards" onDone={() => setLangOpen(false)} />
         </div>
       </Sheet>
 
       <Sheet open={voiceOpen} onClose={() => setVoiceOpen(false)} title={t.voice.title}>
-        <div className={s.tokens} lang={t.lang}>
+        <div className={s.tokens} lang={t.contentLang}>
           <VoicePanel
             t={t}
             open={voiceOpen}

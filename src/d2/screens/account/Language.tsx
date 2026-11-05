@@ -1,10 +1,10 @@
 import { Check } from 'lucide-react';
-import { actions, useStore, LANGUAGE_CATALOG, type Language } from '@/services/store';
+import { actions, useStore, LANGUAGE_CATALOG } from '@/services/store';
 import { Screen, PageTitle } from '../../layout/Screen';
 import { Note } from '../../ui/Blocks';
 import s from './Account.module.css';
 
-const LANGS = LANGUAGE_CATALOG.map((l) => ({ code: l.code as Language, name: l.english, native: l.native, ready: l.ready }));
+const LANGS = LANGUAGE_CATALOG.map((l) => ({ code: l.code, name: l.english, native: l.native, ready: true }));
 
 export default function LanguageScreen() {
   const current = useStore((st) => st.prefs.language);
@@ -33,8 +33,8 @@ export default function LanguageScreen() {
             </button>
           ))}
         </div>
-        <Note tone="info" title="Hindi and Marathi: Home screen first">
-          The Home screen is available in Hindi and Marathi. Punjabi, Gujarati, Telugu and Odia are coming soon. Other screens stay in English while translations are prepared with farmers and Kisani Didis. The Hindi and Marathi text is a first draft awaiting review by native speakers.
+        <Note tone="info" title="About translations">
+          The Hindi and Marathi text on Home is a first draft awaiting review by native speakers.
         </Note>
       </div>
     </Screen>

@@ -76,7 +76,7 @@ export function VoicePanel({ t, open, onSend, onCall, onMessage, onIntent }: Pro
       <div className={s.voiceStatus} role="status" aria-live="polite">
         {!blocked && statusLine && <p className={s.voiceLine}>{statusLine}</p>}
         {(listening || busy || status === 'done') && (
-          <blockquote className={s.transcript} lang={t.lang} data-empty={!text || undefined}>
+          <blockquote className={s.transcript} lang={t.contentLang} data-empty={!text || undefined}>
             {text || '…'}
           </blockquote>
         )}

@@ -11,14 +11,22 @@
   gap: 6px;
   flex: none;
   min-height: 44px;
-  max-width: 150px;
+  max-width: 160px;
   padding: 0 10px 0 12px;
   border-radius: var(--r-pill);
-  font: 700 0.9375rem/1 var(--font);
+  background: var(--hm-glass);
+  color: var(--hm-on-glass);
+  box-shadow: inset 0 0 0 1px var(--hm-glass-line);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   font-family: inherit;
   transition: transform 120ms ease;
 }
-.langBtn > span {
+.langBtnName {
+  /* Room for descenders (g, y) and Indic vowel signs above and below the line. */
+  padding: 4px 0;
+  font: 700 0.9375rem/1.35 var(--font);
+  font-family: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -33,24 +41,138 @@
   height: 16px;
   opacity: 0.85;
 }
-.langBtn:active {
+.langBtn:active,
+.langTag:active {
   transform: scale(0.96);
 }
-.langBtn:focus-visible {
+.langBtn:focus-visible,
+.langTag:focus-visible {
   outline: 3px solid var(--hm-focus);
   outline-offset: 2px;
 }
-.langGlass {
+
+/* Direction 02: a squared journal tag with a kicker. */
+.langTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 5px 10px 5px 12px;
+  border-radius: var(--r-xs);
   background: var(--hm-glass);
   color: var(--hm-on-glass);
-  box-shadow: inset 0 0 0 1px var(--hm-glass-line);
+  box-shadow:
+    inset 3px 0 0 var(--hm-lang-on),
+    inset 0 0 0 1px var(--hm-glass-line);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
+  text-align: left;
+  transition: transform 120ms ease;
 }
-.langSurface {
-  background: var(--hm-surface-2);
+.langTagText {
+  display: flex;
+  flex-direction: column;
+}
+.langTagKicker {
+  font: 740 0.6875rem/1.3 var(--font);
+  font-family: inherit;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hm-lang-on);
+}
+.langTagName {
+  font: 700 1rem/1.4 var(--font);
+  font-family: inherit;
+  white-space: nowrap;
+}
+.langTag svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.pickCard:active {
+  transform: scale(0.98);
+}
+
+/* Direction 02 picker: a ruled index. */
+.pickList {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid var(--hm-fg);
+}
+.pickRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 68px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--hm-line);
   color: var(--hm-fg);
-  box-shadow: inset 0 0 0 1px var(--hm-line);
+  text-align: left;
+  transition: background-color 160ms ease;
+}
+.pickRow:focus-visible {
+  outline: 3px solid var(--hm-focus);
+  outline-offset: -3px;
+}
+.pickRowOn {
+  background: linear-gradient(90deg, var(--hm-brand-soft), transparent 85%);
+}
+.pickRowMark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-sm);
+  background: var(--hm-surface-2);
+  font: 300 1.5rem/1.2 var(--font);
+  font-family: inherit;
+  color: var(--hm-fg-2);
+}
+.pickRowOn .pickRowMark {
+  background: var(--hm-brand);
+  color: var(--hm-on-brand);
+  font-weight: 500;
+}
+.pickRowText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pickRowKicker {
+  font: 740 0.6875rem/1.3 var(--font);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hm-fg-2);
+}
+.pickRowDevice {
+  color: var(--hm-sky);
+}
+.pickRowNative {
+  font: 700 1.1875rem/1.4 var(--font);
+  font-family: inherit;
+}
+.pickRowCheck {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--hm-line);
+  color: var(--hm-on-brand);
+}
+.pickRowOn .pickRowCheck {
+  background: var(--hm-brand);
+  box-shadow: none;
+}
+.pickRowCheck svg {
+  width: 15px;
+  height: 15px;
 }
 
 .picker {
@@ -82,9 +204,6 @@
     background-color 160ms ease,
     transform 120ms ease;
 }
-.pickCard:active:not(.pickSoon) {
-  transform: scale(0.98);
-}
 .pickCard:focus-visible {
   outline: 3px solid var(--hm-focus);
   outline-offset: 2px;
@@ -92,14 +211,6 @@
 .pickOn {
   background: var(--hm-brand-soft);
   box-shadow: inset 0 0 0 2px var(--hm-brand);
-}
-.pickSoon {
-  cursor: default;
-  background: var(--hm-surface-2);
-}
-.pickSoon .pickNative,
-.pickSoon .pickMark {
-  opacity: 0.6;
 }
 .pickDevice {
   position: absolute;
@@ -135,9 +246,6 @@
   width: 14px;
   height: 14px;
 }
-.pickSoon .pickRadio {
-  box-shadow: inset 0 0 0 2px var(--hm-line);
-}
 .pickText {
   position: relative;
   z-index: 1;
@@ -148,21 +256,12 @@
   min-width: 0;
 }
 .pickNative {
-  font: 700 1.1875rem/1.3 var(--font);
+  padding: 2px 0;
+  font: 700 1.1875rem/1.4 var(--font);
   font-family: inherit;
 }
 .pickEnglish {
   font: 600 0.8125rem/1.3 var(--font);
-  color: var(--hm-fg-2);
-}
-.pickTag {
-  margin-top: 4px;
-  padding: 2px 7px;
-  border-radius: var(--r-pill);
-  background: var(--hm-surface);
-  box-shadow: inset 0 0 0 1px var(--hm-line);
-  font: 650 0.6875rem/1.3 var(--font);
-  font-family: inherit;
   color: var(--hm-fg-2);
 }
 .pickMark {

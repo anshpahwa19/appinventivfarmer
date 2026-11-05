@@ -38,8 +38,9 @@ Removed to cut clutter. All of these are still one tap away in Learn, Orders or 
 - `src/lib/weather.ts`
   - Adds `sprayKind()`.
   - Adds the optional daily `rainMm` and `windMaxKph` fields. These are requested from Open-Meteo, and the sample forecast includes them too.
-- `prefs.language` is now `'en' | 'hi' | 'mr'`. `normalizeLanguage()` keeps old saves safe.
-- `LANGUAGE_CATALOG` in `store.ts` lists all 7 app languages: English, Hindi, Punjabi, Gujarati, Marathi, Telugu and Odia. English, Hindi and Marathi can be chosen now. The other four show as "Coming soon" until their Home strings exist. The picker marks the device language.
+- `prefs.language` now covers all 7 app languages: `en`, `hi`, `pa`, `gu`, `mr`, `te` and `or`. `normalizeLanguage()` keeps old saves safe.
+- `LANGUAGE_CATALOG` in `store.ts` lists them, and all 7 can be chosen. Only Hindi and Marathi have Home strings so far. Punjabi, Gujarati, Telugu and Odia are saved as the choice, but Home keeps its English strings until theirs are added in `src/i18n/home.ts`. The `lang` attribute follows the text actually shown (`contentLang`). The picker marks the device language.
+- The language control looks different in each direction. Direction 01 has a rounded glass pill and a 2-column card grid. Direction 02 has a squared journal tag with a kicker and a ruled index list.
 - Settings → Language, in both directions, uses the same catalog and now selects the language. The Account row shows the current language.
 
 ## ⚠ Native-speaker review needed

@@ -66,7 +66,7 @@ function Hero({ slot, greeting, unread, verified, name, village, t, onLang }: { 
         </div>
       </div>
       <motion.div className={s.heroText} style={{ y: textY, opacity: fade }}>
-        <LanguageButton t={t} tone="glass" onOpen={onLang} className={s.heroLang} />
+        <LanguageButton t={t} variant="journal" onOpen={onLang} className={s.heroLang} />
         <p className={s.dateline}>
           <span>{t.today}</span> {date} · {village}
         </p>
@@ -158,7 +158,7 @@ export default function Home() {
 
   return (
     <Screen title="Today" variant="bare" tabRoot lightTop heroHeight={520}>
-      <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
+      <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
         <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} verified={verified} name={profile.name} village={profile.village} t={t} onLang={() => setLangOpen(true)} />
 
         <div className={s.instrument}>
@@ -328,14 +328,14 @@ export default function Home() {
 
       <WeatherSheet open={wxOpen} onClose={() => setWxOpen(false)} weather={weather.data} onRetry={weather.refetch} t={t} tokens={s.tokens} />
 
-      <Sheet open={langOpen} onClose={() => setLangOpen(false)} kicker={t.lang === 'en' ? t.language : `${t.language} · Language`} title={t.languagePicker.title}>
-        <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
-          <LanguagePicker t={t} onDone={() => setLangOpen(false)} />
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} kicker={t.contentLang === 'en' ? t.language : `${t.language} · Language`} title={t.languagePicker.title}>
+        <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
+          <LanguagePicker t={t} variant="index" onDone={() => setLangOpen(false)} />
         </div>
       </Sheet>
 
       <Sheet open={voiceOpen} onClose={() => setVoiceOpen(false)} kicker={t.didiRole} title={t.voice.title}>
-        <div className={s.tokens} lang={t.lang}>
+        <div className={s.tokens} lang={t.contentLang}>
           <VoicePanel
             t={t}
             open={voiceOpen}

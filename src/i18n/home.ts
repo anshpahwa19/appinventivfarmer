@@ -46,8 +46,6 @@ const en = {
   languagePicker: {
     title: 'Choose your language',
     device: 'Device language',
-    soon: 'Coming soon',
-    soonNote: 'Punjabi, Gujarati, Telugu and Odia are being translated. You can pick them once they are ready.',
     current: (name: string) => `Language: ${name}. Change language`,
   },
   reviewNote: '',
@@ -240,8 +238,6 @@ const hi: HomeDict = {
   languagePicker: {
     title: 'अपनी भाषा चुनें',
     device: 'फ़ोन की भाषा',
-    soon: 'जल्द आ रही है',
-    soonNote: 'पंजाबी, गुजराती, तेलुगु और ओड़िया का अनुवाद हो रहा है। तैयार होने पर आप इन्हें चुन सकेंगे।',
     current: (name) => `भाषा: ${name}। भाषा बदलें`,
   },
   reviewNote: 'हिन्दी अनुवाद की जाँच अभी बाकी है।',
@@ -424,8 +420,6 @@ const mr: HomeDict = {
   languagePicker: {
     title: 'तुमची भाषा निवडा',
     device: 'फोनची भाषा',
-    soon: 'लवकरच',
-    soonNote: 'पंजाबी, गुजराती, तेलुगू आणि ओडिया भाषांतर सुरू आहे. तयार झाल्यावर तुम्ही त्या निवडू शकाल.',
     current: (name) => `भाषा: ${name}. भाषा बदला`,
   },
   reviewNote: 'मराठी भाषांतराची तपासणी अजून बाकी आहे.',
@@ -599,10 +593,12 @@ const mr: HomeDict = {
   speechLang: 'mr-IN',
 };
 
-export const HOME_STRINGS: Record<Language, HomeDict> = { en, hi, mr };
+/** Translated Home dictionaries. Languages without one use English strings. */
+const TRANSLATED: Partial<Record<Language, HomeDict>> = { en, hi, mr };
+export const HOME_STRINGS: Record<Language, HomeDict> = { en, hi, mr, pa: en, gu: en, te: en, or: en };
 
 /** Shown in the Language screens and the report. */
-export const REVIEW_STATUS: Record<Language, 'source' | 'needs-native-review'> = { en: 'source', hi: 'needs-native-review', mr: 'needs-native-review' };
+export const REVIEW_STATUS: Partial<Record<Language, 'source' | 'needs-native-review'>> = { en: 'source', hi: 'needs-native-review', mr: 'needs-native-review' };
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                              */
@@ -634,6 +630,8 @@ function startOfLocalDay(d: Date) {
 
 export interface HomeT extends HomeDict {
   lang: Language;
+  /** Language the strings are actually in (for `lang` attributes): the chosen one, or English as a fallback. */
+  contentLang: Language;
   /** Weekday name in the current language, from an ISO date. */
   weekday: (iso: string, style?: 'short' | 'long') => string;
   /** "today", "tomorrow" or "on Friday" for an ISO date. */
@@ -658,6 +656,7 @@ export function makeT(lang: Language): HomeT {
   const t: HomeT = {
     ...d,
     lang,
+    contentLang: TRANSLATED[lang] ? lang : 'en',
     weekday: (iso, style = 'short') => (style === 'short' ? short : long).format(parse(iso)),
     dayPhrase: (iso, now = new Date()) => {
       const offset = Math.round((startOfLocalDay(parse(iso)).getTime() - startOfLocalDay(now).getTime()) / 86_400_000);
