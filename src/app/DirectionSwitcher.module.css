@@ -38,7 +38,8 @@
 .track button:hover {
   color: #fff;
 }
-.track .on {
+.track button.on,
+.track button.on:hover {
   background: #fff;
   color: #111;
 }

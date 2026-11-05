@@ -2,7 +2,7 @@
   "name": "kisani-urjaa-farmer-app",
   "private": true,
   "version": "2.0.0",
-  "description": "Kisani Urjaa farmer mobile app — redesigned experience (React + TypeScript + Vite).",
+  "description": "Kisani Urjaa farmer mobile app \u2014 redesigned experience (React + TypeScript + Vite).",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,8 @@
     "build:demo2": "tsc --noEmit && vite build --mode demo2",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:standalone": "tsc --noEmit && STANDALONE=1 vite build --mode demo2 && node scripts/make-standalone.mjs dist-standalone/kisani-urjaa-app.html"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "5.1.1",
