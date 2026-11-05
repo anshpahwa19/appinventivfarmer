@@ -235,8 +235,9 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 58px;
-  height: 64px;
+  gap: 2px;
+  min-width: 60px;
+  padding: 8px 8px 9px;
   border-radius: 16px;
   background: var(--surface);
   color: var(--fg);
@@ -259,13 +260,12 @@
   color: #b54e15;
 }
 .dateDay {
-  margin-top: 4px;
   font: var(--t-headline);
+  line-height: 1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 .dateWeek {
-  margin-top: 4px;
   font: var(--t-overline);
   color: var(--fg-3);
 }

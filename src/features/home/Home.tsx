@@ -11,7 +11,7 @@ import { Sheet } from '@/components/ui/Sheet';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { AddLandCard, EventCard, FeatureCard, LandCard, MediaRow } from '@/components/content/Cards';
 import { Screen, useScreenScroll } from '@/components/layout/Screen';
-import { LanguageSwitch } from '@/components/home/LanguageSwitch';
+import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
 import { useHomeData } from '@/components/home/useHomeData';
 import { useUI, KD_CONTACT } from '@/app/providers';
@@ -49,7 +49,7 @@ function Section({ children, label }: { children: ReactNode; label?: string }) {
   );
 }
 
-function HomeHero({ scene, name, firstName, verified, unread, t, locale, offline }: { scene: SceneSpec; name: string; firstName: string; verified: boolean; unread: number; t: HomeT; locale: string; offline: boolean }) {
+function HomeHero({ scene, name, firstName, verified, unread, t, locale, offline, onLang }: { scene: SceneSpec; name: string; firstName: string; verified: boolean; unread: number; t: HomeT; locale: string; offline: boolean; onLang: () => void }) {
   const scrollY = useScreenScroll();
   const y = useTransform(scrollY, [0, 300], [0, 120]);
   const scale = useTransform(scrollY, [0, 300], [1, 1.12]);
@@ -73,7 +73,7 @@ function HomeHero({ scene, name, firstName, verified, unread, t, locale, offline
           <Avatar name={name} size={44} verified={verified} />
         </Link>
         <span className={s.heroSpacer} />
-        <LanguageSwitch tone="glass" label={t.languageHint} />
+        <LanguageButton t={t} tone="glass" onOpen={onLang} />
         <IconButton label={t.notifications} variant="onImage" badge={unread} to="/notifications">
           <Bell />
         </IconButton>
@@ -95,6 +95,7 @@ export default function Home() {
   const { verified, unread, weather, lands, content } = d;
   const [weatherOpen, setWeatherOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   const firstName = profile.name.split(' ')[0];
   const rainy = !!weather.data && weather.data.current.code >= 51;
@@ -169,7 +170,7 @@ export default function Home() {
   return (
     <Screen noHeader tabRoot heroTone="light" heroHeight={250}>
       <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
-        <HomeHero scene={scene} name={profile.name} firstName={firstName} verified={verified} unread={unread} t={t} locale={t.locale} offline={d.offline} />
+        <HomeHero scene={scene} name={profile.name} firstName={firstName} verified={verified} unread={unread} t={t} locale={t.locale} offline={d.offline} onLang={() => setLangOpen(true)} />
 
         <motion.div className={s.body} variants={stagger} initial="hidden" animate="show">
           <motion.div variants={rise} className={s.weatherWrap}>
@@ -304,6 +305,12 @@ export default function Home() {
       </div>
 
       <WeatherSheet open={weatherOpen} onClose={() => setWeatherOpen(false)} weather={weather.data} onRetry={weather.refetch} t={t} tokens={s.tokens} />
+
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} title={t.languagePicker.title} description={t.lang === 'en' ? undefined : 'Choose your language'}>
+        <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
+          <LanguagePicker t={t} onDone={() => setLangOpen(false)} />
+        </div>
+      </Sheet>
 
       <Sheet open={voiceOpen} onClose={() => setVoiceOpen(false)} title={t.voice.title}>
         <div className={s.tokens} lang={t.lang}>

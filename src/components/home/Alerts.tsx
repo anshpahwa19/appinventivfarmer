@@ -6,6 +6,7 @@ import {
   ArrowRight,
   CalendarClock,
   CheckCircle2,
+  ChevronDown,
   ClipboardList,
   CloudLightning,
   CloudRain,
@@ -140,6 +141,7 @@ export function AlertsSection({ t, alerts, loading, failed, offline, onRetry, on
         {alerts.length > VISIBLE && (
           <button type="button" className={s.moreBtn} onClick={() => setAll((v) => !v)} aria-expanded={all}>
             {all ? t.showFewer : t.showAll(alerts.length)}
+            <ChevronDown aria-hidden />
           </button>
         )}
       </div>

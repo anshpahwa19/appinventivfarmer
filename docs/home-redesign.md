@@ -6,7 +6,7 @@ The redesign changes only the Home screen of Direction 01 (`/#/home`) and Direct
 
 | | Direction 01 · Illustrated | Direction 02 · Field Journal |
 |---|---|---|
-| Language switch | A glass EN · हिं · मरा control in the hero's top row | The same control above the dateline, over the photograph |
+| Language | A header button showing the current language in its own script. It opens a 2-column picker for all 7 languages. | The same button above the dateline, opening the same picker in the journal's sheet |
 | Weather | A glass card: temperature, condition, high and low, rain, humidity and wind chips, a 5-day strip and spray advice | The "instrument panel", plus a metrics row and a 5-day strip |
 | Alerts | Cards with a severity bar, an icon chip and a word tag | A ruled dispatch list with an icon tile and a severity tag |
 | Quick actions | 4 tiles: Field records, Order FOM, Bookings, Farm updates | The numbered index, rebuilt as the same 4 actions with photos |
@@ -39,7 +39,8 @@ Removed to cut clutter. All of these are still one tap away in Learn, Orders or 
   - Adds `sprayKind()`.
   - Adds the optional daily `rainMm` and `windMaxKph` fields. These are requested from Open-Meteo, and the sample forecast includes them too.
 - `prefs.language` is now `'en' | 'hi' | 'mr'`. `normalizeLanguage()` keeps old saves safe.
-- Settings → Language, in both directions, now selects the language. The Account row shows the current language.
+- `LANGUAGE_CATALOG` in `store.ts` lists all 7 app languages: English, Hindi, Punjabi, Gujarati, Marathi, Telugu and Odia. English, Hindi and Marathi can be chosen now. The other four show as "Coming soon" until their Home strings exist. The picker marks the device language.
+- Settings → Language, in both directions, uses the same catalog and now selects the language. The Account row shows the current language.
 
 ## ⚠ Native-speaker review needed
 

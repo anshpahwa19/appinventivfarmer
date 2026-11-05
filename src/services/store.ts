@@ -29,6 +29,29 @@ export type Language = 'en' | 'hi' | 'mr';
 export const LANGUAGES: readonly Language[] = ['en', 'hi', 'mr'];
 export const LANGUAGE_NAMES: Record<Language, string> = { en: 'English', hi: 'हिन्दी', mr: 'मराठी' };
 
+/**
+ * Every language Kisani Urjaa offers. `ready` languages can be chosen today
+ * (their Home screen is translated); the rest are listed as coming soon so the
+ * picker already has its final shape. `mark` is a short native-script sign
+ * used as the card's visual.
+ */
+export const LANGUAGE_CATALOG: { code: string; native: string; english: string; mark: string; ready: boolean }[] = [
+  { code: 'en', native: 'English', english: 'English', mark: 'Aa', ready: true },
+  { code: 'hi', native: 'हिन्दी', english: 'Hindi', mark: 'हि', ready: true },
+  { code: 'pa', native: 'ਪੰਜਾਬੀ', english: 'Punjabi', mark: 'ਪੰ', ready: false },
+  { code: 'gu', native: 'ગુજરાતી', english: 'Gujarati', mark: 'ગુ', ready: false },
+  { code: 'mr', native: 'मराठी', english: 'Marathi', mark: 'म', ready: true },
+  { code: 'te', native: 'తెలుగు', english: 'Telugu', mark: 'తె', ready: false },
+  { code: 'or', native: 'ଓଡ଼ିଆ', english: 'Odia', mark: 'ଓ', ready: false },
+];
+
+/** The device's language, if it is one we list. */
+export function deviceLanguage(): string | undefined {
+  if (typeof navigator === 'undefined') return undefined;
+  const codes = (navigator.languages?.length ? navigator.languages : [navigator.language]).map((l) => l?.slice(0, 2).toLowerCase());
+  return codes.find((c) => LANGUAGE_CATALOG.some((l) => l.code === c));
+}
+
 /** Unknown or missing values (older saves, hand-edited storage) fall back to English. */
 export function normalizeLanguage(value: unknown): Language {
   return LANGUAGES.includes(value as Language) ? (value as Language) : 'en';

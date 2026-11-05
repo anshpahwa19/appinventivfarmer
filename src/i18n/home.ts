@@ -43,6 +43,13 @@ const en = {
   langShort: 'EN',
   language: 'Language',
   languageHint: 'Choose language',
+  languagePicker: {
+    title: 'Choose your language',
+    device: 'Device language',
+    soon: 'Coming soon',
+    soonNote: 'Punjabi, Gujarati, Telugu and Odia are being translated. You can pick them once they are ready.',
+    current: (name: string) => `Language: ${name}. Change language`,
+  },
   reviewNote: '',
 
   greeting: (p: DayPart, name: string) => `Good ${p}, ${name}`,
@@ -230,6 +237,13 @@ const hi: HomeDict = {
   langShort: 'हिं',
   language: 'भाषा',
   languageHint: 'भाषा चुनें',
+  languagePicker: {
+    title: 'अपनी भाषा चुनें',
+    device: 'फ़ोन की भाषा',
+    soon: 'जल्द आ रही है',
+    soonNote: 'पंजाबी, गुजराती, तेलुगु और ओड़िया का अनुवाद हो रहा है। तैयार होने पर आप इन्हें चुन सकेंगे।',
+    current: (name) => `भाषा: ${name}। भाषा बदलें`,
+  },
   reviewNote: 'हिन्दी अनुवाद की जाँच अभी बाकी है।',
 
   greeting: (p, name) => `${p === 'morning' ? 'सुप्रभात' : p === 'afternoon' ? 'नमस्ते' : 'शुभ संध्या'}, ${name}`,
@@ -407,6 +421,13 @@ const mr: HomeDict = {
   langShort: 'मरा',
   language: 'भाषा',
   languageHint: 'भाषा निवडा',
+  languagePicker: {
+    title: 'तुमची भाषा निवडा',
+    device: 'फोनची भाषा',
+    soon: 'लवकरच',
+    soonNote: 'पंजाबी, गुजराती, तेलुगू आणि ओडिया भाषांतर सुरू आहे. तयार झाल्यावर तुम्ही त्या निवडू शकाल.',
+    current: (name) => `भाषा: ${name}. भाषा बदला`,
+  },
   reviewNote: 'मराठी भाषांतराची तपासणी अजून बाकी आहे.',
 
   greeting: (p, name) => `${p === 'morning' ? 'सुप्रभात' : p === 'afternoon' ? 'नमस्कार' : 'शुभ संध्याकाळ'}, ${name}`,

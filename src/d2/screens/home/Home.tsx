@@ -7,7 +7,7 @@ import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
 import type { HomeAlert } from '@/lib/alerts';
 import { dayPart, useHomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
-import { LanguageSwitch } from '@/components/home/LanguageSwitch';
+import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
 import { AlertsSection } from '@/components/home/Alerts';
 import { useHomeData } from '@/components/home/useHomeData';
@@ -34,7 +34,7 @@ function heroSlot(rainy: boolean, now = new Date()) {
   return 'wheat-field';
 }
 
-function Hero({ slot, greeting, unread, verified, name, village, t }: { slot: string; greeting: string; unread: number; verified: boolean; name: string; village: string; t: ReturnType<typeof useHomeT> }) {
+function Hero({ slot, greeting, unread, verified, name, village, t, onLang }: { slot: string; greeting: string; unread: number; verified: boolean; name: string; village: string; t: ReturnType<typeof useHomeT>; onLang: () => void }) {
   const scrollY = useScreenScroll();
   const y = useTransform(scrollY, [0, 420], [0, 140]);
   const textY = useTransform(scrollY, [0, 260], [0, -40]);
@@ -66,7 +66,7 @@ function Hero({ slot, greeting, unread, verified, name, village, t }: { slot: st
         </div>
       </div>
       <motion.div className={s.heroText} style={{ y: textY, opacity: fade }}>
-        <LanguageSwitch tone="glass" label={t.languageHint} className={s.heroLang} />
+        <LanguageButton t={t} tone="glass" onOpen={onLang} className={s.heroLang} />
         <p className={s.dateline}>
           <span>{t.today}</span> {date} · {village}
         </p>
@@ -85,6 +85,7 @@ export default function Home() {
   const { verified, unread, weather, lands, content } = d;
   const [wxOpen, setWxOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   const firstName = profile.name.split(' ')[0];
   const rainy = !!weather.data && weather.data.current.code >= 51;
@@ -158,7 +159,7 @@ export default function Home() {
   return (
     <Screen title="Today" variant="bare" tabRoot lightTop heroHeight={520}>
       <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
-        <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} verified={verified} name={profile.name} village={profile.village} t={t} />
+        <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} verified={verified} name={profile.name} village={profile.village} t={t} onLang={() => setLangOpen(true)} />
 
         <div className={s.instrument}>
           <WeatherPanel weather={weather.data} loading={weather.status === 'loading'} onOpen={() => setWxOpen(true)} t={t} />
@@ -326,6 +327,12 @@ export default function Home() {
       </div>
 
       <WeatherSheet open={wxOpen} onClose={() => setWxOpen(false)} weather={weather.data} onRetry={weather.refetch} t={t} tokens={s.tokens} />
+
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} kicker={t.lang === 'en' ? t.language : `${t.language} · Language`} title={t.languagePicker.title}>
+        <div className={`${s.tokens} ${s.home}`} lang={t.lang}>
+          <LanguagePicker t={t} onDone={() => setLangOpen(false)} />
+        </div>
+      </Sheet>
 
       <Sheet open={voiceOpen} onClose={() => setVoiceOpen(false)} kicker={t.didiRole} title={t.voice.title}>
         <div className={s.tokens} lang={t.lang}>

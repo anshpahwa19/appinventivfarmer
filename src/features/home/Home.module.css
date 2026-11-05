@@ -597,15 +597,17 @@
 .sevTag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 8px 3px 6px;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
   border-radius: var(--r-pill);
-  background: var(--sev-solid);
-  color: var(--sev-on-solid);
-  font: 750 0.75rem/1.2 var(--font);
+  background: var(--sev-bg);
+  color: var(--sev-fg);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sev-solid) 55%, transparent);
+  font: 700 0.75rem/1.2 var(--font);
   font-family: inherit;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
+
 .sevTag svg {
   width: 13px;
   height: 13px;
@@ -710,6 +712,12 @@
   font-family: inherit;
 }
 .moreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  text-align: center;
   min-height: 44px;
   border-radius: var(--r-pill);
   background: var(--hm-surface-2);
@@ -1073,4 +1081,13 @@
   gap: 12px;
   font: var(--t-caption);
   color: var(--fg-3);
+}
+
+.moreBtn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 200ms ease;
+}
+.moreBtn[aria-expanded='true'] svg {
+  transform: rotate(180deg);
 }
