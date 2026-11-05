@@ -130,10 +130,12 @@
 
 /* ---------- Masthead ---------- */
 .masthead {
+  padding: 56px var(--fj-gutter) 18px;
+}
+.mastRow {
   display: flex;
   align-items: flex-end;
   gap: 12px;
-  padding: 56px var(--fj-gutter) 18px;
 }
 .mastText {
   flex: 1;

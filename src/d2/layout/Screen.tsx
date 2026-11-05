@@ -111,12 +111,15 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
         <div ref={ref} className={`${s.scroll} ${variant === 'detail' ? s.underBar : ''} ${variant === 'masthead' ? s.underMasthead : ''}`} data-scroll-root>
           {variant === 'masthead' && (
             <div className={s.masthead}>
-              <div className={s.mastText}>
-                {kicker && <p className={s.kicker}>{kicker}</p>}
-                <h1 className={s.mastTitle}>{title}</h1>
-                {deck && <p className={s.deck}>{deck}</p>}
+              {/* The kicker spans the full width so a masthead action never squeezes it onto two lines. */}
+              {kicker && <p className={s.kicker}>{kicker}</p>}
+              <div className={s.mastRow}>
+                <div className={s.mastText}>
+                  <h1 className={s.mastTitle}>{title}</h1>
+                  {deck && <p className={s.deck}>{deck}</p>}
+                </div>
+                {mastheadAside && <div className={s.mastAside}>{mastheadAside}</div>}
               </div>
-              {mastheadAside && <div className={s.mastAside}>{mastheadAside}</div>}
             </div>
           )}
           {variant !== 'masthead' && variant !== 'overlay' && variant !== 'bare' ? <h1 className="sr-only">{title}</h1> : null}
