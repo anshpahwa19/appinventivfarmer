@@ -17,6 +17,8 @@ import { DirectionSwitcher } from './DirectionSwitcher';
 const D2App = lazy(() => import('@/d2/D2App'));
 
 const IS_DEMO = import.meta.env.MODE.startsWith('demo');
+/** Phone preview build (npm run build:mobile): opened straight in a phone's browser. */
+const IS_MOBILE = import.meta.env.VITE_MOBILE === '1';
 /** The Direction 02 demo build opens on Direction 02. */
 const START = import.meta.env.MODE === 'demo2' ? '/d2' : '/';
 const ROUTE_KEY = 'kisani-urjaa:route';
@@ -26,7 +28,8 @@ function usePreferenceAttributes() {
   const prefs = useStore((st) => st.prefs);
   useEffect(() => {
     const el = document.documentElement;
-    if (IS_DEMO) el.setAttribute('data-host', 'artifact');
+    // Inside the artifact viewer there is no notch to clear; on a real phone there is.
+    if (IS_DEMO && !IS_MOBILE) el.setAttribute('data-host', 'artifact');
     if (prefs.theme === 'system') {
       if (el.getAttribute('data-theme-owner') === 'app') {
         el.removeAttribute('data-theme');
@@ -87,9 +90,18 @@ function AnimatedRoutes() {
   );
 }
 
+/*
+ * The phone preview uses hash routing so the phone's own back button and
+ * back swipe move between screens, and a reload keeps the screen. The first
+ * open lands on this build's starting direction.
+ */
+if (IS_MOBILE && typeof window !== 'undefined' && (!window.location.hash || window.location.hash === '#')) {
+  window.history.replaceState(null, '', `#${START}`);
+}
+
 function Router({ children }: { children: ReactNode }) {
   const future = { v7_startTransition: true, v7_relativeSplatPath: true };
-  if (IS_DEMO)
+  if (IS_DEMO && !IS_MOBILE)
     return (
       <MemoryRouter initialEntries={[readSession(ROUTE_KEY) ?? START]} future={future}>
         {children}

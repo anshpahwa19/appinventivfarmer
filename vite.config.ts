@@ -8,6 +8,10 @@ import { fileURLToPath, URL } from 'node:url';
 // STANDALONE=1 bundles demo2 into one script with every asset inlined, for
 // scripts/make-standalone.mjs to fold into a single downloadable HTML file.
 const STANDALONE = process.env.STANDALONE === '1';
+// VITE_MOBILE=1 (with STANDALONE=1) makes the phone preview build: real
+// safe-area insets, hash routing so the phone's back button and swipe work,
+// and app-like head tags added by make-standalone.mjs. See npm run build:mobile.
+const MOBILE = process.env.VITE_MOBILE === '1';
 
 export default defineConfig(({ mode }) => ({
   plugins: [
@@ -22,7 +26,7 @@ export default defineConfig(({ mode }) => ({
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
   build: {
-    outDir: STANDALONE ? 'dist-standalone' : mode === 'demo' ? 'dist-demo' : mode === 'demo2' ? 'dist-demo2' : 'dist',
+    outDir: STANDALONE ? (MOBILE ? 'dist-mobile/build' : 'dist-standalone') : mode === 'demo' ? 'dist-demo' : mode === 'demo2' ? 'dist-demo2' : 'dist',
     target: 'es2020',
     assetsInlineLimit: STANDALONE ? 100_000_000 : mode.startsWith('demo') ? 160_000 : 4096,
     cssCodeSplit: !STANDALONE,
