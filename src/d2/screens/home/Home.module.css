@@ -238,32 +238,9 @@
 .section {
   margin-top: var(--fj-section);
 }
-.sectionKicker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-primary);
-}
-.sectionKicker span {
-  font: 300 0.875rem/1 var(--font);
-  letter-spacing: 0;
-  color: var(--fj-fg-3);
-}
-
 /* ---------- At a glance: an index, not tiles ---------- */
-.glanceHead {
-  padding: 0 var(--fj-gutter) 12px;
-}
-.glanceTitle {
-  margin-top: 6px;
-  font: var(--fj-title);
-  letter-spacing: var(--fj-track-title);
-}
 .glance {
-  margin: 0 var(--fj-gutter);
+  margin: 8px var(--fj-gutter) 0;
   border-top: 2px solid var(--fj-fg);
 }
 .glanceRow {
@@ -277,17 +254,6 @@
   border-bottom: 1px solid var(--fj-line);
   color: inherit;
   text-decoration: none;
-}
-.glanceNum {
-  flex: none;
-  align-self: flex-start;
-  width: 40px;
-  white-space: nowrap;
-  font-size: 1.75rem !important;
-  font: var(--fj-numeral);
-  font-size: 2rem;
-  color: var(--fj-fg-3);
-  font-variant-numeric: tabular-nums;
 }
 .glanceBody {
   flex: 1;

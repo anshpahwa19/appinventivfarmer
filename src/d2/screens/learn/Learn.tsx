@@ -10,7 +10,7 @@ import { Screen } from '../../layout/Screen';
 import { IconButton, Button } from '../../ui/Button';
 import { SearchBox } from '../../ui/SearchBox';
 import { DateRangeSheet, rangeLabel, type DateRange } from '../../ui/DateRange';
-import { EmptyState, ErrorState, Skel, SkelList, StaleNote } from '../../ui/Blocks';
+import { EmptyState, ErrorState, SectionHead, Skel, SkelList, StaleNote } from '../../ui/Blocks';
 import { CoverStory, GuideCard, IndexStory, StoryRow, VideoTile } from '../../content/Cards';
 import { JournalNav } from '../../content/JournalNav';
 import { InView } from '../../motion/Reveal';
@@ -61,14 +61,21 @@ function VideoLayout({ items }: { items: ContentItem[] }) {
           <VideoTile item={lead} ratio="16/9" night />
         </div>
       )}
-      {groups.map(([cat, list], gi) => (
+      {groups.map(([cat, list]) => (
         <section key={cat} className={s.collection} aria-label={CATEGORY_LABEL[cat]}>
-          <h2 className={s.collectionTitle}>
-            <span>{String(gi + 1).padStart(2, '0')}</span> {CATEGORY_LABEL[cat]}
-          </h2>
-          <div className="fj-rail" style={{ ['--gap' as string]: '14px', alignItems: 'flex-start' }}>
-            {list.map((v, i) => (gi % 2 === 0 && i === 0 ? <VideoTile key={v.id} item={v} ratio="9/16" width={168} night /> : <VideoTile key={v.id} item={v} ratio="16/9" width={270} night />))}
-          </div>
+          <SectionHead title={CATEGORY_LABEL[cat]} meta={`${list.length} ${list.length === 1 ? 'video' : 'videos'}`} night />
+          {/* One film fills the width; several sit in a rail of equal tiles, so no column is left empty. */}
+          {list.length === 1 ? (
+            <div className={s.collectionSolo}>
+              <VideoTile item={list[0]} ratio="16/9" night />
+            </div>
+          ) : (
+            <div className="fj-rail" style={{ ['--gap' as string]: '14px', alignItems: 'flex-start' }}>
+              {list.map((v) => (
+                <VideoTile key={v.id} item={v} ratio="16/9" width={270} night />
+              ))}
+            </div>
+          )}
         </section>
       ))}
     </div>
@@ -76,7 +83,9 @@ function VideoLayout({ items }: { items: ContentItem[] }) {
 }
 
 function GuideLayout({ items }: { items: ContentItem[] }) {
-  const [lead, second, ...rest] = [...items.filter((i) => i.featured), ...items.filter((i) => !i.featured)];
+  const [lead, ...others] = [...items.filter((i) => i.featured), ...items.filter((i) => !i.featured)];
+  const pair = others.slice(0, 2);
+  const rest = others.slice(2);
   return (
     <>
       {lead && (
@@ -84,13 +93,12 @@ function GuideLayout({ items }: { items: ContentItem[] }) {
           <CoverStory item={lead} kicker="Article" ratio="4/5" bleed={false} />
         </div>
       )}
-      {second && (
-        <div className={s.guidePair}>
-          <GuideCard item={second} width={180} />
-          <div className={s.guideNote}>
-            <p className={s.blockKicker}>How-to</p>
-            <p className={s.guideQuote}>Practical articles written with the agronomy desk. Follow label rates and local advice.</p>
-          </div>
+      {/* Two equal cards side by side; a single one spans the row. */}
+      {pair.length > 0 && (
+        <div className={`${s.guidePair} ${pair.length === 1 ? s.guidePairSolo : ''}`}>
+          {pair.map((g) => (
+            <GuideCard key={g.id} item={g} width="100%" />
+          ))}
         </div>
       )}
       <div className={s.mag}>
@@ -133,7 +141,6 @@ export default function Learn() {
     <Screen
       title="Learn"
       variant="masthead"
-      kicker="Kisani Urjaa"
       deck="News, films and articles from the field"
       tabRoot
       scrollKey={`/d2/learn?${kind}`}

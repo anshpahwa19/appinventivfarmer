@@ -120,7 +120,7 @@ export function VideoTile({ item, ratio = '16/9', width, night }: { item: Conten
 
 /* ---------- Guide card: tall photo, title beneath ---------- */
 
-export function GuideCard({ item, width = 220 }: { item: ContentItem; width?: number }) {
+export function GuideCard({ item, width = 220 }: { item: ContentItem; width?: number | string }) {
   return (
     <div style={{ width }}>
       <Tap to={contentPath(item)} className={s.guide}>

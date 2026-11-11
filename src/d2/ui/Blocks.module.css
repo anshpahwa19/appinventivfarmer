@@ -654,41 +654,22 @@ button.row:hover {
 .sh {
   padding: 0 var(--fj-gutter);
 }
-.shTop {
+.shRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   min-height: 44px;
-  margin-bottom: 2px;
-}
-.shKicker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-primary);
-}
-.shIndex {
-  font: 300 0.875rem/1 var(--font);
-  letter-spacing: 0;
-  color: var(--fj-fg-3);
-}
-.shIndex::after {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 1px;
-  margin-left: 8px;
-  vertical-align: middle;
-  background: currentColor;
 }
 .shTitle {
+  min-width: 0;
   font: var(--fj-headline);
   letter-spacing: -0.024em;
+}
+.shMeta {
+  margin-top: 2px;
+  font: var(--fj-small);
+  color: var(--fj-fg-2);
 }
 .shLink {
   flex: none;
@@ -696,7 +677,6 @@ button.row:hover {
   align-items: center;
   gap: 4px;
   min-height: 44px;
-  margin-left: auto;
   font: var(--fj-label);
   color: var(--fj-link);
   text-decoration: none;
@@ -708,10 +688,7 @@ button.row:hover {
 .shNight .shTitle {
   color: var(--fj-on-night);
 }
-.shNight .shKicker {
-  color: var(--fj-hl-ink);
-}
-.shNight .shIndex {
+.shNight .shMeta {
   color: var(--fj-on-night-2);
 }
 .shNight .shLink {

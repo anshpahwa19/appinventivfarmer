@@ -177,21 +177,11 @@ export default function Home() {
         )}
 
         <section className={s.section} aria-labelledby="quick-h">
-          <div className={s.glanceHead}>
-            <p className={s.sectionKicker}>
-              <span>01</span> {t.quickTitle}
-            </p>
-            <h2 id="quick-h" className="sr-only">
-              {t.quickTitle}
-            </h2>
-          </div>
+          <SectionHead id="quick-h" title={t.quickTitle} />
           <ol className={s.glance}>
-            {quick.map((q, i) => (
+            {quick.map((q) => (
               <li key={q.key}>
                 <motion.button type="button" whileTap={{ scale: 0.985 }} className={s.glanceRow} onClick={q.onTap}>
-                  <span className={s.glanceNum} aria-hidden>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                   <span className={s.glanceBody}>
                     <span className={s.glanceTitleRow}>
                       <span className={s.glanceIcon}>{q.icon}</span>
@@ -243,7 +233,7 @@ export default function Home() {
 
         {(d.events.status === 'loading' || next) && (
           <section className={s.section}>
-            <SectionHead index="02" kicker={live ? t.happeningNow : t.nextEvent} title={live ? t.happeningNow : t.nextEvent} to="/events" action={t.allEvents} />
+            <SectionHead title={live ? t.happeningNow : t.nextEvent} to="/events" action={t.allEvents} />
             <div className={s.gutter} style={{ marginTop: 16 }} lang="en">
               {next ? <EventPoster event={next} ratio="4/5" /> : <Skel h={420} r="var(--r-xl)" />}
             </div>
@@ -251,7 +241,7 @@ export default function Home() {
         )}
 
         <section className={s.section} aria-label={t.myFields}>
-          <SectionHead index="03" kicker={lands.data ? t.fieldsSummary(lands.data.length, lands.data.reduce((a, l) => a + l.areaAcres, 0)) : t.myFields} title={t.myFields} to="/lands" action={t.seeAll} />
+          <SectionHead meta={lands.data ? t.fieldsSummary(lands.data.length, lands.data.reduce((a, l) => a + l.areaAcres, 0)) : undefined} title={t.myFields} to="/lands" action={t.seeAll} />
           <div className="fj-rail" style={{ marginTop: 16 }}>
             {lands.status === 'loading' && [0, 1].map((i) => <Skel key={i} w={240} h={300} r="var(--r-xl)" />)}
             {lands.data?.map((l) => <FieldTile key={l.id} land={l} />)}
@@ -264,7 +254,7 @@ export default function Home() {
 
         {(content.status === 'loading' || lead) && (
           <section className={s.section} aria-label={t.latestNews}>
-            <SectionHead index="04" kicker={t.topStory} title={t.latestNews} to="/learn?tab=news" action={t.seeAll} />
+            <SectionHead title={t.latestNews} to="/learn?tab=news" action={t.seeAll} />
             {content.status === 'loading' ? (
               <div className={s.gutter}>
                 <Skel h={460} r="var(--r-xl)" />

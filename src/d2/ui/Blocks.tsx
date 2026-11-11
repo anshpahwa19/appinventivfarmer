@@ -317,28 +317,23 @@ export function RowGroup({ title, children }: { title?: string; children: ReactN
   );
 }
 
-/* ---------- Section head: index numeral, title, optional link ---------- */
+/* ---------- Section head: title and link on one row, optional detail line ---------- */
 
-export function SectionHead({ index, title, kicker, to, action = 'See all', night }: { index?: string; title: string; kicker?: string; to?: string; action?: string; night?: boolean }) {
-  const link = to && (
-    <Link to={d2(to)} className={s.shLink}>
-      {action}
-      <ArrowUpRight aria-hidden />
-    </Link>
-  );
+export function SectionHead({ title, meta, to, action = 'See all', night, id }: { title: string; meta?: ReactNode; to?: string; action?: string; night?: boolean; id?: string }) {
   return (
     <div className={`${s.sh} ${night ? s.shNight : ''}`}>
-      {/* The link sits on the kicker line, so it stays aligned however the title wraps. */}
-      <div className={s.shTop}>
-        {(index || kicker) && (
-          <p className={s.shKicker}>
-            {index && <span className={s.shIndex}>{index}</span>}
-            {kicker}
-          </p>
+      <div className={s.shRow}>
+        <h2 className={s.shTitle} id={id}>
+          {title}
+        </h2>
+        {to && (
+          <Link to={d2(to)} className={s.shLink}>
+            {action}
+            <ArrowUpRight aria-hidden />
+          </Link>
         )}
-        {link}
       </div>
-      <h2 className={s.shTitle}>{title}</h2>
+      {meta && <p className={s.shMeta}>{meta}</p>}
     </div>
   );
 }

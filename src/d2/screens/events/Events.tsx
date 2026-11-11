@@ -45,7 +45,7 @@ export default function Events() {
 
   return (
     <Screen title="Events" backTo="/home">
-      <PageTitle kicker="Events" title="Events near you" deck="Workshops, camps and field demonstrations around Ratanpur." />
+      <PageTitle title="Events near you" deck="Workshops, camps and field demonstrations around Ratanpur." />
       <div className={s.toggleRow}>
         <Toggle
           label="When"
