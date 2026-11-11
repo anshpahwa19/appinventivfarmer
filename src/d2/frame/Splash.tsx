@@ -34,7 +34,7 @@ export function Splash() {
             <motion.img src={logoUrl} alt="Kisani Urjaa: From Waste to Wealth, for Farmers’ Health" className={s.logo} initial={{ scale: 1.18 }} animate={{ scale: 1 }} transition={{ duration: 1.2, ease: EXPO, delay: 0.35 }} draggable={false} />
           </motion.div>
           <motion.p className={s.line} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.6, ease: EXPO }}>
-            <span>Field Journal</span> · for the farmers of Maharashtra
+            <span>Field Journal</span> · for the farmers of India
           </motion.p>
           <div className={s.meter} role="progressbar" aria-label="Loading">
             <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: duration / 1000 - 0.2, ease: 'linear' }} />

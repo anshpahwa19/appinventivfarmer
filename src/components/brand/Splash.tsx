@@ -26,7 +26,7 @@ function Content({ duration }: { duration: number }) {
         <motion.div className={s.fill} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: duration / 1000 - 0.2, ease: [0.4, 0, 0.2, 1] }} />
       </div>
       <motion.p className={s.foot} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-        Made for farmers of Maharashtra
+        Made for farmers of India
       </motion.p>
     </>
   );
