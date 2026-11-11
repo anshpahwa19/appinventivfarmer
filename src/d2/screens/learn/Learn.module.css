@@ -2,29 +2,8 @@
   display: flex;
   gap: 8px;
 }
-.navNight {
-  background: var(--fj-night);
-}
-.navNight [role='tablist'] {
-  border-bottom-color: var(--fj-night-line);
-}
-.navNight [role='tab'] {
-  color: var(--fj-on-night-2);
-}
-.navNight [role='tab'][aria-selected='true'] {
-  color: var(--fj-on-night);
-}
 .tools {
   padding: 16px var(--fj-gutter) 12px;
-}
-.toolsNight > div > div,
-.toolsNight button {
-  background: var(--fj-night-2);
-  color: var(--fj-on-night);
-  box-shadow: none;
-}
-.toolsNight input {
-  color: var(--fj-on-night);
 }
 .chips {
   margin-bottom: 8px;
@@ -63,7 +42,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  color: var(--fj-on-night);
 }
 .cinemaLead {
   padding: 0 var(--fj-gutter);

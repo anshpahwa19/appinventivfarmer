@@ -57,22 +57,22 @@ function VideoLayout({ items }: { items: ContentItem[] }) {
     <div className={s.cinema}>
       {lead && (
         <div className={s.cinemaLead}>
-          <SectionHead title="Featured film" inset={false} night />
-          <VideoTile item={lead} ratio="16/9" night />
+          <SectionHead title="Featured film" inset={false} />
+          <VideoTile item={lead} ratio="16/9" />
         </div>
       )}
       {groups.map(([cat, list]) => (
         <section key={cat} className={s.collection} aria-label={CATEGORY_LABEL[cat]}>
-          <SectionHead title={CATEGORY_LABEL[cat]} meta={`${list.length} ${list.length === 1 ? 'video' : 'videos'}`} night />
+          <SectionHead title={CATEGORY_LABEL[cat]} meta={`${list.length} ${list.length === 1 ? 'video' : 'videos'}`} />
           {/* One film fills the width; several sit in a rail of equal tiles, so no column is left empty. */}
           {list.length === 1 ? (
             <div className={s.collectionSolo}>
-              <VideoTile item={list[0]} ratio="16/9" night />
+              <VideoTile item={list[0]} ratio="16/9" />
             </div>
           ) : (
             <div className="fj-rail" style={{ ['--gap' as string]: '14px', alignItems: 'flex-start' }}>
               {list.map((v) => (
-                <VideoTile key={v.id} item={v} ratio="16/9" width={270} night />
+                <VideoTile key={v.id} item={v} ratio="16/9" width={270} />
               ))}
             </div>
           )}
@@ -144,26 +144,24 @@ export default function Learn() {
       deck="News, films and articles from the field"
       tabRoot
       scrollKey={`/d2/learn?${kind}`}
-      night={kind === 'video'}
       mastheadAside={
         <div className={s.mastActions}>
-          <IconButton label="Search everything" to="/search" variant={kind === 'video' ? 'night' : 'surface'}>
+          <IconButton label="Search everything" to="/search" variant="surface">
             <Search />
           </IconButton>
-          <IconButton label="My bookmarks" to="/bookmarks" variant={kind === 'video' ? 'night' : 'surface'}>
+          <IconButton label="My bookmarks" to="/bookmarks" variant="surface">
             <Bookmark />
           </IconButton>
         </div>
       }
     >
         <JournalNav
-          className={kind === 'video' ? s.navNight : undefined}
           value={kind}
           counts={all.data ? counts : undefined}
           onKind={(k) => setParams({ tab: KIND_TO_PARAM[k] }, { replace: true })}
         />
 
-      <div className={`${s.tools} ${kind === 'video' ? s.toolsNight : ''}`}>
+      <div className={s.tools}>
         <SearchBox value={q} onChange={setQ} placeholder={`Search ${NOUN[kind]}`} onFilter={() => setFilterOpen(true)} filterLabel={label} />
       </div>
 
@@ -184,7 +182,7 @@ export default function Learn() {
         <motion.div key={`${kind}-${filtered}`} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }} className={s.body}>
           {results.status === 'loading' && (
             <div className="fj-gutter fj-stack" style={{ ['--gap' as string]: '24px' }}>
-              <Skel h={420} r="var(--r-xl)" night={kind === 'video'} />
+              <Skel h={420} r="var(--r-xl)" />
               <SkelList count={3} />
             </div>
           )}
