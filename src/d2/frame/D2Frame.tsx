@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { WifiOff } from 'lucide-react';
 import { useStore } from '@/services/store';
 import { useStatusToneValue } from '@/lib/statusTone';
-import { useResolvedTheme } from '@/lib/theme';
 import { DeskBrand } from '@/app/DeskBrand';
 import s from './D2Frame.module.css';
 
@@ -51,13 +50,12 @@ function clock() {
 /** Simulated status bar for the device mock-up. */
 function StatusBar() {
   const tone = useStatusToneValue();
-  const theme = useResolvedTheme();
   const [time, setTime] = useState(clock);
   useEffect(() => {
     const t = setInterval(() => setTime(clock()), 15_000);
     return () => clearInterval(t);
   }, []);
-  const light = tone === 'light' || theme === 'dark';
+  const light = tone === 'light';
   const c = light ? '#ffffff' : '#0a1128';
   return (
     <>

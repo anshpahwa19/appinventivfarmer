@@ -39,60 +39,7 @@
   --hm-focus: var(--fj-clay-600);
   color: var(--hm-fg);
 }
-:root[data-theme='dark'] .tokens {
-  --hm-surface: var(--fj-surface);
-  --hm-surface-2: var(--fj-surface-2);
-  --hm-brand: #a9d39a;
-  --hm-on-brand: #15240f;
-  --hm-brand-soft: #2b3a26;
-  --hm-on-brand-soft: #c8e6bc;
-  --hm-mic: #a9d39a;
-  --hm-on-mic: #15240f;
-  --hm-mic-soft: #2b3a26;
-  --hm-sky: #a9c6d6;
-  --hm-sky-soft: #22313a;
-  --hm-urgent-fg: #f5ab9c;
-  --hm-urgent-bg: #3a201a;
-  --hm-urgent-solid: #f08b72;
-  --hm-on-urgent-solid: #2a0d06;
-  --hm-warn-fg: #f0c98a;
-  --hm-warn-bg: #352a19;
-  --hm-warn-solid: #f0c98a;
-  --hm-on-warn-solid: #2a1a08;
-  --hm-ok-fg: #b4d0df;
-  --hm-ok-bg: #22313a;
-  --hm-ok-solid: #a9c6d6;
-  --hm-on-ok-solid: #13232c;
-  --hm-focus: #f0b78f;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .tokens {
-  --hm-surface: var(--fj-surface);
-  --hm-surface-2: var(--fj-surface-2);
-  --hm-brand: #a9d39a;
-  --hm-on-brand: #15240f;
-  --hm-brand-soft: #2b3a26;
-  --hm-on-brand-soft: #c8e6bc;
-  --hm-mic: #a9d39a;
-  --hm-on-mic: #15240f;
-  --hm-mic-soft: #2b3a26;
-  --hm-sky: #a9c6d6;
-  --hm-sky-soft: #22313a;
-  --hm-urgent-fg: #f5ab9c;
-  --hm-urgent-bg: #3a201a;
-  --hm-urgent-solid: #f08b72;
-  --hm-on-urgent-solid: #2a0d06;
-  --hm-warn-fg: #f0c98a;
-  --hm-warn-bg: #352a19;
-  --hm-warn-solid: #f0c98a;
-  --hm-on-warn-solid: #2a1a08;
-  --hm-ok-fg: #b4d0df;
-  --hm-ok-bg: #22313a;
-  --hm-ok-solid: #a9c6d6;
-  --hm-on-ok-solid: #13232c;
-  --hm-focus: #f0b78f;
-  }
-}
+
 .home {
   /* Plus Jakarta Sans has no Devanagari; the system Devanagari face takes over for Hindi and Marathi. */
   font-family: var(--font), 'Noto Sans Devanagari', 'Nirmala UI', 'Kohinoor Devanagari', 'Mangal', sans-serif;
@@ -294,9 +241,7 @@
   font: 750 0.75rem/22px var(--font);
   text-align: center;
 }
-:root[data-theme='dark'] .glanceBadge {
-  color: var(--fj-on-primary);
-}
+
 .glanceLocked {
   color: var(--hm-warn-fg) !important;
 }
@@ -529,12 +474,6 @@
   flex: none;
   width: 30px;
   height: 30px;
-}
-:root[data-theme='dark'] .endLink {
-  color: var(--fj-on-primary);
-}
-:root[data-theme='dark'] .endKicker {
-  color: var(--fj-on-primary);
 }
 
 .glanceThumb {

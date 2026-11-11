@@ -26,19 +26,6 @@ export const LIGHT_PALETTE: LottiePalette = {
   ink: '#2c3a30',
 };
 
-export const DARK_PALETTE: LottiePalette = {
-  primary: '#8fd3a5',
-  success: '#4fae6f',
-  accent: '#f08a45',
-  sun: '#f4c24d',
-  earth: '#a88a62',
-  earthDark: '#6d5438',
-  surface: '#1f2b24',
-  soft: '#24342b',
-  line: '#3d4d43',
-  ink: '#d6e2d8',
-};
-
 export type AnimationName = 'success' | 'emptyBox' | 'bell' | 'forms' | 'offline' | 'sprout' | 'pin' | 'search' | 'calendar' | 'bookmark';
 
 const C = 80; // canvas centre (160 × 160)

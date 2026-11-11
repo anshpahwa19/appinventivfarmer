@@ -15,12 +15,6 @@
     font-family: var(--font);
   }
 }
-.dark {
-  --db-fg: #f6efe6;
-  --db-track: rgba(255, 255, 255, 0.1);
-  --db-thumb: rgba(255, 255, 255, 0.16);
-  --db-muted: rgba(246, 239, 230, 0.7);
-}
 .plate {
   display: inline-flex;
   padding: 16px 20px;
@@ -32,38 +26,4 @@
   font: 760 2.25rem/1.05 var(--font);
   letter-spacing: -0.03em;
   color: var(--db-fg);
-}
-.toggle {
-  display: inline-flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: var(--r-pill);
-  background: var(--db-track);
-}
-.option {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: var(--r-pill);
-  background: transparent;
-  color: var(--db-muted);
-  font: 680 0.9375rem/1 var(--font);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.option svg {
-  width: 18px;
-  height: 18px;
-}
-.option[aria-pressed='true'] {
-  background: var(--db-thumb);
-  color: var(--db-fg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-}
-.option:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
 }

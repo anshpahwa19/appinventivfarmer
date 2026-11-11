@@ -50,7 +50,8 @@ Every Hindi and Marathi string in `src/i18n/home.ts` is a first draft. The voice
 
 - **Home:** the "For your farm today" alerts section is removed from both directions. The derivation in `src/lib/alerts.ts` and its tests stay, so it can be brought back.
 - **Learn:** the category chips are removed in both directions. Search and the date filter stay.
-- **Account:** Display settings are removed in both directions, along with the screen and its route. Theme follows the phone, and the desktop review frame keeps its Light/Dark switch.
+- **Account:** Display settings are removed in both directions, along with the screen and its route.
+- **Light only:** dark mode is removed from both directions, and so is the desktop frame's Light/Dark switch. The app declares `color-scheme: only light`, so browsers don't auto-darken it. A theme saved by an older version is ignored.
 - **Direction 01:** "Orders" is now "Requests" in the tab bar and the page header.
 - **Direction 02:**
   - The dock reads Home · Learn · Requests · Me.

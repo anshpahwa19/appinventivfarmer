@@ -36,7 +36,7 @@ npm run dev        # http://localhost:5173 (phone-sized frame on desktop)
 | My forms | Season cycles, 8-step timeline, step records with the calculation shown for each total |
 | Fields | List, detail, active toggle, add/edit crops, add-a-field flow |
 | Notifications | Grouped by day, unread markers, categories, mark all read with undo |
-| Account | Profile, language, display (large text, dark mode, reduce animations), password, farm machinery, help, contact, legal, verification |
+| Account | Profile, language, password, farm machinery, help, contact, legal, verification |
 
 ## Architecture
 

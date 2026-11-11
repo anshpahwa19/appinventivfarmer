@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { ANIMATIONS, DARK_PALETTE, LIGHT_PALETTE, type AnimationName } from '@/lottie/animations';
-import { useReducedMotion, useResolvedTheme } from '@/lib/theme';
+import { ANIMATIONS, LIGHT_PALETTE, type AnimationName } from '@/lottie/animations';
+import { useReducedMotion } from '@/lib/theme';
 
 interface Props {
   name: AnimationName;
@@ -33,7 +33,6 @@ function loadPlayer(): Promise<LottiePlayer> {
 export function Lottie({ name, size = 160, loop = true, label, className, onComplete }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const theme = useResolvedTheme();
   const [failed, setFailed] = useState(false);
   const completeRef = useRef(onComplete);
   completeRef.current = onComplete;
@@ -47,7 +46,7 @@ export function Lottie({ name, size = 160, loop = true, label, className, onComp
     loadPlayer()
       .then((lottie) => {
         if (cancelled || !el) return;
-        const data = ANIMATIONS[name](theme === 'dark' ? DARK_PALETTE : LIGHT_PALETTE);
+        const data = ANIMATIONS[name](LIGHT_PALETTE);
         anim = lottie.loadAnimation({
           container: el,
           renderer: 'svg',
@@ -74,7 +73,7 @@ export function Lottie({ name, size = 160, loop = true, label, className, onComp
       observer?.disconnect();
       anim?.destroy();
     };
-  }, [name, loop, reduced, theme]);
+  }, [name, loop, reduced]);
 
   return (
     <div

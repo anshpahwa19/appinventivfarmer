@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useReducedMotion, useResolvedTheme } from '@/lib/theme';
-import { ANIMATIONS, DARK, LIGHT, NIGHT, type AnimationName } from './animations';
+import { useReducedMotion } from '@/lib/theme';
+import { ANIMATIONS, LIGHT, NIGHT, type AnimationName } from './animations';
 
 type Anim = {
   destroy: () => void;
@@ -28,7 +28,6 @@ interface Props {
 export function FjLottie({ name, size = 140, loop = true, night, label, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const theme = useResolvedTheme();
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export function FjLottie({ name, size = 140, loop = true, night, label, classNam
     load()
       .then((lottie) => {
         if (cancelled) return;
-        const data = ANIMATIONS[name](night ? NIGHT : theme === 'dark' ? DARK : LIGHT);
+        const data = ANIMATIONS[name](night ? NIGHT : LIGHT);
         anim = lottie.loadAnimation({ container: el, renderer: 'svg', loop: reduced ? false : loop, autoplay: !reduced, animationData: data, rendererSettings: { preserveAspectRatio: 'xMidYMid meet' } });
         if (reduced) anim.goToAndStop(data.op - 1, true);
         else if (loop && 'IntersectionObserver' in window) {
@@ -54,7 +53,7 @@ export function FjLottie({ name, size = 140, loop = true, night, label, classNam
       io?.disconnect();
       anim?.destroy();
     };
-  }, [name, loop, reduced, theme, night]);
+  }, [name, loop, reduced, night]);
 
   return (
     <div ref={ref} className={className} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : true} style={{ width: size, height: size, flex: 'none' }}>

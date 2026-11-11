@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import { motion, motionValue, useMotionValueEvent, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { setStatusTone } from '@/lib/statusTone';
-import { useResolvedTheme } from '@/lib/theme';
 import { to } from '../paths';
 import s from './Screen.module.css';
 
@@ -32,7 +31,7 @@ export interface ScreenProps {
   mastheadAside?: ReactNode;
   footer?: ReactNode;
   tabRoot?: boolean;
-  /** Night page: midnight background in either theme. */
+  /** Night page: the deep night background. */
   night?: boolean;
   /** Reading progress line under the header. */
   progress?: boolean;
@@ -49,7 +48,6 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
   const location = useLocation();
   const navType = useNavigationType();
   const navigate = useNavigate();
-  const theme = useResolvedTheme();
   const key = scrollKey ?? (tabRoot ? location.pathname : location.key);
   const { scrollY } = useScroll({ container: ref });
   const threshold = variant === 'masthead' ? 92 : variant === 'overlay' || (variant === 'bare' && lightTop) ? heroHeight - 120 : 4;
@@ -76,8 +74,7 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
   }, []);
 
   const onImage = (variant === 'overlay' || (variant === 'bare' && !!lightTop)) && !past;
-  const dark = theme === 'dark';
-  useEffect(() => setStatusTone(onImage || dark ? 'light' : 'dark'), [onImage, dark]);
+  useEffect(() => setStatusTone(onImage ? 'light' : 'dark'), [onImage]);
 
   const goBack = () => {
     if (location.key !== 'default') navigate(-1);

@@ -98,7 +98,7 @@ export default function DesignSystem() {
 
         <section>
           <h2 className={s.h2}>Colour</h2>
-          <p className={s.lede}>Raw palette. Components use semantic tokens that switch for dark mode.</p>
+          <p className={s.lede}>Raw palette. Components use semantic tokens; the app is light only.</p>
           <div className="stack" style={{ ['--gap' as string]: '12px' }}>
             {RAW.map((row, i) => (
               <div key={i} className={s.swatches}>

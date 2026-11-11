@@ -45,20 +45,7 @@
     radial-gradient(40% 50% at 12% 92%, rgba(154, 168, 138, 0.25), transparent 70%),
     linear-gradient(180deg, #f4ece1, #ebe0d2);
 }
-:root[data-theme='dark'] .deviceDesk {
-  background:
-    radial-gradient(50% 60% at 78% 18%, rgba(242, 199, 155, 0.12), transparent 70%),
-    radial-gradient(40% 50% at 12% 92%, rgba(154, 168, 138, 0.1), transparent 70%),
-    linear-gradient(180deg, #2a221d, #1c1714);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .deviceDesk {
-    background:
-      radial-gradient(50% 60% at 78% 18%, rgba(242, 199, 155, 0.12), transparent 70%),
-      radial-gradient(40% 50% at 12% 92%, rgba(154, 168, 138, 0.1), transparent 70%),
-      linear-gradient(180deg, #2a221d, #1c1714);
-  }
-}
+
 .stage {
   flex: none;
   position: relative;
@@ -137,7 +124,6 @@
   border-radius: var(--r-pill);
   pointer-events: none;
 }
-
 
 .offline {
   position: absolute;

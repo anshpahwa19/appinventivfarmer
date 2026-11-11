@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useStatusToneValue } from '@/lib/statusTone';
-import { useResolvedTheme } from '@/lib/theme';
 import s from './StatusBar.module.css';
 
 function clock() {
@@ -12,13 +11,12 @@ function clock() {
 /** Simulated iPhone status bar, Dynamic Island and home indicator (device mock-up only). */
 export function StatusBar() {
   const tone = useStatusToneValue();
-  const theme = useResolvedTheme();
   const [time, setTime] = useState(clock);
   useEffect(() => {
     const t = setInterval(() => setTime(clock()), 15_000);
     return () => clearInterval(t);
   }, []);
-  const color = tone === 'light' || theme === 'dark' ? '#ffffff' : '#0b0b0c';
+  const color = tone === 'light' ? '#ffffff' : '#0b0b0c';
   return (
     <>
       <div className={s.bar} style={{ color }} aria-hidden>

@@ -169,16 +169,7 @@
   background: var(--sun-100);
   color: #5a4206;
 }
-:root[data-theme='dark'] .tip {
-  background: rgba(244, 194, 77, 0.12);
-  color: #f2d899;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .tip {
-    background: rgba(244, 194, 77, 0.12);
-    color: #f2d899;
-  }
-}
+
 .tip svg {
   flex: none;
   width: 22px;

@@ -18,7 +18,6 @@ export interface Session {
 }
 
 export interface Prefs {
-  theme: 'system' | 'light' | 'dark';
   text: 'default' | 'large';
   motion: 'system' | 'reduce';
   language: Language;
@@ -98,7 +97,7 @@ export function initialState(): AppState {
     version: 3,
     session: { onboarded: false, signedIn: false, verified: false, phone: '', location: 'unknown' },
     profile: DEFAULT_PROFILE,
-    prefs: { theme: 'system', text: 'default', motion: 'system', language: 'en' },
+    prefs: { text: 'default', motion: 'system', language: 'en' },
     demo: { network: 'normal', emptyData: false },
     bookmarks: ['a-soil-health-card', 'v-baling', 'n-stubble-cost'],
     unreadNotifications: [...INITIALLY_UNREAD],
@@ -119,6 +118,8 @@ function load(): AppState {
   const base = initialState();
   const prefs = { ...base.prefs, ...saved.prefs };
   prefs.language = normalizeLanguage(prefs.language);
+  // The app is light only; drop a theme saved by older versions.
+  delete (prefs as Partial<Prefs> & { theme?: unknown }).theme;
   return { ...base, ...saved, session: { ...base.session, ...saved.session }, prefs, demo: { ...base.demo, ...saved.demo } };
 }
 

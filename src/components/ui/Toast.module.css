@@ -56,13 +56,4 @@
 .action:active {
   transform: scale(0.96);
 }
-:root[data-theme='dark'] .success .icon,
-:root[data-theme='dark'] .action {
-  color: var(--forest-700);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .success .icon,
-  :root:not([data-theme='light']) .action {
-    color: var(--forest-700);
-  }
-}
+

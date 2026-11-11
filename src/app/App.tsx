@@ -30,15 +30,9 @@ function usePreferenceAttributes() {
     const el = document.documentElement;
     // Inside the artifact viewer there is no notch to clear; on a real phone there is.
     if (IS_DEMO && !IS_MOBILE) el.setAttribute('data-host', 'artifact');
-    if (prefs.theme === 'system') {
-      if (el.getAttribute('data-theme-owner') === 'app') {
-        el.removeAttribute('data-theme');
-        el.removeAttribute('data-theme-owner');
-      }
-    } else {
-      el.setAttribute('data-theme', prefs.theme);
-      el.setAttribute('data-theme-owner', 'app');
-    }
+    // Light only: clear any theme attribute an older version or host left behind.
+    el.removeAttribute('data-theme');
+    el.removeAttribute('data-theme-owner');
     if (prefs.text === 'large') el.setAttribute('data-text', 'large');
     else el.removeAttribute('data-text');
     if (prefs.motion === 'reduce') el.setAttribute('data-motion', 'reduce');

@@ -13,7 +13,6 @@ export interface Palette {
 }
 
 export const LIGHT: Palette = { ink: hex('#3a2e28'), primary: hex('#a8573a'), lime: hex('#f2c79b'), soft: hex('#eadfd1'), paper: hex('#ffffff') };
-export const DARK: Palette = { ink: hex('#f3eae2'), primary: hex('#e8a27f'), lime: hex('#f2c79b'), soft: hex('#3a2f28'), paper: hex('#261e19') };
 /** For sand panels and photo overlays (formerly always-dark surfaces). */
 export const NIGHT: Palette = { ink: hex('#3a2e28'), primary: hex('#a8573a'), lime: hex('#f2c79b'), soft: hex('#dfd1c0'), paper: hex('#fbf7f1') };
 

@@ -42,7 +42,7 @@ src/d2/
 
 Second edition, after review: the first palette (midnight, cobalt, citrus lime) was too bold for this audience, so Direction 02 now uses light, warm, quiet tones. Photographs carry the colour; the interface stays calm.
 
-Raw palette: ivory `#FBF7F1` (pages), sand `#F3EADF` / `#EADFD1` (panels), white (cards), espresso `#3A2E28` (text), clay `#A8573A` (actions), deep clay `#94492C` (links and accent text), apricot `#F2C79B` (highlights, the New key, chips on photos), with muted sage, ochre, brick and slate-blue for status. Dark theme is a warm evening version (espresso surfaces, peach accents).
+Raw palette: ivory `#FBF7F1` (pages), sand `#F3EADF` / `#EADFD1` (panels), white (cards), espresso `#3A2E28` (text), clay `#A8573A` (actions), deep clay `#94492C` (links and accent text), apricot `#F2C79B` (highlights, the New key, chips on photos), with muted sage, ochre, brick and slate-blue for status.
 
 Checked text pairs (WCAG 2.2 AA, 4.5:1 for text):
 
@@ -55,7 +55,6 @@ Checked text pairs (WCAG 2.2 AA, 4.5:1 for text):
 | Deep clay links on ivory / sand | 6.1 / 5.4 |
 | Espresso on apricot | 8.4 |
 | Success / warning / danger / info text on their tints | 5.3 / 5.4 / 5.2 / 5.5 |
-| Dark theme: text, tertiary, accent on surface | 15.1 / 6.7 / 7.7 |
 
 Apricot is never used for text on light paper. Every status pairs colour with a word and a shape.
 
@@ -90,4 +89,4 @@ Every Direction 01 screen has a Direction 02 version: onboarding cover, sign-in 
 - `npx tsc --noEmit`, `npx vitest run` (27 tests, including Direction 02 path and photo-slot tests), `npm run build`, `npm run build:demo`, `npm run build:demo2`.
 - Playwright end-to-end: order validation, live price, placing an order, booking steps and validation, status filters, the 90-day date cap, search with no results, bookmarks, mark all read with undo, event interest, adding a field, video playback, and the direction switch.
 - All 37 Direction 02 routes and 6 Direction 01 routes at 360 px width, with and without reduced motion: no horizontal overflow, no page errors.
-- Light and dark themes, desktop device frame and phone-width layout reviewed by screenshot.
+- Light theme (the app is light only), desktop device frame and phone-width layout reviewed by screenshot.

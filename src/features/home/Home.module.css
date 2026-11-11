@@ -42,74 +42,6 @@
   --hm-focus: #1b6a45;
   color: var(--hm-fg);
 }
-:root[data-theme='dark'] .tokens {
-  --hm-surface: var(--surface);
-  --hm-surface-2: #1c2a22;
-  --hm-fg: #eef3ee;
-  --hm-fg-2: #b6c4b9;
-  --hm-line: rgba(255, 255, 255, 0.1);
-  --hm-brand: #63cd93;
-  --hm-on-brand: #062414;
-  --hm-brand-soft: #1e3a2a;
-  --hm-on-brand-soft: #abe5c3;
-  --hm-mic: #46c4aa;
-  --hm-on-mic: #03201a;
-  --hm-mic-soft: #143630;
-  --hm-sky: #8fd0ea;
-  --hm-sky-soft: #12303b;
-  --hm-sun: #ffd27a;
-  --hm-sun-soft: #33280e;
-  --hm-soil: #e6c8a6;
-  --hm-soil-soft: #33261a;
-  --hm-urgent-fg: #ffb6aa;
-  --hm-urgent-bg: #3b1714;
-  --hm-urgent-solid: #ff7c69;
-  --hm-on-urgent-solid: #2a0703;
-  --hm-warn-fg: #ffd37d;
-  --hm-warn-bg: #33270c;
-  --hm-warn-solid: #f2b33d;
-  --hm-on-warn-solid: #2b1d00;
-  --hm-ok-fg: #a2d9ea;
-  --hm-ok-bg: #10303a;
-  --hm-ok-solid: #5cc0dc;
-  --hm-on-ok-solid: #04232c;
-  --hm-focus: #8fe0b4;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .tokens {
-    --hm-surface: var(--surface);
-    --hm-surface-2: #1c2a22;
-    --hm-fg: #eef3ee;
-    --hm-fg-2: #b6c4b9;
-    --hm-line: rgba(255, 255, 255, 0.1);
-    --hm-brand: #63cd93;
-    --hm-on-brand: #062414;
-    --hm-brand-soft: #1e3a2a;
-    --hm-on-brand-soft: #abe5c3;
-    --hm-mic: #46c4aa;
-    --hm-on-mic: #03201a;
-    --hm-mic-soft: #143630;
-    --hm-sky: #8fd0ea;
-    --hm-sky-soft: #12303b;
-    --hm-sun: #ffd27a;
-    --hm-sun-soft: #33280e;
-    --hm-soil: #e6c8a6;
-    --hm-soil-soft: #33261a;
-    --hm-urgent-fg: #ffb6aa;
-    --hm-urgent-bg: #3b1714;
-    --hm-urgent-solid: #ff7c69;
-    --hm-on-urgent-solid: #2a0703;
-    --hm-warn-fg: #ffd37d;
-    --hm-warn-bg: #33270c;
-    --hm-warn-solid: #f2b33d;
-    --hm-on-warn-solid: #2b1d00;
-    --hm-ok-fg: #a2d9ea;
-    --hm-ok-bg: #10303a;
-    --hm-ok-solid: #5cc0dc;
-    --hm-on-ok-solid: #04232c;
-    --hm-focus: #8fe0b4;
-  }
-}
 
 .home {
   /* Plus Jakarta Sans has no Devanagari; the system Devanagari face takes over for Hindi and Marathi. */
@@ -393,14 +325,7 @@
   background: var(--hm-sky);
   color: var(--hm-surface);
 }
-:root[data-theme='dark'] .wxDayWet {
-  color: #04232c;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .wxDayWet {
-    color: #04232c;
-  }
-}
+
 .advisory {
   display: flex;
   align-items: center;

@@ -67,7 +67,6 @@ if (MOBILE) {
       /* Phone preview: behave like an installed app, not a web page. */
       html, body { height: 100%; overscroll-behavior: none; background: #fbf9f3; }
       @supports (height: 100dvh) { html, body, #root { height: 100dvh; } }
-      @media (prefers-color-scheme: dark) { html, body { background: #0d1410; } }
       body {
         position: fixed; inset: 0; overflow: hidden;
         touch-action: manipulation;           /* no double-tap zoom delay; pinch zoom still works */
