@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LayoutTemplate, LogOut, MessageCircle, Palette, Pencil, Repeat, ScrollText, ShieldCheck, Sprout, Tractor } from 'lucide-react';
+import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LayoutTemplate, LogOut, MessageCircle, Pencil, Repeat, ScrollText, ShieldCheck, Sprout, Tractor } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { actions, useStore, LANGUAGE_NAMES } from '@/services/store';
 import { formatPhone, monthYear } from '@/lib/format';
@@ -20,7 +20,6 @@ export default function Account() {
   const navigate = useNavigate();
   const profile = useStore((st) => st.profile);
   const session = useStore((st) => st.session);
-  const prefs = useStore((st) => st.prefs);
   const bookmarks = useStore((st) => st.bookmarks.length);
   const unread = useStore((st) => st.unreadNotifications.length);
   const lands = useStore((st) => st.lands);
@@ -95,7 +94,6 @@ export default function Account() {
         <Rise>
           <RowGroup title="Preferences">
             <Row icon={<Languages />} title="Language" value={LANGUAGE_NAMES[language]} to="/account/language" />
-            <Row icon={<Palette />} title="Display" subtitle="Text size, theme, animations" value={prefs.text === 'large' ? 'Large text' : prefs.theme === 'dark' ? 'Dark' : undefined} to="/account/display" />
             {session.verified && <Row icon={<KeyRound />} title="Change password" to="/account/password" />}
           </RowGroup>
         </Rise>

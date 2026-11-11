@@ -5,11 +5,9 @@ import { ArrowUpRight, Bell, BellRing, CalendarCheck, ChevronRight, ClipboardLis
 import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
-import type { HomeAlert } from '@/lib/alerts';
 import { dayPart, useHomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
 import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
-import { AlertsSection } from '@/components/home/Alerts';
 import { useHomeData } from '@/components/home/useHomeData';
 import markUrl from '@/assets/brand/kisani-urjaa-mark.webp';
 import { Screen, useScreenScroll } from '../../layout/Screen';
@@ -137,11 +135,6 @@ export default function Home() {
     },
   ];
 
-  const onAlert = (a: HomeAlert) => {
-    if (a.action.kind === 'forecast') return setWxOpen(true);
-    go(a.action.to, a.action.verified, t.verifyReasonBooking);
-  };
-
   const afterVoice = (fn: () => void) => {
     setVoiceOpen(false);
     setTimeout(fn, 300);
@@ -157,7 +150,7 @@ export default function Home() {
     });
 
   return (
-    <Screen title="Today" variant="bare" tabRoot lightTop heroHeight={520}>
+    <Screen title="Home" variant="bare" tabRoot lightTop heroHeight={520}>
       <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
         <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} verified={verified} name={profile.name} village={profile.village} t={t} onLang={() => setLangOpen(true)} />
 
@@ -183,34 +176,10 @@ export default function Home() {
           </InView>
         )}
 
-        <div className={s.section}>
-          <AlertsSection
-            t={t}
-            alerts={d.alerts}
-            loading={d.alertsLoading}
-            failed={d.recordsFailed}
-            offline={d.offline}
-            onRetry={d.retryRecords}
-            onAction={onAlert}
-            s={s}
-            skeleton={[0, 1].map((i) => <Skel key={i} h={120} r="var(--r-lg)" />)}
-            heading={
-              <div>
-                <p className={s.sectionKicker}>
-                  <span>01</span> {t.alertsKicker}
-                </p>
-                <h2 id="alerts-h" className={s.glanceTitle}>
-                  {t.alertsTitle}
-                </h2>
-              </div>
-            }
-          />
-        </div>
-
         <section className={s.section} aria-labelledby="quick-h">
           <div className={s.glanceHead}>
             <p className={s.sectionKicker}>
-              <span>02</span> {t.quickTitle}
+              <span>01</span> {t.quickTitle}
             </p>
             <h2 id="quick-h" className="sr-only">
               {t.quickTitle}
@@ -274,7 +243,7 @@ export default function Home() {
 
         {(d.events.status === 'loading' || next) && (
           <section className={s.section}>
-            <SectionHead index="03" kicker={live ? t.happeningNow : t.nextEvent} title={live ? t.happeningNow : t.nextEvent} to="/events" action={t.allEvents} />
+            <SectionHead index="02" kicker={live ? t.happeningNow : t.nextEvent} title={live ? t.happeningNow : t.nextEvent} to="/events" action={t.allEvents} />
             <div className={s.gutter} style={{ marginTop: 16 }} lang="en">
               {next ? <EventPoster event={next} ratio="4/5" /> : <Skel h={420} r="var(--r-xl)" />}
             </div>
@@ -282,7 +251,7 @@ export default function Home() {
         )}
 
         <section className={s.section} aria-label={t.myFields}>
-          <SectionHead index="04" kicker={lands.data ? t.fieldsSummary(lands.data.length, lands.data.reduce((a, l) => a + l.areaAcres, 0)) : t.myFields} title={t.myFields} to="/lands" action={t.seeAll} />
+          <SectionHead index="03" kicker={lands.data ? t.fieldsSummary(lands.data.length, lands.data.reduce((a, l) => a + l.areaAcres, 0)) : t.myFields} title={t.myFields} to="/lands" action={t.seeAll} />
           <div className="fj-rail" style={{ marginTop: 16 }}>
             {lands.status === 'loading' && [0, 1].map((i) => <Skel key={i} w={240} h={300} r="var(--r-xl)" />)}
             {lands.data?.map((l) => <FieldTile key={l.id} land={l} />)}
@@ -295,7 +264,7 @@ export default function Home() {
 
         {(content.status === 'loading' || lead) && (
           <section className={s.section} aria-label={t.latestNews}>
-            <SectionHead index="05" kicker={t.topStory} title={t.latestNews} to="/learn?tab=news" action={t.seeAll} />
+            <SectionHead index="04" kicker={t.topStory} title={t.latestNews} to="/learn?tab=news" action={t.seeAll} />
             {content.status === 'loading' ? (
               <div className={s.gutter}>
                 <Skel h={460} r="var(--r-xl)" />

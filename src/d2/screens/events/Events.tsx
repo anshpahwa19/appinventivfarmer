@@ -12,7 +12,6 @@ import { Toggle } from '../../ui/Controls';
 import { Button } from '../../ui/Button';
 import { EmptyState, ErrorState, Skel, SkelList, StaleNote } from '../../ui/Blocks';
 import { EventLine, EventPoster } from '../../content/Cards';
-import { JournalNav } from '../../content/JournalNav';
 import { InView } from '../../motion/Reveal';
 import s from './Events.module.css';
 
@@ -45,9 +44,8 @@ export default function Events() {
   const rest = featured ? visible.slice(1) : visible;
 
   return (
-    <Screen title="Events" backTo="/learn">
-      <PageTitle kicker="The Journal" title="Events near you" deck="Workshops, camps and field demonstrations around Ratanpur." />
-      <JournalNav value="events" counts={q.data ? { events: all.length } : undefined} />
+    <Screen title="Events" backTo="/home">
+      <PageTitle kicker="Events" title="Events near you" deck="Workshops, camps and field demonstrations around Ratanpur." />
       <div className={s.toggleRow}>
         <Toggle
           label="When"

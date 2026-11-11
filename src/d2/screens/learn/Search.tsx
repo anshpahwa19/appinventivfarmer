@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { api } from '@/services/api';
 import { useQuery } from '@/services/query';
@@ -7,7 +7,7 @@ import { Screen } from '../../layout/Screen';
 import { SearchBox } from '../../ui/SearchBox';
 import { Chip, ChipRow } from '../../ui/Controls';
 import { EmptyState, ErrorState, SkelList } from '../../ui/Blocks';
-import { EventLine, StoryRow } from '../../content/Cards';
+import { StoryRow } from '../../content/Cards';
 import { Photo } from '../../photo/Photo';
 import s from './Search.module.css';
 
@@ -22,9 +22,9 @@ const TOPICS = [
   { label: CATEGORY_LABEL['announcements'], q: 'FOM', photo: 'village-delivery' },
 ];
 const SUGGESTIONS = ['straw', 'soil', 'spray', 'FOM', 'drip', 'wheat'];
-type Scope = 'all' | 'news' | 'video' | 'article' | 'events';
+type Scope = 'all' | 'news' | 'video' | 'article';
 
-/** One search across the Journal: stories, films, guides and events. */
+/** One search across Learn: news, videos and articles. */
 export default function Search() {
   const [q, setQ] = useState('');
   const [debounced, setDebounced] = useState('');
@@ -35,20 +35,16 @@ export default function Search() {
   }, [q]);
 
   const content = useQuery(`content:search:${debounced}`, () => api.listContent({ q: debounced }), { enabled: !!debounced });
-  const events = useQuery('events', () => api.listEvents());
-  const needle = debounced.toLowerCase();
-  const evHits = useMemo(() => (needle ? (events.data ?? []).filter((e) => `${e.title} ${e.summary} ${e.topic} ${e.location.village}`.toLowerCase().includes(needle)) : []), [events.data, needle]);
   const hits = (content.data ?? []).filter((c) => scope === 'all' || c.kind === scope);
-  const showEvents = scope === 'all' || scope === 'events';
-  const total = (scope === 'events' ? 0 : hits.length) + (showEvents ? evHits.length : 0);
+  const total = hits.length;
   const counts = { news: 0, video: 0, article: 0 } as Record<'news' | 'video' | 'article', number>;
   (content.data ?? []).forEach((c) => counts[c.kind]++);
 
   return (
     <Screen title="Search" backTo="/learn">
       <div className={s.top}>
-        <h2 className={s.title}>Search the Journal</h2>
-        <SearchBox value={q} onChange={setQ} placeholder="Stories, videos, guides, events" autoFocus />
+        <h2 className={s.title}>Search Learn</h2>
+        <SearchBox value={q} onChange={setQ} placeholder="News, videos, articles" autoFocus />
       </div>
       {!debounced && (
         <div className={s.suggest}>
@@ -86,10 +82,7 @@ export default function Search() {
               Videos
             </Chip>
             <Chip selected={scope === 'article'} onClick={() => setScope('article')} count={counts.article}>
-              Guides
-            </Chip>
-            <Chip selected={scope === 'events'} onClick={() => setScope('events')} count={evHits.length}>
-              Events
+              Articles
             </Chip>
           </ChipRow>
           <AnimatePresence mode="wait" initial={false}>
@@ -102,15 +95,7 @@ export default function Search() {
                     {total} {total === 1 ? 'result' : 'results'} for “{debounced}”
                   </p>
                   {total === 0 && <EmptyState animation="search" title="No matches" body="Try a shorter word, or one of the topics." compact />}
-                  {scope !== 'events' && hits.map((h, i) => <StoryRow key={h.id} item={h} flip={i % 2 === 1} />)}
-                  {showEvents && evHits.length > 0 && (
-                    <>
-                      {scope === 'all' && <p className={s.kicker} style={{ marginTop: 20 }}>Events</p>}
-                      {evHits.map((e) => (
-                        <EventLine key={e.id} event={e} />
-                      ))}
-                    </>
-                  )}
+                  {hits.map((h, i) => <StoryRow key={h.id} item={h} flip={i % 2 === 1} />)}
                 </>
               )}
             </motion.div>

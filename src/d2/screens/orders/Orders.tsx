@@ -61,7 +61,7 @@ export default function Orders() {
 
   if (!verified)
     return (
-      <Screen title="Orders" variant="masthead" kicker="FOM & field services" tabRoot>
+      <Screen title="Requests" variant="masthead" kicker="FOM & field services" tabRoot>
         <div className="fj-gutter">
           <EmptyState
             animation="crate"
@@ -82,7 +82,7 @@ export default function Orders() {
 
   return (
     <Screen
-      title="Orders"
+      title="Requests"
       variant="masthead"
       kicker="FOM & field services"
       tabRoot

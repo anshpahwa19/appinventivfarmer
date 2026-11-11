@@ -41,7 +41,6 @@ const Notifications = page(() => import('@/features/notifications/Notifications'
 const Account = page(() => import('@/features/account/Account'));
 const Profile = page(() => import('@/features/account/Profile'));
 const Language = page(() => import('@/features/account/Language'));
-const Display = page(() => import('@/features/account/Display'));
 const Password = page(() => import('@/features/account/Password'));
 const Machinery = page(() => import('@/features/account/Machinery'));
 const Help = page(() => import('@/features/account/Help'));
@@ -107,7 +106,6 @@ export function AppRoutes({ location }: { location: Location }) {
       <Route path="/account" element={authed(<Account />)} />
       <Route path="/account/profile" element={authed(<Profile />)} />
       <Route path="/account/language" element={authed(<Language />)} />
-      <Route path="/account/display" element={authed(<Display />)} />
       <Route path="/account/password" element={authed(<Password />)} />
       <Route path="/account/machinery" element={authed(<Machinery />)} />
       <Route path="/account/help" element={authed(<Help />)} />

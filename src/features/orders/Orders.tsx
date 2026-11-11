@@ -74,7 +74,7 @@ export default function Orders() {
 
   if (!verified) {
     return (
-      <Screen title="Orders" subtitle="FOM and field services" largeTitle tabRoot>
+      <Screen title="Requests" subtitle="FOM and field services" largeTitle tabRoot>
         <div className={s.locked}>
           <EmptyState
             animation="emptyBox"
@@ -96,7 +96,7 @@ export default function Orders() {
 
   return (
     <Screen
-      title="Orders"
+      title="Requests"
       subtitle="FOM and field services"
       largeTitle
       band

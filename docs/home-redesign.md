@@ -8,7 +8,6 @@ The redesign changes only the Home screen of Direction 01 (`/#/home`) and Direct
 |---|---|---|
 | Language | A header button showing the current language in its own script. It opens a 2-column picker for all 7 languages. | The same button above the dateline, opening the same picker in the journal's sheet |
 | Weather | A glass card: temperature, condition, high and low, rain, humidity and wind chips, a 5-day strip and spray advice | The "instrument panel", plus a metrics row and a 5-day strip |
-| Alerts | Cards with a severity bar, an icon chip and a word tag | A ruled dispatch list with an icon tile and a severity tag |
 | Quick actions | 4 tiles: Field records, Order FOM, Bookings, Farm updates | The numbered index, rebuilt as the same 4 actions with photos |
 | Kisani Didi | An "Ask Didi" mic pill, plus Call and Message | A split photo card, with "Ask Didi" in a full-width foot |
 
@@ -46,3 +45,16 @@ Removed to cut clutter. All of these are still one tap away in Learn, Orders or 
 ## ⚠ Native-speaker review needed
 
 Every Hindi and Marathi string in `src/i18n/home.ts` is a first draft. The voice keywords there are drafts too. A native speaker has not checked any of them yet. The app says so on Home, in the Ask Didi sheet and in Settings → Language. Screens other than Home stay in English. The verification dialog and the contact sheet also stay in English.
+
+## Later product changes (November 2026)
+
+- **Home:** the "For your farm today" alerts section is removed from both directions. The derivation in `src/lib/alerts.ts` and its tests stay, so it can be brought back.
+- **Learn:** the category chips are removed in both directions. Search and the date filter stay.
+- **Account:** Display settings are removed in both directions, along with the screen and its route. Theme follows the phone, and the desktop review frame keeps its Light/Dark switch.
+- **Direction 01:** "Orders" is now "Requests" in the tab bar and the page header.
+- **Direction 02:**
+  - The dock reads Home · Learn · Requests · Me.
+  - The Journal is now Learn. Its tabs are News · Videos · Articles, and "Guides" is renamed "Articles".
+  - Events is no longer a Learn tab or part of Learn search. It opens from Home's next-event card and from notifications.
+  - "Orders" is now "Requests" in the page header. When the title and the action button don't fit side by side, the button wraps below the title.
+

@@ -3,31 +3,26 @@ import { SectionTabs } from '../ui/Controls';
 import { useNav } from '../nav';
 import s from './JournalNav.module.css';
 
-export type JournalSection = ContentKind | 'events';
+export type JournalSection = ContentKind;
 
 const PARAM: Record<ContentKind, string> = { news: 'news', video: 'videos', article: 'articles' };
 
-/**
- * The Journal's section navigation, shared by Learn and Events so the
- * publication reads as one place: News · Videos · Guides · Events.
- */
+/** Learn's section navigation: News · Videos · Articles. */
 export function JournalNav({ value, counts, onKind, className }: { value: JournalSection; counts?: Partial<Record<JournalSection, number>>; onKind?: (k: ContentKind) => void; className?: string }) {
   const nav = useNav();
   return (
     <div className={`${s.sticky} ${className ?? ''}`}>
       <SectionTabs
-        label="Journal sections"
+        label="Learn sections"
         value={value}
         onChange={(v) => {
-          if (v === 'events') nav('/events');
-          else if (onKind) onKind(v);
+          if (onKind) onKind(v);
           else nav(`/learn?tab=${PARAM[v]}`, { replace: true });
         }}
         items={[
           { value: 'news', label: 'News', count: counts?.news },
           { value: 'video', label: 'Videos', count: counts?.video },
-          { value: 'article', label: 'Guides', count: counts?.article },
-          { value: 'events', label: 'Events', count: counts?.events },
+          { value: 'article', label: 'Articles', count: counts?.article },
         ]}
       />
     </div>

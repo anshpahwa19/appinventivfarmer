@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LogOut, MessageCircle, Palette, Pencil, Repeat, ScrollText, Shield, ShieldCheck, Sprout, Tractor, LayoutTemplate } from 'lucide-react';
+import { Bell, Bookmark, ClipboardList, FlaskConical, HelpCircle, Info, KeyRound, Languages, LogOut, MessageCircle, Pencil, Repeat, ScrollText, Shield, ShieldCheck, Sprout, Tractor, LayoutTemplate } from 'lucide-react';
 import { Screen } from '@/components/layout/Screen';
 import { Avatar, StatusBadge } from '@/components/ui/Misc';
 import { Button } from '@/components/ui/Button';
@@ -77,7 +77,6 @@ export default function Account() {
         <StaggerItem>
         <ListGroup title="Preferences">
           <ListRow icon={<Languages />} title="Language" value={LANGUAGE_NAMES[prefs.language]} to="/account/language" />
-          <ListRow icon={<Palette />} title="Display" value={prefs.text === 'large' ? 'Large text' : prefs.theme === 'dark' ? 'Dark' : undefined} subtitle="Text size, theme, animations" to="/account/display" />
           {session.verified && <ListRow icon={<KeyRound />} title="Change password" to="/account/password" />}
         </ListGroup>
         </StaggerItem>

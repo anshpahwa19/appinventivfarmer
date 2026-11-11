@@ -16,7 +16,7 @@ import s from './Bookmarks.module.css';
 const TABS: { value: ContentKind; label: string; noun: string; param: string }[] = [
   { value: 'news', label: 'News', noun: 'news', param: 'news' },
   { value: 'video', label: 'Videos', noun: 'videos', param: 'videos' },
-  { value: 'article', label: 'Guides', noun: 'guides', param: 'articles' },
+  { value: 'article', label: 'Articles', noun: 'articles', param: 'articles' },
 ];
 
 export default function Bookmarks() {

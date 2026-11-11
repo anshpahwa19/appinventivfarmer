@@ -134,12 +134,15 @@
 }
 .mastRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   gap: 12px;
 }
 .mastText {
-  flex: 1;
-  min-width: 0;
+  /* Never squeeze the title under an action: if both don't fit, the action wraps below. */
+  flex: 1 1 0;
+  min-width: min-content;
+  max-width: 100%;
 }
 .kicker {
   display: flex;

@@ -2,11 +2,10 @@ import { useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatePresence, motion, useTransform } from 'framer-motion';
 import { Bookmark } from 'lucide-react';
-import type { Category, ContentKind } from '@/types';
+import type { ContentKind } from '@/types';
 import { Screen, useScreenScroll } from '@/components/layout/Screen';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { SearchField } from '@/components/ui/SearchField';
-import { Chip, ChipRow } from '@/components/ui/Chip';
 import { IconButton } from '@/components/ui/IconButton';
 import { Button } from '@/components/ui/Button';
 import { DateRangeSheet, rangeLabel, type DateRange } from '@/components/ui/DateRange';
@@ -14,7 +13,6 @@ import { SkeletonRows, Skeleton } from '@/components/ui/Skeleton';
 import { EmptyState, ErrorState, StaleBanner } from '@/components/ui/States';
 import { FeatureCard, MediaRow } from '@/components/content/Cards';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
-import { CATEGORY_LABEL } from '@/data/content';
 import { api } from '@/services/api';
 import { usePrime, useQuery } from '@/services/query';
 import s from './Learn.module.css';
@@ -42,7 +40,6 @@ export default function Learn() {
   const [params, setParams] = useSearchParams();
   const kind = PARAM_TO_KIND[params.get('tab') ?? 'news'] ?? 'news';
   const [q, setQ] = useState('');
-  const [category, setCategory] = useState<Category | 'all'>('all');
   const [range, setRange] = useState<DateRange>({});
   const [filterOpen, setFilterOpen] = useState(false);
   const [slide, setSlide] = useState(0);
@@ -51,8 +48,8 @@ export default function Learn() {
   prevKind.current = kind;
 
   const all = useQuery('content:all', () => api.listContent());
-  const key = `content:${kind}:${category}:${q}:${range.from ?? ''}:${range.to ?? ''}`;
-  const results = useQuery(key, () => api.listContent({ kind, category, q, from: range.from, to: range.to }));
+  const key = `content:${kind}:all:${q}:${range.from ?? ''}:${range.to ?? ''}`;
+  const results = useQuery(key, () => api.listContent({ kind, q, from: range.from, to: range.to }));
   usePrime('content-item:', all.data);
 
   const counts = useMemo(() => {
@@ -60,13 +57,7 @@ export default function Learn() {
     all.data?.forEach((i) => c[i.kind]++);
     return c;
   }, [all.data]);
-  const categories = useMemo(() => {
-    const set = new Set<Category>();
-    all.data?.filter((i) => i.kind === kind).forEach((i) => set.add(i.category));
-    return [...set];
-  }, [all.data, kind]);
-
-  const filtered = !!q || category !== 'all' || !!range.from;
+  const filtered = !!q || !!range.from;
   const items = results.data ?? [];
   const featured = !filtered ? [...items.filter((i) => i.featured), ...items.filter((i) => !i.featured)].slice(0, 3) : [];
   const rest = items.filter((i) => !featured.includes(i));
@@ -74,7 +65,6 @@ export default function Learn() {
 
   const clearAll = () => {
     setQ('');
-    setCategory('all');
     setRange({});
   };
 
@@ -98,7 +88,6 @@ export default function Learn() {
           value={kind}
           onChange={(v) => {
             setParams({ tab: KIND_TO_PARAM[v] }, { replace: true });
-            setCategory('all');
             setSlide(0);
           }}
           segments={TABS.map((t) => ({ value: t.value, label: t.label, count: all.data ? counts[t.value] : undefined }))}
@@ -109,18 +98,6 @@ export default function Learn() {
         <div className={s.search}>
           <SearchField value={q} onChange={setQ} placeholder={`Search ${tab.plural}`} label={`Search ${tab.plural}`} onFilter={() => setFilterOpen(true)} activeFilters={range.from ? 1 : 0} />
         </div>
-        {categories.length > 1 && (
-          <ChipRow label="Categories">
-            <Chip selected={category === 'all'} onClick={() => setCategory('all')}>
-              All
-            </Chip>
-            {categories.map((c) => (
-              <Chip key={c} selected={category === c} onClick={() => setCategory(c)}>
-                {CATEGORY_LABEL[c]}
-              </Chip>
-            ))}
-          </ChipRow>
-        )}
       </div>
 
       {filtered && results.status === 'success' && (
@@ -162,7 +139,7 @@ export default function Learn() {
               <EmptyState
                 animation="search"
                 title={filtered ? 'No matches' : `No ${tab.plural} yet`}
-                body={filtered ? 'Try a different word, category or date range.' : 'New items appear here as soon as they are published.'}
+                body={filtered ? 'Try a different word or date range.' : 'New items appear here as soon as they are published.'}
                 action={filtered ? <Button onClick={clearAll}>Clear filters</Button> : undefined}
               />
             </div>

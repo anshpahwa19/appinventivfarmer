@@ -42,7 +42,6 @@ const Notifications = page(() => import('./screens/notifications/Notifications')
 const Account = page(() => import('./screens/account/Account'));
 const Profile = page(() => import('./screens/account/Profile'));
 const Language = page(() => import('./screens/account/Language'));
-const Display = page(() => import('./screens/account/Display'));
 const Password = page(() => import('./screens/account/Password'));
 const Machinery = page(() => import('./screens/account/Machinery'));
 const Help = page(() => import('./screens/account/Help'));
@@ -110,7 +109,6 @@ export function D2Routes({ location }: { location: Location }) {
         <Route path="account" element={authed(<Account />)} />
         <Route path="account/profile" element={authed(<Profile />)} />
         <Route path="account/language" element={authed(<Language />)} />
-        <Route path="account/display" element={authed(<Display />)} />
         <Route path="account/password" element={authed(<Password />)} />
         <Route path="account/machinery" element={authed(<Machinery />)} />
         <Route path="account/help" element={authed(<Help />)} />

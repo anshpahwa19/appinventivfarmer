@@ -1,8 +1,7 @@
 /*
  * Home · Direction 01. A fresher palette scoped to Home through --hm-* tokens:
- * leaf green for actions, a clear sky blue for rain and advice, warm sun for
- * attention, and calm reds only for urgent alerts. Other screens are untouched.
- * Severity always pairs colour with an icon and a word.
+ * leaf green for actions, a clear sky blue for rain and advice, and warm sun
+ * for attention. Other screens are untouched.
  */
 .tokens {
   --hm-surface: #ffffff;
@@ -198,15 +197,6 @@
 }
 .weatherWrap {
   padding: 0 var(--gutter);
-}
-.secHead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 12px;
-  padding: 0 var(--gutter);
-  margin-bottom: 12px;
 }
 .secTitle {
   font: var(--t-heading);
@@ -500,232 +490,6 @@
   color: var(--hm-warn-fg);
 }
 
-/* ---------- Alerts ---------- */
-.sevCounts {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.sevPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px 4px 8px;
-  border-radius: var(--r-pill);
-  font: 700 0.8125rem/1.2 var(--font);
-  font-family: inherit;
-  background: var(--sev-bg);
-  color: var(--sev-fg);
-}
-.sevPill svg {
-  width: 14px;
-  height: 14px;
-}
-.sev_urgent {
-  --sev-fg: var(--hm-urgent-fg);
-  --sev-bg: var(--hm-urgent-bg);
-  --sev-solid: var(--hm-urgent-solid);
-  --sev-on-solid: var(--hm-on-urgent-solid);
-}
-.sev_warning {
-  --sev-fg: var(--hm-warn-fg);
-  --sev-bg: var(--hm-warn-bg);
-  --sev-solid: var(--hm-warn-solid);
-  --sev-on-solid: var(--hm-on-warn-solid);
-}
-.sev_normal {
-  --sev-fg: var(--hm-ok-fg);
-  --sev-bg: var(--hm-ok-bg);
-  --sev-solid: var(--hm-ok-solid);
-  --sev-on-solid: var(--hm-on-ok-solid);
-}
-.alerts {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0 var(--gutter);
-}
-.alertList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.alert {
-  position: relative;
-  display: flex;
-  gap: 12px;
-  padding: 14px 14px 14px 18px;
-  border-radius: var(--r-lg);
-  background: var(--hm-surface);
-  box-shadow: var(--shadow-1), inset 0 0 0 1px var(--hm-line);
-  overflow: hidden;
-}
-.alert::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 5px;
-  background: var(--sev-solid);
-}
-.alertKind {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: var(--sev-bg);
-  color: var(--sev-fg);
-}
-.alertKind svg {
-  width: 22px;
-  height: 22px;
-}
-.alertBody {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-.alertMeta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.sevTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 9px 3px 7px;
-  border-radius: var(--r-pill);
-  background: var(--sev-bg);
-  color: var(--sev-fg);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sev-solid) 55%, transparent);
-  font: 700 0.75rem/1.2 var(--font);
-  font-family: inherit;
-  letter-spacing: 0.01em;
-}
-
-.sevTag svg {
-  width: 13px;
-  height: 13px;
-}
-.sampleTag {
-  padding: 3px 8px;
-  border-radius: var(--r-pill);
-  background: var(--hm-surface-2);
-  color: var(--hm-fg-2);
-  font: 650 0.75rem/1.2 var(--font);
-  font-family: inherit;
-}
-.alertTitle {
-  margin-top: 2px;
-  font: var(--t-strong);
-  font-family: inherit;
-  color: var(--hm-fg);
-}
-.alertText {
-  font: var(--t-support);
-  font-family: inherit;
-  color: var(--hm-fg-2);
-}
-.alertAction {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  margin: 4px 0 -6px -10px;
-  padding: 0 10px;
-  border-radius: var(--r-pill);
-  font: var(--t-label);
-  font-family: inherit;
-  color: var(--hm-brand);
-  transition: background-color 160ms ease;
-}
-.alertAction:hover,
-.alertAction:active {
-  background: var(--hm-brand-soft);
-}
-.alertAction svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 160ms ease;
-}
-.alertAction:hover svg {
-  transform: translateX(2px);
-}
-.alertNotice {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: var(--r-md);
-  background: var(--hm-surface-2);
-  color: var(--hm-fg-2);
-  font: var(--t-caption);
-  font-family: inherit;
-}
-.alertNotice svg {
-  flex: none;
-  width: 18px;
-  height: 18px;
-}
-.textBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  margin-left: auto;
-  padding: 0 12px;
-  border-radius: var(--r-pill);
-  background: var(--hm-brand-soft);
-  color: var(--hm-on-brand-soft);
-  font: var(--t-label);
-  font-family: inherit;
-}
-.allClear {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
-  border-radius: var(--r-lg);
-  background: var(--hm-brand-soft);
-  color: var(--hm-on-brand-soft);
-}
-.allClear > svg {
-  flex: none;
-  width: 28px;
-  height: 28px;
-}
-.allClear div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font: var(--t-support);
-  font-family: inherit;
-}
-.allClear strong {
-  font: var(--t-strong);
-  font-family: inherit;
-}
-.moreBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  text-align: center;
-  min-height: 44px;
-  border-radius: var(--r-pill);
-  background: var(--hm-surface-2);
-  color: var(--hm-on-brand-soft);
-  font: var(--t-label);
-  font-family: inherit;
-}
-
 /* ---------- Quick actions ---------- */
 .quick {
   display: grid;
@@ -932,8 +696,7 @@
   .askMic::after {
     animation: none;
   }
-  .qTile:hover .qIcon,
-  .alertAction:hover svg {
+  .qTile:hover .qIcon {
     transform: none;
   }
 }
@@ -1083,11 +846,3 @@
   color: var(--fg-3);
 }
 
-.moreBtn svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 200ms ease;
-}
-.moreBtn[aria-expanded='true'] svg {
-  transform: rotate(180deg);
-}

@@ -9,7 +9,7 @@ export const TAB_ROOTS = ['/home', '/learn', '/orders', '/account'];
 const TABS = [
   { to: '/home', label: 'Home', Icon: House },
   { to: '/learn', label: 'Learn', Icon: BookOpen },
-  { to: '/orders', label: 'Orders', Icon: Package },
+  { to: '/orders', label: 'Requests', Icon: Package },
   { to: '/account', label: 'Account', Icon: UserRound },
 ];
 

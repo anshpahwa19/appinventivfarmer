@@ -40,7 +40,7 @@ function Hero({ item }: { item: ContentItem }) {
       </motion.div>
       <div className={s.heroText}>
         <p className={s.heroKicker}>
-          <span>{item.kind === 'article' ? 'Guide' : 'News'}</span> {category(item)}
+          <span>{item.kind === 'article' ? 'Article' : 'News'}</span> {category(item)}
         </p>
         <RevealText text={item.title} className={s.title} delay={0.15} stagger={0.04} />
         <p className={s.heroMeta}>

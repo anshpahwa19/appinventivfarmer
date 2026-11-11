@@ -8,7 +8,6 @@ import { api } from '@/services/api';
 import { usePrime, useQuery } from '@/services/query';
 import { Screen } from '../../layout/Screen';
 import { IconButton, Button } from '../../ui/Button';
-import { Chip, ChipRow } from '../../ui/Controls';
 import { SearchBox } from '../../ui/SearchBox';
 import { DateRangeSheet, rangeLabel, type DateRange } from '../../ui/DateRange';
 import { EmptyState, ErrorState, Skel, SkelList, StaleNote } from '../../ui/Blocks';
@@ -19,7 +18,7 @@ import s from './Learn.module.css';
 
 const PARAM_TO_KIND: Record<string, ContentKind> = { news: 'news', videos: 'video', articles: 'article' };
 const KIND_TO_PARAM: Record<ContentKind, string> = { news: 'news', video: 'videos', article: 'articles' };
-const NOUN: Record<ContentKind, string> = { news: 'news stories', video: 'videos', article: 'guides' };
+const NOUN: Record<ContentKind, string> = { news: 'news stories', video: 'videos', article: 'articles' };
 
 function NewsLayout({ items }: { items: ContentItem[] }) {
   const [lead, ...rest] = [...items.filter((i) => i.featured), ...items.filter((i) => !i.featured)];
@@ -82,7 +81,7 @@ function GuideLayout({ items }: { items: ContentItem[] }) {
     <>
       {lead && (
         <div className={s.guideLead}>
-          <CoverStory item={lead} kicker="Guide" ratio="4/5" bleed={false} />
+          <CoverStory item={lead} kicker="Article" ratio="4/5" bleed={false} />
         </div>
       )}
       {second && (
@@ -90,7 +89,7 @@ function GuideLayout({ items }: { items: ContentItem[] }) {
           <GuideCard item={second} width={180} />
           <div className={s.guideNote}>
             <p className={s.blockKicker}>How-to</p>
-            <p className={s.guideQuote}>Practical guides written with the agronomy desk. Follow label rates and local advice.</p>
+            <p className={s.guideQuote}>Practical articles written with the agronomy desk. Follow label rates and local advice.</p>
           </div>
         </div>
       )}
@@ -109,14 +108,12 @@ export default function Learn() {
   const [params, setParams] = useSearchParams();
   const kind = PARAM_TO_KIND[params.get('tab') ?? 'news'] ?? 'news';
   const [q, setQ] = useState('');
-  const [category, setCategory] = useState<Category | 'all'>('all');
   const [range, setRange] = useState<DateRange>({});
   const [filterOpen, setFilterOpen] = useState(false);
 
   const all = useQuery('content:all', () => api.listContent());
-  const events = useQuery('events', () => api.listEvents());
-  const key = `content:${kind}:${category}:${q}:${range.from ?? ''}:${range.to ?? ''}`;
-  const results = useQuery(key, () => api.listContent({ kind, category, q, from: range.from, to: range.to }));
+  const key = `content:${kind}:all:${q}:${range.from ?? ''}:${range.to ?? ''}`;
+  const results = useQuery(key, () => api.listContent({ kind, q, from: range.from, to: range.to }));
   usePrime('content-item:', all.data);
 
   const counts = useMemo(() => {
@@ -124,23 +121,20 @@ export default function Learn() {
     all.data?.forEach((i) => c[i.kind]++);
     return c;
   }, [all.data]);
-  const categories = useMemo(() => [...new Set((all.data ?? []).filter((i) => i.kind === kind).map((i) => i.category))], [all.data, kind]);
-
-  const filtered = !!q || category !== 'all' || !!range.from;
+  const filtered = !!q || !!range.from;
   const items = results.data ?? [];
   const clear = () => {
     setQ('');
-    setCategory('all');
     setRange({});
   };
   const label = rangeLabel(range);
 
   return (
     <Screen
-      title="Journal"
+      title="Learn"
       variant="masthead"
       kicker="Kisani Urjaa"
-      deck="News, films and guides from the field"
+      deck="News, films and articles from the field"
       tabRoot
       scrollKey={`/d2/learn?${kind}`}
       night={kind === 'video'}
@@ -158,28 +152,13 @@ export default function Learn() {
         <JournalNav
           className={kind === 'video' ? s.navNight : undefined}
           value={kind}
-          counts={all.data ? { ...counts, events: events.data?.length } : undefined}
-          onKind={(k) => {
-            setParams({ tab: KIND_TO_PARAM[k] }, { replace: true });
-            setCategory('all');
-          }}
+          counts={all.data ? counts : undefined}
+          onKind={(k) => setParams({ tab: KIND_TO_PARAM[k] }, { replace: true })}
         />
 
       <div className={`${s.tools} ${kind === 'video' ? s.toolsNight : ''}`}>
         <SearchBox value={q} onChange={setQ} placeholder={`Search ${NOUN[kind]}`} onFilter={() => setFilterOpen(true)} filterLabel={label} />
       </div>
-      {categories.length > 1 && (
-        <ChipRow label="Categories" className={s.chips}>
-          <Chip night={kind === 'video'} selected={category === 'all'} onClick={() => setCategory('all')}>
-            All
-          </Chip>
-          {categories.map((c) => (
-            <Chip night={kind === 'video'} key={c} selected={category === c} onClick={() => setCategory(c)}>
-              {CATEGORY_LABEL[c]}
-            </Chip>
-          ))}
-        </ChipRow>
-      )}
 
       {filtered && results.status === 'success' && (
         <div className={s.summary} aria-live="polite">
@@ -212,7 +191,7 @@ export default function Learn() {
               <EmptyState
                 animation="search"
                 title={filtered ? 'Nothing matches' : `No ${NOUN[kind]} yet`}
-                body={filtered ? 'Try another word, category or dates.' : 'New items appear here as soon as they’re published.'}
+                body={filtered ? 'Try another word or dates.' : 'New items appear here as soon as they’re published.'}
                 action={filtered ? <Button onClick={clear}>Clear filters</Button> : undefined}
               />
             </div>

@@ -4,7 +4,6 @@ import { usePrime, useQuery } from '@/services/query';
 import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { cycleProgress } from '@/data/forms';
-import { deriveAlerts } from '@/lib/alerts';
 
 /**
  * Data for both Home screens. Same query keys as the rest of the app, so the
@@ -28,14 +27,6 @@ export function useHomeData() {
   usePrime('booking:', bookings.data);
   usePrime('form:', forms.data);
 
-  const alerts = useMemo(
-    () => deriveAlerts({ weather: weather.data, lands: lands.data, forms: forms.data, bookings: bookings.data, orders: orders.data, events: events.data }),
-    [weather.data, lands.data, forms.data, bookings.data, orders.data, events.data],
-  );
-
-  const recordQueries = [lands, forms, events, ...(verified ? [orders, bookings] : [])];
-  const alertsLoading = weather.status === 'loading' || recordQueries.some((q) => q.status === 'loading' && !q.data);
-  const recordsFailed = recordQueries.some((q) => q.status === 'error');
   const offline = network === 'offline' || isOffline();
 
   const nextEvent = useMemo(() => {
@@ -48,8 +39,6 @@ export function useHomeData() {
   const pendingOrders = (orders.data ?? []).filter((o) => o.status === 'pending').length;
   const pendingBookings = (bookings.data ?? []).filter((b) => b.status === 'pending').length;
 
-  const retryRecords = () => recordQueries.forEach((q) => q.status === 'error' && q.refetch());
-
   return {
     verified,
     unread,
@@ -61,10 +50,6 @@ export function useHomeData() {
     orders,
     bookings,
     forms,
-    alerts,
-    alertsLoading,
-    recordsFailed,
-    retryRecords,
     nextEvent,
     activeCycle,
     cycle,

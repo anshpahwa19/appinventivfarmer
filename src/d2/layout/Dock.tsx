@@ -44,9 +44,9 @@ function Glyph({ name, active }: { name: 'today' | 'journal' | 'orders' | 'me'; 
 }
 
 const TABS = [
-  { path: '/home', label: 'Today', glyph: 'today' as const },
-  { path: '/learn', label: 'Journal', glyph: 'journal' as const },
-  { path: '/orders', label: 'Orders', glyph: 'orders' as const },
+  { path: '/home', label: 'Home', glyph: 'today' as const },
+  { path: '/learn', label: 'Learn', glyph: 'journal' as const },
+  { path: '/orders', label: 'Requests', glyph: 'orders' as const },
   { path: '/account', label: 'Me', glyph: 'me' as const },
 ];
 

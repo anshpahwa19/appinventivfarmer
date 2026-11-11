@@ -19,10 +19,8 @@ import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
 import { formatDate } from '@/lib/format';
-import type { HomeAlert } from '@/lib/alerts';
 import { dayPart, useHomeT, type HomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
 import { WeatherCard, WeatherSheet } from './Weather';
-import { AlertsSection } from '@/components/home/Alerts';
 import s from './Home.module.css';
 
 function heroScene(rainy: boolean, now = new Date()): SceneSpec {
@@ -145,11 +143,6 @@ export default function Home() {
     },
   ];
 
-  const onAlert = (a: HomeAlert) => {
-    if (a.action.kind === 'forecast') return setWeatherOpen(true);
-    go(a.action.to, a.action.verified, t.verifyReasonBooking);
-  };
-
   /** Close the voice sheet first, then open the next layer once it has animated away. */
   const afterVoice = (fn: () => void) => {
     setVoiceOpen(false);
@@ -196,10 +189,6 @@ export default function Home() {
               </div>
             </Section>
           )}
-
-          <motion.div variants={rise}>
-            <AlertsSection t={t} alerts={d.alerts} loading={d.alertsLoading} failed={d.recordsFailed} offline={d.offline} onRetry={d.retryRecords} onAction={onAlert} s={s} skeleton={[0, 1].map((i) => <Skeleton key={i} h={128} r={22} />)} />
-          </motion.div>
 
           <Section>
             <h2 className={`${s.secTitle} ${s.secPad}`} id="quick-h">
