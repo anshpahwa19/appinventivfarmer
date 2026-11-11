@@ -6,7 +6,7 @@ import { CATEGORY_LABEL } from '@/data/content';
 import { Screen } from '../../layout/Screen';
 import { SearchBox } from '../../ui/SearchBox';
 import { Chip, ChipRow } from '../../ui/Controls';
-import { EmptyState, ErrorState, SkelList } from '../../ui/Blocks';
+import { EmptyState, ErrorState, SectionHead, SkelList } from '../../ui/Blocks';
 import { StoryRow } from '../../content/Cards';
 import { Photo } from '../../photo/Photo';
 import s from './Search.module.css';
@@ -48,7 +48,7 @@ export default function Search() {
       </div>
       {!debounced && (
         <div className={s.suggest}>
-          <p className={s.kicker}>Farmers often look for</p>
+          <SectionHead title="Farmers often look for" inset={false} />
           <div className={s.words}>
             {SUGGESTIONS.map((w, i) => (
               <motion.button key={w} type="button" className={s.word} onClick={() => setQ(w)} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
@@ -56,9 +56,7 @@ export default function Search() {
               </motion.button>
             ))}
           </div>
-          <p className={s.kicker} style={{ marginTop: 28 }}>
-            Topics
-          </p>
+<SectionHead title="Topics" inset={false} className={s.topicsHead} />
           <div className={s.topics}>
             {TOPICS.map((t) => (
               <button key={t.label} type="button" className={s.topic} onClick={() => setQ(t.q)}>

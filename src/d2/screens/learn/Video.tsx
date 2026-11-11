@@ -7,7 +7,7 @@ import { useQuery } from '@/services/query';
 import { formatDate, formatDuration, formatRelative } from '@/lib/format';
 import { Screen } from '../../layout/Screen';
 import { Button, IconButton } from '../../ui/Button';
-import { ErrorState, Skel } from '../../ui/Blocks';
+import { ErrorState, SectionHead, Skel } from '../../ui/Blocks';
 import { VideoPlayer, clipFor } from '../../content/VideoPlayer';
 import { Photo } from '../../photo/Photo';
 import { category, contentPath, photoOf } from '../../content/meta';
@@ -98,7 +98,7 @@ export default function Video() {
           </div>
           {upNext.length > 0 && (
             <section className={s.next} aria-label="Up next">
-              <p className={s.kicker}>Up next</p>
+              <SectionHead title="Up next" inset={false} night />
               <ol>
                 {upNext.map((v, i) => (
                   <li key={v.id}>

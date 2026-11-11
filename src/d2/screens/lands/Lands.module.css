@@ -135,22 +135,8 @@
 .activeOn strong {
   color: var(--fj-on-night);
 }
-.sectionHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.h2 {
-  margin-bottom: 10px;
-  font: var(--fj-headline);
-  letter-spacing: -0.024em;
-}
-.sectionHead .h2 {
-  margin-bottom: 0;
-}
 .crops {
-  border-top: 2px solid var(--fj-fg);
+  border-top: 1px solid var(--fj-line);
 }
 .crop {
   display: flex;

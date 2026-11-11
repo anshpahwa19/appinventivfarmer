@@ -12,7 +12,7 @@ import { Photo, PhotoCredit } from '../../photo/Photo';
 import { Screen, useScreenScroll } from '../../layout/Screen';
 import { RevealText } from '../../motion/Reveal';
 import { Button, IconButton } from '../../ui/Button';
-import { Avatar, ErrorState, Skel } from '../../ui/Blocks';
+import { Avatar, ErrorState, SectionHead, Skel } from '../../ui/Blocks';
 import { useToast } from '../../ui/Toast';
 import { IndexStory, StoryRow } from '../../content/Cards';
 import { category, contentMeta, photoOf } from '../../content/meta';
@@ -196,7 +196,7 @@ export default function Story() {
           </div>
           {related.length > 0 && (
             <section className={s.related} aria-label="Read next">
-              <p className={s.relatedKicker}>Read next</p>
+              <SectionHead title="Read next" inset={false} />
               <StoryRow item={related[0]} />
               {related.slice(1).map((r, i) => (
                 <IndexStory key={r.id} item={r} index={i + 1} />

@@ -53,20 +53,11 @@
   border-top: 1px solid var(--fj-line);
 }
 .indexBlock {
-  margin: 28px var(--fj-gutter) 0;
-  padding-top: 16px;
-  border-top: 2px solid var(--fj-fg);
+  margin: 32px var(--fj-gutter) 0;
 }
-.indexBlock > * + * {
+.indexBlock > * + * + * {
   border-top: 1px solid var(--fj-line);
 }
-.blockKicker {
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-primary);
-}
-
 /* ---------- Cinema (videos) ---------- */
 .cinema {
   display: flex;
@@ -76,13 +67,6 @@
 }
 .cinemaLead {
   padding: 0 var(--fj-gutter);
-}
-.cinemaKicker {
-  margin-bottom: 10px;
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-hl-ink);
 }
 .collection {
   display: flex;

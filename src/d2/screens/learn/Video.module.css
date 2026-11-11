@@ -46,12 +46,7 @@
   color: var(--fj-hl-ink);
 }
 .next {
-  margin: 28px var(--fj-gutter) 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--fj-night-line);
-}
-.next ol {
-  margin-top: 8px;
+  margin: 32px var(--fj-gutter) 0;
 }
 .nextRow {
   display: flex;

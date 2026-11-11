@@ -240,8 +240,7 @@
 }
 /* ---------- At a glance: an index, not tiles ---------- */
 .glance {
-  margin: 8px var(--fj-gutter) 0;
-  border-top: 2px solid var(--fj-fg);
+  margin: 4px var(--fj-gutter) 0;
 }
 .glanceRow {
   display: flex;

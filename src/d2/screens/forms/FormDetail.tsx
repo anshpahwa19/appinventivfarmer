@@ -9,7 +9,7 @@ import { formatDate } from '@/lib/format';
 import { Screen } from '../../layout/Screen';
 import { Photo } from '../../photo/Photo';
 import { Button } from '../../ui/Button';
-import { ErrorState, Note, Segments, Skel, Timeline } from '../../ui/Blocks';
+import { ErrorState, Note, SectionHead, Segments, Skel, Timeline } from '../../ui/Blocks';
 import { FieldTile } from '../../content/Cards';
 import { photoOf } from '../../content/meta';
 import { KD_CONTACT, useUI } from '../../providers';
@@ -87,7 +87,7 @@ export default function FormDetail() {
           )}
 
           <section>
-            <h2 className={s.h2}>The season, step by step</h2>
+            <SectionHead title="The season, step by step" inset={false} />
             <Timeline
               items={c.steps.map((st) => {
                 const done = st.status === 'submitted';
@@ -103,7 +103,7 @@ export default function FormDetail() {
 
           {land && (
             <section>
-              <h2 className={s.h2}>The field</h2>
+              <SectionHead title="The field" inset={false} />
               <FieldTile land={land} width="100%" ratio="16/9" />
             </section>
           )}

@@ -34,7 +34,7 @@ function NewsLayout({ items }: { items: ContentItem[] }) {
       </div>
       {rest.length > 3 && (
         <section className={s.indexBlock} aria-label="More news">
-          <p className={s.blockKicker}>Also in this issue</p>
+          <SectionHead title="Also in this issue" inset={false} />
           {rest.slice(3).map((n, i) => (
             <InView key={n.id}>
               <IndexStory item={n} index={i + 1} />
@@ -57,7 +57,7 @@ function VideoLayout({ items }: { items: ContentItem[] }) {
     <div className={s.cinema}>
       {lead && (
         <div className={s.cinemaLead}>
-          <p className={s.cinemaKicker}>Featured film</p>
+          <SectionHead title="Featured film" inset={false} night />
           <VideoTile item={lead} ratio="16/9" night />
         </div>
       )}

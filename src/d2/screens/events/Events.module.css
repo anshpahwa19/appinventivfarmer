@@ -78,10 +78,25 @@
   margin-top: 24px;
 }
 .monthTitle {
-  padding-bottom: 6px;
-  border-bottom: 2px solid var(--fj-fg);
-  font: 250 2rem/1.1 var(--font);
-  letter-spacing: -0.03em;
+  padding: 14px 0 10px;
+  /* Sub-section tier of SectionHead: hairline with a clay accent, sentence-case title. */
+  position: relative;
+  border-top: 1px solid var(--fj-line-strong);
+  font: 720 1.125rem/1.3 var(--font);
+  font-family: inherit;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--fj-fg);
+}
+.monthTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--fj-primary);
 }
 .timeline {
   position: relative;

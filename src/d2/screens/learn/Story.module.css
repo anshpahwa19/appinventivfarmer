@@ -214,15 +214,7 @@
 }
 .related {
   margin: 32px var(--fj-gutter) 0;
-  padding-top: 14px;
-  border-top: 2px solid var(--fj-fg);
 }
-.related > * + * {
+.related > * + * + * {
   border-top: 1px solid var(--fj-line);
-}
-.relatedKicker {
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-primary);
 }

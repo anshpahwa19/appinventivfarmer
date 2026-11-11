@@ -14,7 +14,7 @@ import { Photo, PhotoCredit } from '../../photo/Photo';
 import { slotFor } from '../../photo/catalog';
 import { RevealText } from '../../motion/Reveal';
 import { Button, IconButton } from '../../ui/Button';
-import { ErrorState, Note, Skel, StatusTag, Timeline } from '../../ui/Blocks';
+import { ErrorState, Note, SectionHead, Skel, StatusTag, Timeline } from '../../ui/Blocks';
 import { useToast } from '../../ui/Toast';
 import { overlayRoot } from '../../ui/Sheet';
 import { eventMeta, photoOf } from '../../content/meta';
@@ -175,7 +175,7 @@ export default function EventDetail() {
             )}
 
             <section>
-              <h2 className={s.h2}>About</h2>
+              <SectionHead title="About" inset={false} />
               {ev.description.map((p, i) => (
                 <p key={i} className={i === 0 ? s.leadPara : s.para}>
                   {p}
@@ -185,14 +185,14 @@ export default function EventDetail() {
 
             {ev.agenda && (
               <section>
-                <h2 className={s.h2}>Agenda</h2>
+                <SectionHead title="Agenda" inset={false} />
                 <Timeline items={ev.agenda.map((a) => ({ title: a.title, meta: a.time, state: status === 'completed' ? 'done' : 'upcoming' }))} />
               </section>
             )}
 
             {ev.bring && status !== 'completed' && (
               <section>
-                <h2 className={s.h2}>Bring along</h2>
+                <SectionHead title="Bring along" inset={false} />
                 <ul className={s.bring}>
                   {ev.bring.map((b, i) => (
                     <li key={b}>
@@ -206,7 +206,7 @@ export default function EventDetail() {
 
             {ev.media && ev.media.length > 0 && (
               <section>
-                <h2 className={s.h2}>From the day</h2>
+                <SectionHead title="From the day" inset={false} />
                 <div className={s.collage}>
                   {ev.media.map((m, i) => (
                     <motion.button key={i} type="button" className={`${s.tile} ${s[`t${i % 5}`]}`} whileTap={{ scale: 0.97 }} onClick={() => setViewer(i)} aria-label={`Open photo ${i + 1} of ${ev.media!.length}`}>

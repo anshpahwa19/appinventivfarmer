@@ -11,11 +11,8 @@
 .suggest {
   padding: 12px var(--fj-gutter);
 }
-.kicker {
-  font: var(--fj-kicker);
-  letter-spacing: var(--fj-track-kicker);
-  text-transform: uppercase;
-  color: var(--fj-primary);
+.topicsHead {
+  margin-top: 32px;
 }
 .words {
   display: flex;

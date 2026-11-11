@@ -129,12 +129,6 @@
   margin: 6px 0 0;
   font: 720 1.0625rem/1 var(--font);
 }
-.h2 {
-  margin-bottom: 14px;
-  font: var(--fj-headline);
-  letter-spacing: -0.024em;
-}
-
 /* ---------- Step ---------- */
 .stepNum {
   font: 200 3.5rem/0.9 var(--font);

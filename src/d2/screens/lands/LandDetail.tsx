@@ -11,7 +11,7 @@ import { validateAcres, validatePincode, validateRequired } from '@/lib/validati
 import { Screen, useScreenScroll } from '../../layout/Screen';
 import { Photo } from '../../photo/Photo';
 import { Button, IconButton } from '../../ui/Button';
-import { EmptyState, Receipt, Row, RowGroup } from '../../ui/Blocks';
+import { EmptyState, Receipt, Row, RowGroup, SectionHead } from '../../ui/Blocks';
 import { Switch, Toggle } from '../../ui/Controls';
 import { GroupLabel, TextField } from '../../ui/Field';
 import { Sheet } from '../../ui/Sheet';
@@ -108,12 +108,15 @@ export default function LandDetail() {
         </div>
 
         <section>
-          <div className={s.sectionHead}>
-            <h2 className={s.h2}>Crops</h2>
-            <Button size="sm" variant="tonal" icon={<Plus aria-hidden />} onClick={() => setCropSheet({ open: true })}>
-              Add crop
-            </Button>
-          </div>
+          <SectionHead
+            title="Crops"
+            inset={false}
+            aside={
+              <Button size="sm" variant="tonal" icon={<Plus aria-hidden />} onClick={() => setCropSheet({ open: true })}>
+                Add crop
+              </Button>
+            }
+          />
           {land.crops.length === 0 && <EmptyState animation="sprout" title="No crops added" body="Add what you grow so bookings and advice match this field." compact />}
           <ul className={s.crops}>
             {land.crops.map((c, i) => (
@@ -137,7 +140,7 @@ export default function LandDetail() {
         </section>
 
         <section>
-          <h2 className={s.h2}>Address</h2>
+          <SectionHead title="Address" inset={false} />
           <Receipt
             rows={[
               { label: 'Address', value: land.address.line || '—', stacked: true },

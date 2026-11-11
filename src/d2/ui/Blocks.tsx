@@ -317,23 +317,34 @@ export function RowGroup({ title, children }: { title?: string; children: ReactN
   );
 }
 
-/* ---------- Section head: title and link on one row, optional detail line ---------- */
+/* ---------- Section head ----------
+ * The one section header for Direction 02: a hairline rule with a short clay
+ * accent (a journal's section divider), the title, an optional plain detail
+ * line, and an optional link with an arrow in a ring. `inset={false}` drops
+ * the side gutter for sections that already sit in a padded column.
+ */
 
-export function SectionHead({ title, meta, to, action = 'See all', night, id }: { title: string; meta?: ReactNode; to?: string; action?: string; night?: boolean; id?: string }) {
+export function SectionHead({ title, meta, to, action = 'See all', aside, night, id, inset = true, className }: { title: string; meta?: ReactNode; to?: string; action?: string; aside?: ReactNode; night?: boolean; id?: string; inset?: boolean; className?: string }) {
   return (
-    <div className={`${s.sh} ${night ? s.shNight : ''}`}>
+    <div className={`${s.sh} ${inset ? s.shInset : s.shFlush} ${night ? s.shNight : ''} ${className ?? ''}`}>
+      <span className={s.shRule} aria-hidden />
       <div className={s.shRow}>
-        <h2 className={s.shTitle} id={id}>
-          {title}
-        </h2>
+        <div className={s.shText}>
+          <h2 className={s.shTitle} id={id}>
+            {title}
+          </h2>
+          {meta && <p className={s.shMeta}>{meta}</p>}
+        </div>
         {to && (
           <Link to={d2(to)} className={s.shLink}>
-            {action}
-            <ArrowUpRight aria-hidden />
+            <span>{action}</span>
+            <span className={s.shArrow} aria-hidden>
+              <ArrowUpRight />
+            </span>
           </Link>
         )}
+        {aside}
       </div>
-      {meta && <p className={s.shMeta}>{meta}</p>}
     </div>
   );
 }
