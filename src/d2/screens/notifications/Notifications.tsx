@@ -7,7 +7,7 @@ import { useQuery } from '@/services/query';
 import { actions, useStore } from '@/services/store';
 import { diffDays } from '@/lib/dates';
 import { formatDate, formatTime } from '@/lib/format';
-import { Screen } from '../../layout/Screen';
+import { Screen, ScrollFade } from '../../layout/Screen';
 import { Chip, ChipRow } from '../../ui/Controls';
 import { Button } from '../../ui/Button';
 import { EmptyState, ErrorState, SkelList, StaleNote } from '../../ui/Blocks';
@@ -81,7 +81,7 @@ export default function Notifications() {
         </Button>
       }
     >
-      <div className={s.intro}>
+      <ScrollFade className={s.intro}>
         <p className={s.kicker}>Notifications</p>
         <div className={s.titleRow}>
           <h2 className={s.title}>Activity</h2>
@@ -92,7 +92,7 @@ export default function Notifications() {
             <small>{unreadCount === 1 ? 'new update' : 'new updates'}</small>
           </span>
         </div>
-      </div>
+      </ScrollFade>
 
       {q.status === 'success' && (q.data?.length ?? 0) > 0 && (
         <ChipRow label="Filter by type" className={s.chips}>

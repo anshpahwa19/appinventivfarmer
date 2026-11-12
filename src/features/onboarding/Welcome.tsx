@@ -8,6 +8,10 @@ import { Scene } from '@/components/media/Scene';
 import { Button } from '@/components/ui/Button';
 import { LogoPlate } from '@/components/brand/Logo';
 import { actions } from '@/services/store';
+import { Sheet } from '@/components/ui/Sheet';
+import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
+import { useHomeT } from '@/i18n/home';
+import homeS from '@/features/home/Home.module.css';
 import s from './Onboarding.module.css';
 
 const SLIDES: { kicker: string; title: string; text: string; scene: SceneSpec }[] = [
@@ -58,6 +62,8 @@ export default function Welcome() {
     else if (info.offset.x > 60 || info.velocity.x > 400) go(index - 1);
   };
 
+  const t = useHomeT();
+  const [langOpen, setLangOpen] = useState(false);
   const slide = SLIDES[index];
 
   return (
@@ -72,11 +78,16 @@ export default function Welcome() {
 
       <div className={s.top}>
         <LogoPlate size={44} name light />
-        {!last && (
-          <button type="button" className={s.skip} onClick={finish}>
-            Skip
-          </button>
-        )}
+        <div className={s.topActions}>
+          <span className={homeS.tokens}>
+            <LanguageButton t={t} variant="pill" onOpen={() => setLangOpen(true)} />
+          </span>
+          {!last && (
+            <button type="button" className={s.skip} onClick={finish}>
+              Skip
+            </button>
+          )}
+        </div>
       </div>
 
       <div className={s.panel}>
@@ -102,6 +113,11 @@ export default function Welcome() {
           </Button>
         </div>
       </div>
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} title={t.languagePicker.title} description={t.contentLang === 'en' ? undefined : 'Choose your language'}>
+        <div className={`${homeS.tokens} ${homeS.home}`} lang={t.contentLang}>
+          <LanguagePicker t={t} variant="cards" onDone={() => setLangOpen(false)} />
+        </div>
+      </Sheet>
     </div>
   );
 }

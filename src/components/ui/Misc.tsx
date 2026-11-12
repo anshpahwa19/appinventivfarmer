@@ -34,7 +34,7 @@ export function StatusBadge({ tone, icon, children, size = 'md', onImage }: { to
 
 const AVATAR_COLORS = ['#2a6345', '#8a6a49', '#b54e15', '#1d5a7a', '#6b4e8a', '#3c8a5a'];
 
-export function Avatar({ name, size = 44, verified, ring }: { name: string; size?: number; verified?: boolean; ring?: boolean }) {
+export function Avatar({ name, size = 44, verified, ring, src }: { name: string; size?: number; verified?: boolean; ring?: boolean; src?: string }) {
   const hue = AVATAR_COLORS[[...name].reduce((a, c) => a + c.charCodeAt(0), 0) % AVATAR_COLORS.length];
   return (
     <span
@@ -42,7 +42,7 @@ export function Avatar({ name, size = 44, verified, ring }: { name: string; size
       style={{ ['--size' as string]: `${size}px`, background: `linear-gradient(145deg, ${hue}, color-mix(in srgb, ${hue} 70%, #000))` }}
       aria-hidden
     >
-      {initials(name)}
+      {src ? <img className={s.avatarImg} src={src} alt="" /> : initials(name)}
       {verified && (
         <span className={s.verifiedTick}>
           <Check strokeWidth={3.5} />

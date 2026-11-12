@@ -479,6 +479,16 @@
 .field > div {
   border-radius: var(--r-xl);
 }
+.fieldShade {
+  /* A black shade behind the acres (top) and the name (bottom) so they read on bright photos. */
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 26%, rgba(0, 0, 0, 0) 40%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 26%, rgba(0, 0, 0, 0) 52%);
+}
 .fieldAcres {
   position: absolute;
   top: 14px;
@@ -498,6 +508,7 @@
   text-transform: uppercase;
 }
 .fieldText {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
   position: absolute;
   left: 16px;
   right: 16px;
@@ -514,7 +525,7 @@
 }
 .fieldCrops {
   font: var(--fj-caption);
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .videoNight .kicker {

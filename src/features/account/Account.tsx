@@ -8,6 +8,7 @@ import { IconButton } from '@/components/ui/IconButton';
 import { ListGroup, ListRow } from '@/components/ui/Blocks';
 import { Sheet } from '@/components/ui/Sheet';
 import { actions, useStore, LANGUAGE_NAMES } from '@/services/store';
+import { PROFILE_PHOTO } from '@/data/profilePhoto';
 import { formatPhone, monthYear } from '@/lib/format';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import s from './Account.module.css';
@@ -28,7 +29,7 @@ export default function Account() {
         <StaggerItem>
         <section className={s.profile} aria-label="Profile">
           <div className={s.profileTop}>
-            <Avatar name={profile.name} size={64} verified={session.verified} />
+            <Avatar name={profile.name} size={64} verified={session.verified} src={PROFILE_PHOTO} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <h2 className={s.name}>{profile.name}</h2>
               <p className={s.phone}>{formatPhone(session.phone || profile.phone)}</p>

@@ -27,10 +27,12 @@ function Glyph({ name, active }: { name: 'today' | 'journal' | 'orders' | 'me'; 
         </svg>
       );
     case 'orders':
+      // Requests: a clipboard with a tick.
       return (
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden>
-          <path d="M3.5 8 12 3.5 20.5 8v8L12 20.5 3.5 16Z" fill={fill} stroke={active ? 'none' : stroke} strokeWidth={2} strokeLinejoin="round" />
-          <path d="M3.8 8.2 12 12.5l8.2-4.3M12 12.5v8" {...common} stroke={active ? 'var(--fj-midnight)' : stroke} />
+          <rect x="4.5" y="4.5" width="15" height="16.5" rx="3" fill={fill} stroke={active ? 'none' : stroke} strokeWidth={2} />
+          <path d="M9 4.5V4a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4v.5" {...common} />
+          <path d="M8.6 13.2 11 15.6l4.6-4.8" {...common} stroke={active ? 'var(--fj-midnight)' : stroke} />
         </svg>
       );
     default:

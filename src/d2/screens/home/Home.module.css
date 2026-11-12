@@ -47,9 +47,6 @@
 .home :is(h1, h2, h3, p, span, strong, b, small, button) {
   overflow-wrap: break-word;
 }
-.heroLang {
-  margin-bottom: 14px;
-}
 .reviewNote {
   margin-top: 12px;
   font: var(--fj-caption);
@@ -98,17 +95,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-.me {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--r-sm);
-  background: var(--fj-lime-400);
-  color: var(--fj-midnight);
-  font: 780 0.9375rem/1 var(--font);
-  text-decoration: none;
 }
 .heroText {
   position: absolute;

@@ -9,6 +9,10 @@ import { RevealText } from '../../motion/Reveal';
 import { FjLottie } from '../../lottie/Lottie';
 import type { AnimationName } from '../../lottie/animations';
 import { useNav } from '../../nav';
+import { Sheet } from '../../ui/Sheet';
+import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
+import { useHomeT } from '@/i18n/home';
+import homeS from '../home/Home.module.css';
 import s from './Onboarding.module.css';
 
 const SLIDES: { photo: string; section: string; title: string; text: string; anim: AnimationName }[] = [
@@ -44,6 +48,8 @@ export default function Welcome() {
     if (info.offset.x < -60 || info.velocity.x < -400) go(i + 1);
     else if (info.offset.x > 60 || info.velocity.x > 400) go(i - 1);
   };
+  const t = useHomeT();
+  const [langOpen, setLangOpen] = useState(false);
   const slide = SLIDES[i];
 
   return (
@@ -62,13 +68,18 @@ export default function Welcome() {
         <span className={s.issue}>
           No. {String(i + 1).padStart(2, '0')} <span>/ 0{SLIDES.length}</span>
         </span>
-        {!last ? (
-          <button type="button" className={s.skip} onClick={finish}>
-            Skip
-          </button>
-        ) : (
-          <span className={s.skipSpacer} />
-        )}
+        <div className={s.topActions}>
+          <span className={homeS.tokens}>
+            <LanguageButton t={t} variant="journal" onOpen={() => setLangOpen(true)} />
+          </span>
+          {!last ? (
+            <button type="button" className={s.skip} onClick={finish}>
+              Skip
+            </button>
+          ) : (
+            <span className={s.skipSpacer} />
+          )}
+        </div>
       </div>
 
       <div className={s.coverBottom}>
@@ -102,6 +113,11 @@ export default function Welcome() {
           </motion.button>
         </div>
       </div>
+      <Sheet open={langOpen} onClose={() => setLangOpen(false)} kicker={t.contentLang === 'en' ? t.language : `${t.language} · Language`} title={t.languagePicker.title}>
+        <div className={`${homeS.tokens} ${homeS.home}`} lang={t.contentLang}>
+          <LanguagePicker t={t} variant="index" onDone={() => setLangOpen(false)} />
+        </div>
+      </Sheet>
     </div>
   );
 }

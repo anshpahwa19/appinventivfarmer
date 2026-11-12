@@ -1,7 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useTransform } from 'framer-motion';
-import { Bell, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, MessageCircle, Mic, Package, Phone, ShieldAlert } from 'lucide-react';
+import { Bell, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, Mic, Package, Phone, ShieldAlert } from 'lucide-react';
 import type { SceneSpec, SceneTime } from '@/types';
 import { Scene } from '@/components/media/Scene';
 import { IconButton } from '@/components/ui/IconButton';
@@ -13,11 +13,13 @@ import { AddLandCard, EventCard, FeatureCard, LandCard, MediaRow } from '@/compo
 import { Screen, useScreenScroll } from '@/components/layout/Screen';
 import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
+import { WhatsAppIcon, didiWhatsAppUrl } from '@/components/home/WhatsApp';
 import { useHomeData } from '@/components/home/useHomeData';
 import { useUI, KD_CONTACT } from '@/app/providers';
 import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
+import { PROFILE_PHOTO } from '@/data/profilePhoto';
 import { formatDate } from '@/lib/format';
 import { dayPart, useHomeT, type HomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
 import { WeatherCard, WeatherSheet } from './Weather';
@@ -68,7 +70,7 @@ function HomeHero({ scene, name, firstName, verified, unread, t, locale, offline
       <div className={s.heroScrim} aria-hidden />
       <motion.div className={`${s.heroTop} ${offline ? s.heroTopOffline : ''}`} style={{ y: textY, opacity: textOpacity }}>
         <Link to="/account" className={s.me} aria-label={t.account}>
-          <Avatar name={name} size={44} verified={verified} />
+          <Avatar name={name} size={44} verified={verified} src={PROFILE_PHOTO} />
         </Link>
         <span className={s.heroSpacer} />
         <LanguageButton t={t} variant="pill" onOpen={onLang} />
@@ -238,8 +240,8 @@ export default function Home() {
                 <Button variant="tonal" icon={<Phone aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
                   {t.call}
                 </Button>
-                <Button variant="tonal" icon={<MessageCircle aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
-                  {t.message}
+                <Button variant="tonal" icon={<WhatsAppIcon />} href={didiWhatsAppUrl(t.voice.messagePrefix.trim())}>
+                  WhatsApp
                 </Button>
               </div>
             </div>

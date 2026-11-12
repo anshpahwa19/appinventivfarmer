@@ -1,13 +1,14 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useTransform } from 'framer-motion';
-import { ArrowUpRight, Bell, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, MessageCircle, Mic, Package, Phone, Search, ShieldAlert } from 'lucide-react';
+import { ArrowUpRight, Bell, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, Mic, Package, Phone, Search, ShieldAlert } from 'lucide-react';
 import { useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
 import { dayPart, useHomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
 import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
+import { WhatsAppIcon, didiWhatsAppUrl } from '@/components/home/WhatsApp';
 import { useHomeData } from '@/components/home/useHomeData';
 import markUrl from '@/assets/brand/kisani-urjaa-mark.webp';
 import { Screen, useScreenScroll } from '../../layout/Screen';
@@ -32,7 +33,7 @@ function heroSlot(rainy: boolean, now = new Date()) {
   return 'wheat-field';
 }
 
-function Hero({ slot, greeting, unread, verified, name, village, t, onLang }: { slot: string; greeting: string; unread: number; verified: boolean; name: string; village: string; t: ReturnType<typeof useHomeT>; onLang: () => void }) {
+function Hero({ slot, greeting, unread, village, t, onLang }: { slot: string; greeting: string; unread: number; village: string; t: ReturnType<typeof useHomeT>; onLang: () => void }) {
   const scrollY = useScreenScroll();
   const y = useTransform(scrollY, [0, 420], [0, 140]);
   const textY = useTransform(scrollY, [0, 260], [0, -40]);
@@ -54,17 +55,10 @@ function Hero({ slot, greeting, unread, verified, name, village, t, onLang }: { 
           <IconButton label={t.notifications} variant="glass" to="/notifications" badge={unread}>
             <Bell />
           </IconButton>
-          <Link to={to('/account')} className={s.me} aria-label={`${t.account}: ${name}${verified ? ' ✓' : ''}`}>
-            {name
-              .split(' ')
-              .slice(0, 2)
-              .map((p) => p[0])
-              .join('')}
-          </Link>
+          <LanguageButton t={t} variant="journal" onOpen={onLang} />
         </div>
       </div>
       <motion.div className={s.heroText} style={{ y: textY, opacity: fade }}>
-        <LanguageButton t={t} variant="journal" onOpen={onLang} className={s.heroLang} />
         <p className={s.dateline}>
           <span>{t.today}</span> {date} · {village}
         </p>
@@ -152,7 +146,7 @@ export default function Home() {
   return (
     <Screen title="Home" variant="bare" tabRoot lightTop heroHeight={520}>
       <div className={`${s.tokens} ${s.home}`} lang={t.contentLang}>
-        <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} verified={verified} name={profile.name} village={profile.village} t={t} onLang={() => setLangOpen(true)} />
+        <Hero slot={slot} greeting={t.greeting(dayPart(), firstName)} unread={unread} village={profile.village} t={t} onLang={() => setLangOpen(true)} />
 
         <div className={s.instrument}>
           <WeatherPanel weather={weather.data} loading={weather.status === 'loading'} onOpen={() => setWxOpen(true)} t={t} />
@@ -224,8 +218,8 @@ export default function Home() {
               <Button size="sm" variant="secondary" icon={<Phone aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
                 {t.call}
               </Button>
-              <Button size="sm" variant="secondary" icon={<MessageCircle aria-hidden />} onClick={() => openContact(KD_CONTACT)}>
-                {t.message}
+              <Button size="sm" variant="secondary" icon={<WhatsAppIcon />} href={didiWhatsAppUrl(t.voice.messagePrefix.trim())}>
+                WhatsApp
               </Button>
             </div>
           </div>

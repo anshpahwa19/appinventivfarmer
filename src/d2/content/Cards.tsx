@@ -299,6 +299,7 @@ export function FieldTile({ land, width = 240, ratio = '4/5' }: { land: Land; wi
     <div style={{ width }}>
       <Tap to={`/lands/${land.id}`} className={s.field} label={`${land.name}, ${land.areaAcres} acres, ${crops}${land.active ? '' : ', inactive'}`}>
         <Photo id={photoOf(land)} src={land.scene.src} ratio={ratio} shade="bottom" decorative muted={!land.active}>
+          <span className={s.fieldShade} aria-hidden />
           <span className={s.fieldAcres}>
             {land.areaAcres}
             <small>acres</small>

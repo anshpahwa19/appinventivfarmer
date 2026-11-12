@@ -10,6 +10,17 @@ body,
   height: 100%;
 }
 
+/*
+ * Plus Jakarta Sans joins "fi" into one glyph, which hides the dot of the i
+ * (Field reads as "Feld"). Keep letters separate everywhere. !important is
+ * needed because every `font:` shorthand would otherwise reset it.
+ */
+*,
+*::before,
+*::after {
+  font-variant-ligatures: no-common-ligatures !important;
+}
+
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;

@@ -53,8 +53,9 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
   const threshold = variant === 'masthead' ? 92 : variant === 'overlay' || (variant === 'bare' && lightTop) ? heroHeight - 120 : 4;
   const [past, setPast] = useState(false);
   const barBg = useTransform(scrollY, [threshold - 24, threshold], [0, 1]);
-  const titleOpacity = useTransform(scrollY, variant === 'detail' ? [40, 80] : [threshold - 10, threshold + 14], [0, 1]);
-  const titleY = useTransform(scrollY, variant === 'detail' ? [40, 80] : [threshold - 10, threshold + 14], [8, 0]);
+  // Detail pages: the bar title appears only once the large page title has faded away (see ScrollFade).
+  const titleOpacity = useTransform(scrollY, variant === 'detail' ? [52, 80] : [threshold - 10, threshold + 14], [0, 1]);
+  const titleY = useTransform(scrollY, variant === 'detail' ? [52, 80] : [threshold - 10, threshold + 14], [8, 0]);
   const read = useTransform(scrollY, (y) => {
     const el = ref.current;
     const max = el ? el.scrollHeight - el.clientHeight : 0;
@@ -128,13 +129,28 @@ export function Screen({ title, kicker, deck, variant = 'detail', back = variant
   );
 }
 
+/**
+ * Fades a detail page's large title block out as it scrolls under the bar,
+ * so it never shows at the same time as the bar's small title.
+ */
+export function ScrollFade({ children, className }: { children: ReactNode; className?: string }) {
+  const scrollY = useScreenScroll();
+  const opacity = useTransform(scrollY, [6, 52], [1, 0]);
+  const y = useTransform(scrollY, [0, 52], [0, -10]);
+  return (
+    <motion.div className={className} style={{ opacity, y }}>
+      {children}
+    </motion.div>
+  );
+}
+
 /** Large detail-page heading block (kicker + title), for screens with a compact header. */
 export function PageTitle({ kicker, title, deck }: { kicker?: ReactNode; title: string; deck?: ReactNode }) {
   return (
-    <div className={s.pageTitle}>
+    <ScrollFade className={s.pageTitle}>
       {kicker && <p className={s.kicker}>{kicker}</p>}
       <h2 className={s.pageTitleText}>{title}</h2>
       {deck && <p className={s.deck}>{deck}</p>}
-    </div>
+    </ScrollFade>
   );
 }

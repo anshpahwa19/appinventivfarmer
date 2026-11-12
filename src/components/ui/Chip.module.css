@@ -20,6 +20,8 @@
   transform: scale(0.96);
 }
 .chip svg {
+  /* Without this the icon is squeezed to 0px wide in a scrolling chip row. */
+  flex: none;
   width: 16px;
   height: 16px;
 }
