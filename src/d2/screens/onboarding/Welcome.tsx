@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { actions } from '@/services/store';
 import { useStatusTone } from '@/lib/statusTone';
 import markUrl from '@/assets/brand/kisani-urjaa-mark.webp';
 import { Photo } from '../../photo/Photo';
@@ -9,10 +8,6 @@ import { RevealText } from '../../motion/Reveal';
 import { FjLottie } from '../../lottie/Lottie';
 import type { AnimationName } from '../../lottie/animations';
 import { useNav } from '../../nav';
-import { Sheet } from '../../ui/Sheet';
-import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
-import { useHomeT } from '@/i18n/home';
-import homeS from '../home/Home.module.css';
 import s from './Onboarding.module.css';
 
 const SLIDES: { photo: string; section: string; title: string; text: string; anim: AnimationName }[] = [
@@ -30,8 +25,8 @@ export default function Welcome() {
   useStatusTone('light');
   const last = i === SLIDES.length - 1;
   const finish = useCallback(() => {
-    actions.completeOnboarding();
-    nav('/auth', { replace: true });
+    // Next: a dedicated page to choose the app language (it completes onboarding).
+    nav('/welcome/language');
   }, [nav]);
   const go = useCallback((n: number) => setI(Math.max(0, Math.min(SLIDES.length - 1, n))), []);
 
@@ -48,8 +43,6 @@ export default function Welcome() {
     if (info.offset.x < -60 || info.velocity.x < -400) go(i + 1);
     else if (info.offset.x > 60 || info.velocity.x > 400) go(i - 1);
   };
-  const t = useHomeT();
-  const [langOpen, setLangOpen] = useState(false);
   const slide = SLIDES[i];
 
   return (
@@ -68,18 +61,13 @@ export default function Welcome() {
         <span className={s.issue}>
           No. {String(i + 1).padStart(2, '0')} <span>/ 0{SLIDES.length}</span>
         </span>
-        <div className={s.topActions}>
-          <span className={homeS.tokens}>
-            <LanguageButton t={t} variant="journal" onOpen={() => setLangOpen(true)} />
-          </span>
-          {!last ? (
-            <button type="button" className={s.skip} onClick={finish}>
-              Skip
-            </button>
-          ) : (
-            <span className={s.skipSpacer} />
-          )}
-        </div>
+        {!last ? (
+          <button type="button" className={s.skip} onClick={finish}>
+            Skip
+          </button>
+        ) : (
+          <span className={s.skipSpacer} />
+        )}
       </div>
 
       <div className={s.coverBottom}>
@@ -113,11 +101,6 @@ export default function Welcome() {
           </motion.button>
         </div>
       </div>
-      <Sheet open={langOpen} onClose={() => setLangOpen(false)} kicker={t.contentLang === 'en' ? t.language : `${t.language} · Language`} title={t.languagePicker.title}>
-        <div className={`${homeS.tokens} ${homeS.home}`} lang={t.contentLang}>
-          <LanguagePicker t={t} variant="index" onDone={() => setLangOpen(false)} />
-        </div>
-      </Sheet>
     </div>
   );
 }

@@ -31,11 +31,6 @@
   align-items: center;
   justify-content: space-between;
 }
-.topActions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .skip {
   min-height: 44px;
   padding: 0 16px;

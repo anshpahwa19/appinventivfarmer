@@ -1,12 +1,12 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useTransform } from 'framer-motion';
-import { ArrowUpRight, Bell, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, Mic, Package, Phone, Search, ShieldAlert } from 'lucide-react';
-import { useStore } from '@/services/store';
+import { ArrowUpRight, Bell, Languages, BellRing, CalendarCheck, ChevronRight, ClipboardList, Lock, Mic, Package, Phone, Search, ShieldAlert } from 'lucide-react';
+import { LANGUAGE_NAMES, useStore } from '@/services/store';
 import { eventStatus } from '@/data/events';
 import { KISANI_DIDI } from '@/data/people';
 import { dayPart, useHomeT, type QuickKey, type VoiceIntent } from '@/i18n/home';
-import { LanguageButton, LanguagePicker } from '@/components/home/LanguageSwitch';
+import { LanguagePicker } from '@/components/home/LanguageSwitch';
 import { VoicePanel } from '@/components/home/VoicePanel';
 import { WhatsAppIcon, didiWhatsAppUrl } from '@/components/home/WhatsApp';
 import { useHomeData } from '@/components/home/useHomeData';
@@ -55,7 +55,9 @@ function Hero({ slot, greeting, unread, village, t, onLang }: { slot: string; gr
           <IconButton label={t.notifications} variant="glass" to="/notifications" badge={unread}>
             <Bell />
           </IconButton>
-          <LanguageButton t={t} variant="journal" onOpen={onLang} />
+          <IconButton label={t.languagePicker.current(LANGUAGE_NAMES[t.lang])} variant="glass" onClick={onLang} aria-haspopup="dialog">
+            <Languages />
+          </IconButton>
         </div>
       </div>
       <motion.div className={s.heroText} style={{ y: textY, opacity: fade }}>

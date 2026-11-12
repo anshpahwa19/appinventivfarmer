@@ -47,6 +47,8 @@ const en = {
     title: 'Choose your language',
     device: 'Device language',
     current: (name: string) => `Language: ${name}. Change language`,
+    hint: 'You can change it any time from the Home screen.',
+    continue: 'Continue',
   },
   reviewNote: '',
 
@@ -239,6 +241,8 @@ const hi: HomeDict = {
     title: 'अपनी भाषा चुनें',
     device: 'फ़ोन की भाषा',
     current: (name) => `भाषा: ${name}। भाषा बदलें`,
+    hint: 'आप इसे कभी भी होम स्क्रीन से बदल सकते हैं।',
+    continue: 'आगे बढ़ें',
   },
   reviewNote: 'हिन्दी अनुवाद की जाँच अभी बाकी है।',
 
@@ -421,6 +425,8 @@ const mr: HomeDict = {
     title: 'तुमची भाषा निवडा',
     device: 'फोनची भाषा',
     current: (name) => `भाषा: ${name}. भाषा बदला`,
+    hint: 'तुम्ही ती कधीही होम स्क्रीनवरून बदलू शकता.',
+    continue: 'पुढे चला',
   },
   reviewNote: 'मराठी भाषांतराची तपासणी अजून बाकी आहे.',
 

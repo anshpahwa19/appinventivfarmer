@@ -15,6 +15,7 @@ export function prefetchD2() {
 }
 
 const Welcome = page(() => import('./screens/onboarding/Welcome'));
+const ChooseLanguage = page(() => import('./screens/onboarding/ChooseLanguage'));
 const Auth = page(() => import('./screens/onboarding/Auth'));
 const Otp = page(() => import('./screens/onboarding/Otp'));
 const LocationAccess = page(() => import('./screens/onboarding/LocationAccess'));
@@ -73,6 +74,7 @@ export function D2Routes({ location }: { location: Location }) {
       <Route path="/d2">
         <Route index element={<RootRedirect />} />
         <Route path="welcome" element={<Welcome />} />
+        <Route path="welcome/language" element={<ChooseLanguage />} />
         <Route path="auth" element={<Auth />} />
         <Route path="auth/otp" element={<Otp />} />
         <Route path="auth/location" element={<LocationAccess />} />

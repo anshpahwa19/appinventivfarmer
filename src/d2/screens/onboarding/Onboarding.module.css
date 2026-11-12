@@ -46,11 +46,6 @@
 .issue span {
   color: rgba(255, 255, 255, 0.6);
 }
-.topActions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .skip,
 .skipSpacer {
   min-width: 64px;
@@ -396,11 +391,4 @@
 
 .cover .section {
   color: var(--fj-apricot);
-}
-
-/* Narrow phones: the dots below already show progress; give the top bar room for the language selector. */
-@media (max-width: 380px) {
-  .issue {
-    display: none;
-  }
 }

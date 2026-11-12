@@ -16,6 +16,7 @@ export function prefetchScreens() {
 }
 
 const Welcome = page(() => import('@/features/onboarding/Welcome'));
+const ChooseLanguage = page(() => import('@/features/onboarding/ChooseLanguage'));
 const Auth = page(() => import('@/features/onboarding/Auth'));
 const Otp = page(() => import('@/features/onboarding/Otp'));
 const LocationAccess = page(() => import('@/features/onboarding/LocationAccess'));
@@ -71,6 +72,7 @@ export function AppRoutes({ location }: { location: Location }) {
     <Routes location={location}>
       <Route path="/" element={<RootRedirect />} />
       <Route path="/welcome" element={<Welcome />} />
+      <Route path="/welcome/language" element={<ChooseLanguage />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/auth/otp" element={<Otp />} />
       <Route path="/auth/location" element={<LocationAccess />} />
